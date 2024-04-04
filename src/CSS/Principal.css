@@ -1,0 +1,98 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI historic';
+}
+.Nexus-Contenedor{
+    display: flex;
+}
+.Nexus{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    margin: 0px;
+}
+.Nombre{
+    font-size: 14px;
+}
+.Perfil_boton{
+    background: transparent;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 10px;
+}
+.Perfil_boton:hover{
+    background: rgba(254, 254, 254, 0.507);
+   
+    color: #fff;
+}
+.DatosPerfil{
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+    
+}
+.Titulo-Nexus{
+    font-size: 50px;
+    margin-top: 10px;
+}
+.Foto-Perfil {
+    width: 70px;
+    border-radius: 70px;
+    height: 70px; /* Asigna una altura si es necesario */
+    object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+}
+.Botones-contenedor{
+    display: flex;
+    flex-direction: column;
+   
+}
+.Botones{
+   cursor: pointer;
+   width: 200px;
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.Botones:hover{
+    
+   background: rgba(247, 247, 247, 0.255);
+ }
+.Botones-cerrar{
+    cursor: pointer;
+    width: 200px;
+     margin-top: 46px;
+     padding: 5px;
+     border-radius: 5px;
+
+}
+.Botones-cerrar:hover{
+    
+    background: rgba(247, 247, 247, 0.255);
+  }
+.botones-funciones{
+    border: none;
+    background: transparent;
+    color: #fff;
+    width: 130px;
+    height: 30px;
+    margin-left: 10px;
+    text-align: left;
+
+}
+i{
+    font-size: 20px;
+   
+}

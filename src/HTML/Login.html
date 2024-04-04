@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Login Nexus</title>
+</head>
+<body>
+    <div class="container Sesion" >
+        <div class="container-logo">
+            <h1>Nexus</h1>
+            <p>Nexus es tu espacio para conectarte y compartir con aquellos que llenan
+                tu vida de alegría y significado.</p>
+        </div>
+        <div class="container-input">
+            <h3>Iniciar sesión en Nexus</h3>
+            <form action="#">
+                <input class="datos-sesion" type="email" id="email" required placeholder=" Correo eléctronico"><br>
+                <input class="datos-sesion" type="password" id="password" required placeholder=" Contraseña"><br>
+                <button class="btnSubmit" type="submit">Iniciar sesión</button>
+            </form>
+            <a class="olvidar-contra" href="">¿Olvidaste tu contraseña?</a>
+            <input class="boton-crear" id="signUp" type="button" value="Crear cuenta nueva">
+        </div>
+        </div>
+
+    <div class="Contenedor-registrar Registrar ">
+        <div class="contendor-central">
+          <div class="Nexus">
+              <h1>Nexus</h1>
+              <p>Nexus es tu espacio para conectarte y compartir con aquellos que llenan tu vida de alegría 
+                  y significado.</p>
+          </div>
+      <div class="Principal-Login">
+          <form action="/registrar" method="post">
+              <div class="Tabla-contendor">
+                  <h2 class="Titulo_creae_cuenta">Crea tu cuenta</h1>
+              <table class="Tabla-Registros">
+                  <tr>
+                      <td>Nombre</td>
+                      <td>Apellido</td>
+                  </tr>
+                  <tr>
+                      <td><input class="Nombre-Apellido" id="nombre" type="text" placeholder="Escribe tu nombre" required></td>
+                      <td><input class="Nombre-Apellido" id="apellido" type="text" placeholder="Escribe tu apellido" required></td>
+                  </tr>
+                  <tr>
+                      <td>Correo electrónico</td>
+                  </tr>
+                  <tr>
+                      <td colspan="2"><input class="Correo" id="correo" type="text" placeholder="Escribe tu correo eléctronico" required></td>
+                  </tr>
+                  <tr>
+                      <td>Contraseña</td>
+                      <td>Confirma tu contraseña</td>
+                  </tr>
+                  <tr>
+                      <td><input class="Contrasena" id="contra1" type="password" placeholder="Contraseña" required></td>
+                      <td><input class="Contrasena" id="contra2" type="password" placeholder="Confirmar Contraseña" required></td>
+                  </tr>
+                  <tr>
+                      <td colspan="2"><button class="Boton-registrar" type="submit" class="btn" id="btnregistrar">Registrarse</button></td>
+                  </tr>
+              </table>
+              </div>
+          </form>
+          
+          <div class="home">
+              <p>¿Ya tienes cuenta? </p><a id="signIn" href="#">Iniciar sesión</a>
+          </div>
+      </div>
+      
+    
+        </div>
+      </div>
+</body>
+<script src="../JS/login.js"></script>
+</html>

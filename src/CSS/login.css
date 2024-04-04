@@ -1,0 +1,262 @@
+
+body{
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI historic';
+  }
+  
+  .container{
+    display: flex;
+    width: auto;
+    padding: 50px;
+    
+    
+  }
+  
+  .container-logo{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: auto;
+    padding: 200px;
+  }
+  
+  .container-logo h1{
+    color: #0285a2;
+    font-size: 80px;
+    font-family: 'Segoe UI historic';
+    margin: 0;
+  }
+  
+  .container-logo p{
+    font-size: 18px;
+    font-family: 'Segoe UI historic';
+    margin: 0;
+    width: 400px;
+    color: white;
+  }
+  
+  .container-input {
+    background-color: white;
+    border: 2px solid rgb(223, 223, 223);
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 850px;
+    height: 550px;
+    padding-top: 25px;
+    font-family: 'Segoe UI historic';
+    text-align: center;
+  }
+  
+  .datos-sesion{
+    width: 400px;
+    height: 35px;
+    font-size: 15px;
+    margin: 20px;
+    outline: none;
+    border: 2px solid #000;
+    border-radius: 0.3em;
+  }
+  
+  .btnSubmit{
+    width: 300px;
+    cursor: pointer;
+    margin: 25px;
+    border: none;
+    border-radius: 0.3em;
+    font-size: 20px;
+    color: white;
+    height: 45px;
+    background-color:#0285a2;
+  }
+  .btnSubmit:hover{
+    width: 320px;
+    font-weight: bold;
+    color: rgb(1, 1, 1);
+    background-color:#00c5f1;
+  }
+  
+  .container-input .boton-crear{
+    width: 300px;
+    cursor: pointer;
+    margin-top: 45px;
+    font-size: 20px;
+    border-radius: 0.3em;
+    border: none;
+    color: white;
+    height: 45px;
+    background-color: #00d061;
+  }
+  
+  .container-input .boton-crear:hover{
+    width: 310px;
+    font-weight: bold;
+    color: rgb(5, 5, 5);
+    background-color: #078742;
+  }
+  
+  
+  .container-input .olvidar-contra{
+    margin-top: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #0285a2;
+    border-bottom: 2px solid #ced4db;
+    padding-bottom: 10px;
+    width: 400px;
+  }
+  .container-input .olvidar-contra:hover{
+    
+    color: #0aa3c6;
+    font-size: 17px;
+  }
+
+
+
+
+
+
+
+
+  /* -------------------------------------------Registro de usuarios css ----------------------------------------*/
+.Contenedor-registrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 650px;
+}
+.contendor-central{
+    display: flex;
+    padding-left: 25px;
+    justify-content: center;  
+
+}
+.Nexus h1{
+    color: rgb(2,133,162);
+    font-size: 70px;
+    margin-bottom: 0px;
+}
+.Nexus p{
+    justify-content: left;
+    text-align: left;
+    margin-top: 0px;
+}
+
+.Nexus{
+    width: 250px;
+    height: 390px;
+    padding-right: 55px;
+    justify-content: center;
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+   
+}
+
+
+
+/* Formulario ---------------------------------------------------*/
+
+.Principal-Login{
+    justify-content: center;
+    display: flex;
+    height: 370px;
+    border-radius: 5px;
+    flex-direction: column;
+    background: #fff;
+    margin-top: 30px;
+    padding: 10px;
+    color: black;
+}
+
+.Tabla-contendor{
+    display: flex;
+    flex-direction: column;
+    
+}
+.Tabla-contendor h2{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  
+    
+}
+
+
+.Nombre-Apellido{
+width: 150px;
+height: 30px;
+border: solid thin black;
+margin-top: 5px;
+margin-right: 10px;
+}
+.Contrasena{
+    width: 150px;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 10px;
+    border: solid thin black;
+}
+.Correo{
+    width: 319px;
+    height: 40px;
+    margin-top: 5px;
+    border: solid thin black;
+}
+td{
+    margin-bottom: 50px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.Boton-registrar{
+    width: 319px;
+    height: 30px;
+    border-radius: 0.4em;
+    margin-top: 15px;
+    background-color: rgb(2,133,162);
+    border: none;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    
+}
+.Boton-registrar:hover{
+    width: 325px;
+    background-color: rgb(19, 191, 229);
+    height: 32px;
+    color: #000000;
+    
+}
+.home{
+    display: flex;
+    background: transparent;
+    color: black;
+   
+    margin-top: 20px;
+    justify-content: center;
+
+}
+.home p{
+    margin-right: 25px;
+    margin-top: 0px;
+}
+.home a{
+    text-decoration:none;
+    color: rgb(0, 208, 97);
+    font-weight: bold;
+    cursor: pointer;
+}
+.home a:hover{
+    font-size: 17px;
+    color: rgb(84, 249, 161);
+    
+}
+
+.Registrar{
+    position: absolute;
+    transform: translatey(-300%);
+}
