@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/login.css">
-    <link rel="stylesheet" href="../CSS/style.css">
     <title>Login Nexus</title>
 </head>
 <body>
@@ -34,7 +33,7 @@
                   y significado.</p>
           </div>
       <div class="Principal-Login">
-          <form action="/registrar" method="post">
+          
               <div class="Tabla-contendor">
                   <h2 class="Titulo_creae_cuenta">Crea tu cuenta</h1>
               <table class="Tabla-Registros">
@@ -61,11 +60,11 @@
                       <td><input class="Contrasena" id="contra2" type="password" placeholder="Confirmar Contraseña" required></td>
                   </tr>
                   <tr>
-                      <td colspan="2"><button class="Boton-registrar" type="submit" class="btn" id="btnregistrar">Registrarse</button></td>
+                      <td colspan="2"><button class="Boton-registrar" onclick="NuevoUsuario()" id="btnregistrar">Registrarse</button></td>
                   </tr>
               </table>
               </div>
-          </form>
+         
           
           <div class="home">
               <p>¿Ya tienes cuenta? </p><a id="signIn" href="#">Iniciar sesión</a>
@@ -77,4 +76,6 @@
       </div>
 </body>
 <script src="../JS/login.js"></script>
+<script src="../JS/Registros.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </html>
