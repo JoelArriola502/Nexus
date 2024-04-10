@@ -80,12 +80,13 @@ const Contrasena2=ConfirmarContrasenaInput.value;
 
 
 function RegistroCuenta(Nombre, Apellido, Correo, Contrasena){
+    let Foto="../img/Foto1.jpg"
     fetch('http://localhost:4000/NuevoUsuario', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ Nombre, Apellido, Correo, Contrasena}),
+        body: JSON.stringify({ Nombre, Apellido,Foto, Correo, Contrasena}),
     })
     .then((res) => res.json())
     .then((json) => {
@@ -129,3 +130,5 @@ function ValidarCorreo(Correo) {
     return expReg.test(Correo);
 }
 
+const nombre=localStorage.getItem('Nombre');
+console.log(nombre)

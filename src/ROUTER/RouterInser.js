@@ -7,6 +7,7 @@ router.post('/NuevoUsuario',(req,res)=>{
     insertar.NuevoUsuario(
         AgregarUsuario.Nombre,
         AgregarUsuario.Apellido,
+        AgregarUsuario.Foto,
         AgregarUsuario.Correo,
         AgregarUsuario.Contrasena
     )

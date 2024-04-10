@@ -11,13 +11,8 @@
 <body>
     <div class="Nexus-Contenedor">
         <div class="Nexus">
-                <div class="DatosPerfil">
+                <div class="DatosPerfil" id="DatosPerfil">
                  
-                    <h1 class="Titulo-Nexus">Nexus</h1>
-                    <button class="Perfil_boton">
-                    <img class="Foto-Perfil" src="../img/Foto1.jpg" alt="">
-                    <h5 class="Nombre">Joél Arriola</h5>
-                </button>
                 </div>
                 <div class="Botones-contenedor">
                     <label class="Botones" for=""><i class="fa-solid fa-house"></i>
@@ -64,70 +59,13 @@
                     <input class="input" type="search" placeholder="Search" />
                 </div>
             </div>
-            <div class="publicaciones">
-                <div class="crearPublicacion">
-                    <div class="inputPublicacion">
-                        <img class="Foto-Perfil_p" src="../img/Foto1.jpg" alt="Usuario"/>
-                        <input class="Crear-Texto-Publicacion" type="text" placeholder="¿Qué estas pensando?" />
-                    </div>
-                    <div class="botonesPubli">
-                        
-                        <button class="multimedia"><i class="fa-solid fa-photo-film"></i> Foto/Video</button>
-                        <button class="Etiquetar"><i class="fa-solid fa-tag"></i>Etiquetar</button>
-                        <button class="btnPublicar">Publicar</button>
-                    </div>
-                </div>
-                <div class="vistaPublicacion">
-                    <div class="usuario">
-                        <div class="fotousuario">
-                            <img class="Foto-Perfil-Publicacion" src="../img/Foto1.jpg" alt="Usuario"/>
-                        </div>
-                        <div class="infoPubli">
-                            <h5 class="nameUsuario">Joel Arriola</h5>
-                            <p class="fecha">2 mar 2024</p>
-                        </div>
-                    </div>
-                    <div class="descripcion">
-                        <p>Emociones aventruras con amigos y familiares</p>
-                    </div>
-                    <div class="fotoPubli">
-                        <img class="imagenPublicacion" src="https://conred.gob.gt/wp-content/uploads/Boletin-Informativo-No.-006-2024.jpeg" alt="Foto">
-                    </div>
-                    <div class="btnPublicaciones">
-                        <button class="like">
-                            <i class="fa-regular fa-thumbs-up"></i> Like
-                        </button>
-                        <p class="numLike">200</p>
-                        <button class="comentar">
-                            <i class="fa-regular fa-comment"></i> Comentar
-                        </button>
-                        <p class="numComent">200</p>
-                    </div>
+            <div class="publicaciones" id="publicaciones">
+                <div class="crearPublicacion" id="crearPublicacion">
+                  
                 </div>
 
-                <div class="vistaPublicacion">
-                    <div class="usuario">
-                        <div class="fotousuario">
-                            <img class="Foto-Perfil-Publicacion" src="../img/Foto1.jpg" alt="Usuario"/>
-                        </div>
-                        <div class="infoPubli">
-                            <h5 class="nameUsuario">Joel Arriola</h5>
-                            <p class="fecha">2 mar 2024</p>
-                        </div>
-                    </div>
-                    <div class="descripcion">
-                        <p>Emociones aventruras con amigos y familiares</p>
-                    </div>
-                    <div class="btnPublicaciones">
-                        <button class="like">
-                            <i class="fa-regular fa-thumbs-up"></i> Like
-                        </button>
-                        <p class="numLike">200</p>
-                        <button class="comentar">
-                            <i class="fa-regular fa-comment"></i> Comentar
-                        </button>
-                        <p class="numComent">20</p>
-                    </div>
+                <div class="PublicacionVista" id="PublicacionVista">
+  
                 </div>
             </div>
         </div>
@@ -136,4 +74,5 @@
 </body>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="https://kit.fontawesome.com/3019248dcc.js" crossorigin="anonymous"></script>
+<script src="../JS/Principal.js"></script>
 </html>

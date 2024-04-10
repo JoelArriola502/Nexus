@@ -15,11 +15,11 @@
         </div>
         <div class="container-input">
             <h3>Iniciar sesión en Nexus</h3>
-            <form action="#">
+            
                 <input class="datos-sesion" type="email" id="email" required placeholder=" Correo eléctronico"><br>
                 <input class="datos-sesion" type="password" id="password" required placeholder=" Contraseña"><br>
-                <button class="btnSubmit" type="submit">Iniciar sesión</button>
-            </form>
+                <button class="btnSubmit" onclick="IniciarSesion()" id="InicioSesion" type="submit">Iniciar sesión</button>
+           
             <a class="olvidar-contra" href="">¿Olvidaste tu contraseña?</a>
             <input class="boton-crear" id="signUp" type="button" value="Crear cuenta nueva">
         </div>
@@ -77,5 +77,6 @@
 </body>
 <script src="../JS/login.js"></script>
 <script src="../JS/Registros.js"></script>
+<script src="../JS/InicioSesion.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </html>
