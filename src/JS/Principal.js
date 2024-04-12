@@ -150,12 +150,14 @@ function CargarDatosPublicaciones(){
         <i class="fa-solid fa-thumbs-up"></i> Like
         </button>
         <p class="numLike" id="NumeroLikes-${idPublicaciones}">${LikeNull}</p>
-        <button class="comentar">
+        <button class="comentar" onclick="mostrarComentarios()">
             <i class="fa-regular fa-comment"></i> Comentar
         </button>
         <p class="numComent">200</p>
     </div>
-
+    <div class="comentariosDiv" id="comentariosDiv">
+        
+    </div>
 </div>
 
         `
