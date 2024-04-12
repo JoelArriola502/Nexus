@@ -66,9 +66,9 @@ function CargarDatosPublicaciones(){
     fetch(`http://localhost:4000/Publicaciones/${id}`)
     .then(res=>res.json())
     .then((DatosPublicaciones)=>{
-        console.log(DatosPublicaciones);
     let html="";
     for(let i=0; i<DatosPublicaciones.length;i++){
+        const idPublicaciones=DatosPublicaciones[i].idPublicaciones;
         const Foto=DatosPublicaciones[i].Foto;
         const Nombre=DatosPublicaciones[i].Nombre;
         const Apellido=DatosPublicaciones[i].Apellido;
@@ -78,6 +78,7 @@ function CargarDatosPublicaciones(){
         const Fecha=DatosPublicaciones[i].Fecha;
         const Descripcion=DatosPublicaciones[i].Descripcion;
         const imagenPublicacion=DatosPublicaciones[i].imagen;
+        const Likes=DatosPublicaciones[i].Likes;
 
     //Obtner dato fecha y darle nombre
     const fechaObtener=new Date(Fecha);
@@ -89,30 +90,66 @@ function CargarDatosPublicaciones(){
         const Mes=fechaObtener.getMonth();
         const Anio=fechaObtener.getFullYear();
         const MesNombre = nombresMeses[Mes];
+        let LikeNull;
+        if(Likes===null){
+            LikeNull="";
+        }else{
+            LikeNull=Likes;
+        }
+
+        let DatosUsuarioEtiquetado,NombreNoNull,ApellidoNoNull,FotoNoNull;
+        if(NombreEtiquetado===null&& ApellidoEtiquetado===null){
+            
+            NombreNoNull="";
+            ApellidoNoNull="";
+            FotoNoNull=" ";
+            
+            
+        }else{
+            NombreNoNull=NombreEtiquetado;
+            ApellidoNoNull=ApellidoEtiquetado;
+            FotoNoNull=FotoEtiquetado;
+        }
+      
+
+
+        
+
+
        
 
         html=html+` 
         <div class="vistaPublicacion">
     <div class="usuario">
         <div class="fotousuario">
-            <img class="Foto-Perfil-Publicacion" src="${Foto}" alt="Usuario"/>
+            <img class="Foto-Perfil-Publicacion" src="${Foto}" alt="Usuario">
         </div>
-        <div class="infoPubli">
-            <h5 class="nameUsuario">${Nombre} ${Apellido}</h5>
-            <p class="fecha">${Dia} ${MesNombre} ${Anio}</p>
+        <div class="infoDatosPerfilEtiquetados">
+            <div class="infoPubli">
+                <h5 class="nameUsuario">${Nombre} ${Apellido}</h5>
+                <p class="fecha">${Dia} ${MesNombre} ${Anio}</p>
+            </div>
+            <div class="infoPubliEtiqueta">
+            <div class="fotousuarioEtiquetado" >
+            <img class="Foto-Perfil-Publicacion-Etiquetado"  src="${FotoNoNull}" id="FotoEtiquetada-${idPublicaciones}">
+            </div>
+                <h5 class="nameUsuario">${NombreNoNull} ${ApellidoNoNull}</h5>
+                
+            </div>
+
         </div>
     </div>
     <div class="descripcion">
         <p>${Descripcion}</p>
     </div>
     <div class="fotoPubli">
-        <img class="imagenPublicacion" src="${imagenPublicacion}" alt="Foto">
+        <img class="imagenPublicacion" src="${imagenPublicacion}" >
     </div>
     <div class="btnPublicaciones">
-        <button class="like">
-            <i class="fa-regular fa-thumbs-up"></i> Like
+        <button class="like" id="LikeBoton-${idPublicaciones}"  onclick="InsertarLike(${idPublicaciones})">
+        <i class="fa-solid fa-thumbs-up"></i> Like
         </button>
-        <p class="numLike">200</p>
+        <p class="numLike" id="NumeroLikes-${idPublicaciones}">${LikeNull}</p>
         <button class="comentar">
             <i class="fa-regular fa-comment"></i> Comentar
         </button>
@@ -123,6 +160,9 @@ function CargarDatosPublicaciones(){
 
         `
         MostrarPublicaciones.innerHTML=html;
+        OcultarPerfilEtiquetaNoExiste(idPublicaciones);
+        ColorBotonesLike(idPublicaciones);
+       
 
 
     }
@@ -133,3 +173,196 @@ function CargarDatosPublicaciones(){
     }
     
     CargarDatosPublicaciones();
+
+ 
+    //actualizar likes
+function ActualizarLikes(idPublicaciones){
+    const NumeroLike = document.getElementById(`NumeroLikes-${idPublicaciones}`);
+    fetch(`http://localhost:4000/PublicacionesLike/${idPublicaciones}`)
+    .then(res => res.json())
+    .then((DatosPublicacionLikeActualizar) => {
+        const LikesActualizacion = DatosPublicacionLikeActualizar[0].Likes;
+
+    NumeroLike.textContent = LikesActualizacion;
+   
+});
+}
+
+
+//funcion para  registra el like del usuario 
+function InsertarLike(idPublicaciones){
+    fetch(`http://localhost:4000/LikesUsuarios/${id}/${idPublicaciones}`)
+    .then(res=>res.json())
+    .then(LikeUsuario=>{
+        if(LikeUsuario.length===0){
+            DarLike(idPublicaciones);
+            const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
+                  likeButton.style.color = 'blue';
+        }else{
+            let Likes=1;
+            fetch(`http://localhost:4000/LikesPublicacionesMenos/${idPublicaciones}`,{
+                method:"PUT",
+                headers:{
+                    "content-Type":"application/json",
+                },
+                body: JSON.stringify({Likes}),
+             })
+             .then((res)=>res.json())
+             .then((json)=>{
+                 //necesario actualiza numero like
+                 EliminarRegistroLike(idPublicaciones);
+                 ActualizarLikes(idPublicaciones);
+                 const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
+                  likeButton.style.color = 'black';
+                 
+             })
+             .catch((error)=>{
+               
+            })
+        }
+    })
+
+}
+ 
+
+function DarLike(idPublicaciones) {
+    let Likes=1;
+    fetch(`http://localhost:4000/PublicacionesLike/${idPublicaciones}`)
+    .then(res => res.json())
+    .then((DatosPublicacionLike) => {
+        const LikesP = DatosPublicacionLike[0].Likes;
+        if (LikesP === null) {
+            
+             fetch(`http://localhost:4000/LikesPublicacionesNull/${idPublicaciones}`,{
+                method:"PUT",
+                headers:{
+                    "content-Type":"application/json",
+                },
+                body: JSON.stringify({Likes}),
+             })
+             .then((res)=>res.json())
+             .then((json)=>{
+                 //necesario actualiza numero like
+                 ActualizarLikes(idPublicaciones);
+                 RegistrarLike(idPublicaciones)
+                
+             })
+             .catch((error)=>{
+                console.error("Error al ACtualizar Like",error);
+            })
+
+        } else {
+            //decrementacion de like
+            fetch(`http://localhost:4000/LikesPublicaciones/${idPublicaciones}`,{
+                method:"PUT",
+                headers:{
+                    "content-Type":"application/json",
+                },
+                body: JSON.stringify({Likes}),
+             })
+             .then((res)=>res.json())
+             .then((json)=>{
+           //necesario actualiza numero like
+           ActualizarLikes(idPublicaciones);
+           RegistrarLike(idPublicaciones)
+        
+             })
+             .catch((error)=>{
+                console.error("Error al ACtualizar Estado",error);
+            })
+        }
+    });//esto
+}
+
+function RegistrarLike(idPublicaciones){
+    const idUsuarios=id;
+    
+    fetch('http://localhost:4000/InsertarLikeUsuario',{
+        method: "POST",
+        headers:{
+            "Content-Type":"application/json",
+        },
+        body: JSON.stringify({idPublicaciones,idUsuarios}),
+    })
+    .then((res)=>res.json())
+    .then((json)=>{
+       
+
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}
+
+
+function EliminarRegistroLike(idPublicaciones){
+    fetch(`http://localhost:4000/LikesUsuarios/${idPublicaciones}/${id}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type":"application/json",
+        },
+        
+    })
+    .then(res=>res.json())
+    .then((LikeEliminado)=>{
+        if(LikeEliminado){
+           
+        }else{
+           
+        }
+    })
+
+}
+
+function ColorBoton(){
+    const LikeBoton = document.getElementById(`LikeBoton-${idPublicaciones}`);
+    
+}
+
+
+
+
+function ColorBotonesLike(idPublicaciones){
+    fetch(`http://localhost:4000/LikesUsuarios/${id}/${idPublicaciones}`)
+    .then(res=>res.json())
+    .then(LikeUsuario=>{
+        if(LikeUsuario.length===0){
+            const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
+                  likeButton.style.color = 'black';
+
+                 
+        }else{
+            
+                 const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
+                  likeButton.style.color = 'blue';
+                
+           
+        }
+    })
+
+}
+
+function OcultarPerfilEtiquetaNoExiste(idPublicaciones){
+    fetch(`http://localhost:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
+    .then(res=>res.json())
+    .then((DatosPublicacionesFotos)=>{ 
+        const FotosVEr = document.getElementById(`FotoEtiquetada-${idPublicaciones}`);
+        for(let i=0;i<DatosPublicacionesFotos.length;i++){
+            const NombreET=DatosPublicacionesFotos[i].Nombre2;
+             
+        if(NombreET===null){
+            
+            FotosVEr.style.display = 'None';
+            
+            
+        }else{
+           
+            FotosVEr.style.display = 'blook';
+           
+        }
+        }
+      
+
+        
+    })
+}

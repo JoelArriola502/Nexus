@@ -9,4 +9,13 @@ function NuevoUsuario(Nombre,Apellido,Foto,Correo,Contrasena){
         Contrasena:Contrasena
     })
 }
-module.exports={NuevoUsuario}
+
+function InsertarLikesUsuario(idPublicaciones,idUsuarios){
+    return conexion('LikePublicaciones')
+             .insert({
+                idPublicaciones:idPublicaciones,
+                idUsuarios:idUsuarios
+
+             })
+}
+module.exports={NuevoUsuario,InsertarLikesUsuario}
