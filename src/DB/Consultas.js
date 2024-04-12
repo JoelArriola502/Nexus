@@ -59,4 +59,28 @@ function LikeUsuario(idUsuarios,idPublicaciones){
     .where('idUsuarios',idUsuarios)
     .andWhere('idPublicaciones',idPublicaciones)
 }
-module.exports={usuarios, CorreoUsuario,DatosPerfil,Publicaciones,PublicacionVerLikes,LikeUsuario,PublicacionesUsuarios};
+
+
+
+function PublicacionesComentarios(idPublicaciones){
+ return conexion('Usuarios as u')
+        .join('Publicaciones as P','p.idUsuarios','u.idUsuarios')
+        .where('p.idPublicaciones',idPublicaciones)
+
+}
+
+function ComentariosPublicacion(idPublicaciones){
+    return conexion('Comentarios as s')
+         .join('Usuarios as u','u.idUsuarios','s.idUsuarios')
+         .where('s.idPublicaciones',idPublicaciones)
+         .orderBy('s.Fecha',"desc")
+}
+
+
+
+function ComentariosPublicacionNumero(idPublicaciones){
+    return conexion('Comentarios as s').count('* as Numerocomentarios')
+         .join('Usuarios as u','u.idUsuarios','s.idUsuarios')
+         .where('s.idPublicaciones',idPublicaciones)
+}
+module.exports={usuarios, CorreoUsuario,DatosPerfil,Publicaciones,PublicacionVerLikes,LikeUsuario,PublicacionesUsuarios,ComentariosPublicacionNumero,PublicacionesComentarios,ComentariosPublicacion};

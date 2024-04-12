@@ -28,6 +28,10 @@ function CargarDatosPerfil(){
 }
 CargarDatosPerfil();
 
+function Inicio(){
+    CargarPublicacionCrear();
+    CargarDatosPublicaciones();
+}
 //función Mostrar Crear publicaciones
 function CargarPublicacionCrear(){
     const crearPublicacion=document.getElementById("crearPublicacion");
@@ -41,6 +45,7 @@ function CargarPublicacionCrear(){
         const Foto=DatosPerfil[i].Foto;
        
         html=html+`
+        <div class="crearPublicacion" id="crearPublicacion">
         <div class="inputPublicacion">
         <img class="Foto-Perfil_p" src="${Foto}" alt="Usuario"/>
         <input class="Crear-Texto-Publicacion" type="text" placeholder="¿Qué estas pensando?" />
@@ -51,6 +56,7 @@ function CargarPublicacionCrear(){
         <button class="Etiquetar"><i class="fa-solid fa-tag"></i>Etiquetar</button>
         <button class="btnPublicar">Publicar</button>
     </div>
+    </div>
         `
         
        
@@ -60,7 +66,10 @@ function CargarPublicacionCrear(){
 
     })
 }
-CargarPublicacionCrear();
+  document.addEventListener("DOMContentLoaded",ev=>{   
+    CargarPublicacionCrear();
+    CargarDatosPublicaciones();
+  })
 function CargarDatosPublicaciones(){
     const MostrarPublicaciones=document.getElementById("PublicacionVista");
     fetch(`http://localhost:4000/Publicaciones/${id}`)
@@ -97,6 +106,8 @@ function CargarDatosPublicaciones(){
             LikeNull=Likes;
         }
 
+ 
+
         let DatosUsuarioEtiquetado,NombreNoNull,ApellidoNoNull,FotoNoNull;
         if(NombreEtiquetado===null&& ApellidoEtiquetado===null){
             
@@ -111,8 +122,6 @@ function CargarDatosPublicaciones(){
             FotoNoNull=FotoEtiquetado;
         }
       
-
-
         
 
 
@@ -143,17 +152,17 @@ function CargarDatosPublicaciones(){
         <p>${Descripcion}</p>
     </div>
     <div class="fotoPubli">
-        <img class="imagenPublicacion" src="${imagenPublicacion}" >
+        <img class="imagenPublicacion" id="OcultarImagenP-${idPublicaciones}" src="${imagenPublicacion}">
     </div>
     <div class="btnPublicaciones">
         <button class="like" id="LikeBoton-${idPublicaciones}"  onclick="InsertarLike(${idPublicaciones})">
         <i class="fa-solid fa-thumbs-up"></i> Like
         </button>
         <p class="numLike" id="NumeroLikes-${idPublicaciones}">${LikeNull}</p>
-        <button class="comentar" onclick="mostrarComentarios()">
+        <button class="comentar" onclick="mostrarComentarios(${idPublicaciones})">
             <i class="fa-regular fa-comment"></i> Comentar
         </button>
-        <p class="numComent">200</p>
+        <p class="numComent" id="NumeroComentarios-${idPublicaciones}"></p>
     </div>
     <div class="comentariosDiv" id="comentariosDiv">
         
@@ -162,8 +171,12 @@ function CargarDatosPublicaciones(){
 
         `
         MostrarPublicaciones.innerHTML=html;
+        Numerocomentarios(idPublicaciones);
         OcultarPerfilEtiquetaNoExiste(idPublicaciones);
         ColorBotonesLike(idPublicaciones);
+        OcultarImagenPublicacion(idPublicaciones);
+       
+       
        
 
 
@@ -174,7 +187,6 @@ function CargarDatosPublicaciones(){
         
     }
     
-    CargarDatosPublicaciones();
 
  
     //actualizar likes
@@ -186,6 +198,7 @@ function ActualizarLikes(idPublicaciones){
         const LikesActualizacion = DatosPublicacionLikeActualizar[0].Likes;
 
     NumeroLike.textContent = LikesActualizacion;
+    
    
 });
 }
@@ -366,5 +379,70 @@ function OcultarPerfilEtiquetaNoExiste(idPublicaciones){
       
 
         
+    })
+}
+
+
+function OcultarImagenPublicacion(idPublicaciones){
+    fetch(`http://localhost:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
+    .then(res=>res.json())
+    .then((DatosPublicacionesImagenOcultar)=>{ 
+        const FotosVEr = document.getElementById(`OcultarImagenP-${idPublicaciones}`);
+        for(let i=0;i<DatosPublicacionesImagenOcultar.length;i++){
+            const imagen=DatosPublicacionesImagenOcultar[i].imagen;
+           
+        if(imagen===""){
+            FotosVEr.style.display = 'none';
+            
+            
+        }else{
+            
+            FotosVEr.style.display = 'blook';
+           
+        }
+        }
+      
+
+        
+    })
+}
+
+
+function Numerocomentarios(idPublicaciones){
+
+    fetch(`http://localhost:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
+    .then(res=>res.json())
+    .then((DatosPublicacionesFotos)=>{ 
+        const FotosVEr = document.getElementById(`FotoEtiquetada-${idPublicaciones}`);
+        for(let i=0;i<DatosPublicacionesFotos.length;i++){
+            const NombreET=DatosPublicacionesFotos[i].Nombre2;
+             
+        if(NombreET===null){
+            
+            ActualizarNumeroComentarios(idPublicaciones);
+            
+            
+        }else{
+           
+            ActualizarNumeroComentarios(idPublicaciones);
+           
+        }
+        }
+      
+
+        
+    })
+    
+
+}
+
+function ActualizarNumeroComentarios(idPublicaciones){
+    const NumerocomentariosP=document.getElementById(`NumeroComentarios-${idPublicaciones}`)
+    fetch(`http://localhost:4000/ComentariosPublicacionesNumero/${idPublicaciones}`)
+
+    .then(res=>res.json())
+    .then((NumeroComentariosPublicaciones)=>{
+        const ComentNumber=NumeroComentariosPublicaciones[0].Numerocomentarios;
+        NumerocomentariosP.textContent=ComentNumber;
     })
 }
