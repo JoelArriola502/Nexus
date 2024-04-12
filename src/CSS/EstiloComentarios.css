@@ -1,0 +1,170 @@
+.comentariosDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.701);
+    z-index: 9999;
+    display: none; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.ventanaComentarios {
+    
+    width: 80%; 
+    width: 600px;
+    max-height: 600px;
+    overflow: hidden;
+    padding: 0px; 
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.ventanaComentarios button{
+    background: transparent;
+    border: none;
+}
+
+.ventanaComentarios i{
+    font-size: 35px;
+}
+
+.caja{
+    /* max-height: 600px; */
+    overflow-y: auto;
+    max-height: 480px;
+    margin-bottom: 120px; 
+    padding-bottom: 20px;
+}
+
+/* Estilos del scrollbar */
+.caja::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+
+.caja::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo del track */
+}
+
+.caja::-webkit-scrollbar-thumb {
+    background: #9d9d9d; /* Color del thumb */
+    border-radius: 5px; /* Borde redondeado del thumb */
+}
+
+.caja::-webkit-scrollbar-thumb:hover {
+    background: #9d9d9d; /* Color del thumb al pasar el mouse */
+}
+
+
+.containerPubliUsuario{
+    margin-top: 5px;
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.encabezadoPublicacion{
+    display: flex;
+    padding: 10px;
+    overflow: hidden;
+    border-bottom: solid 1px #9e9ea7;
+    justify-content: space-between; 
+    align-items: center;
+} 
+
+.userPubli{
+    display: flex;
+}
+
+.fotoU{
+    width: 30px;
+    border-radius: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.nomUser{
+    margin-left: 10px;
+}
+
+.fechaP{
+    font-size: 10px;
+}
+
+.fotoPu{
+    margin: 10px;
+    text-align: center;
+    height: 300px;
+    background-color: #9e9ea7;
+}
+
+.imagenPublicacion{
+    width: 100%;
+    height: 100%;
+}
+
+.containerComentarios{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    /* margin-bottom: 110px; */
+    /* border-top: 1px solid #9e9ea7; */
+}
+
+.containerComent{
+    display: flex;
+    gap: 10px;
+}
+
+.crearComentarioNuevo{
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    position: sticky; /* Fija el área de comentario nuevo en la parte inferior */
+    bottom: 0; /* Fija el área de comentario nuevo en la parte inferior */
+    padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+    z-index: 1;
+    background-color: #ffffff;
+}
+
+.FotoUserComentario{
+    width: 35px;
+    border-radius: 35px;
+    height: 35px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.inputComentario{
+    height: 30px;
+    width: 500px;
+    border-radius: 10px;
+    border: 2px solid #9d9d9d;
+    outline: none;
+    padding-left: 10px;
+}
+
+.botonEnviarComentario:hover{
+    color: blue;
+}
+
+.cerrarVentanaComentario:hover{
+    color: blue;
+}
+
+.textoPublicacion{
+    background-color: #e5e5ea;
+    padding: 10px;
+    border-radius: 15px;
+    align-self: flex-start; /* Alinear al extremo izquierdo */
+    max-width: 70%; /* Ancho máximo del mensaje */
+    word-wrap: break-word;
+}
