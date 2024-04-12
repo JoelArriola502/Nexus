@@ -1,9 +1,5 @@
 const express=require('express');
 const consulta=require('../DB/Consultas');
-const e = require('cors');
-const { json } = require('body-parser');
-const { route } = require('./RouterUpdate');
-
 const router=express.Router();
 router.get('/Usuarios',(req,res)=>{
     consulta.usuarios()
@@ -84,6 +80,52 @@ router.get('/PublicacionesUsuarios/:idUsuarios/:idPublicaciones',(req,res)=>{
     })
     .catch((error)=>{
         res.status(500).json(error)
+    })
+})
+
+
+router.get('/Publicacionescomentarios/:idPublicaciones',(req,res)=>{
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.PublicacionesComentarios(idPublicaciones)
+    .then((response)=>{
+        if(response){
+            res.json(response)
+        }else{
+            res.status(404).json({message:"No se encontro nada"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json(error);
+    })
+})
+
+router.get('/ComentariosPublicaciones/:idPublicaciones',(req,res)=>{
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.ComentariosPublicacion(idPublicaciones)
+    .then((response)=>{
+        if(response){
+            res.json(response)
+        }else{
+            res.status(404).json({message:"No se encontro nada"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json(error);
+    })
+})
+
+router.get('/ComentariosPublicacionesNumero/:idPublicaciones',(req,res)=>{
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.ComentariosPublicacionNumero(idPublicaciones)
+    .then((response)=>{
+        if(response){
+            res.json(response)
+        }else{
+            res.status(404).json({message:"No se encontro nada"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json(error);
     })
 })
 module.exports=router;

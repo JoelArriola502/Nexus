@@ -168,3 +168,18 @@
     max-width: 70%; /* Ancho máximo del mensaje */
     word-wrap: break-word;
 }
+#ComentariosPublicacion{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+
+.inputComentario::placeholder {
+    color: #999; /* Color de marcador predeterminado */
+}
+
+.inputComentario.vacio::placeholder {
+    color: red; /* Color de marcador rojo cuando el campo está vacío */
+}

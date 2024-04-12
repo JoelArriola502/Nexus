@@ -18,4 +18,13 @@ function InsertarLikesUsuario(idPublicaciones,idUsuarios){
 
              })
 }
-module.exports={NuevoUsuario,InsertarLikesUsuario}
+
+// insert into Comentarios(Comentario,idPublicaciones,idUsuarios)values('Esa publicacion no es muy adecuada',9,4)
+function InsertarComentario(Comentario,idPublicaciones,idUsuarios){
+    return conexion('Comentarios').insert({
+        Comentario:Comentario,
+        idPublicaciones:idPublicaciones,
+        idUsuarios:idUsuarios
+    })
+}
+module.exports={NuevoUsuario,InsertarLikesUsuario,InsertarComentario}

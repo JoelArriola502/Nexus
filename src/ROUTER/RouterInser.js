@@ -33,4 +33,21 @@ router.post('/InsertarLikeUsuario',(req,res)=>{
 })
 
 })
+router.post('/InsertarComentarios',(req,res)=>{
+    const Agregarcomentario=req.body;
+    insertar.InsertarComentario(
+        Agregarcomentario.Comentario,
+        Agregarcomentario.idPublicaciones,
+        Agregarcomentario.idUsuarios)
+    .then((response)=>{
+        if(response){
+            res.json({message:"Comentario Agregado"})
+        }else{
+            res.status(404).json({message:"Erro al Agregar"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json(error);
+    })
+})
 module.exports=router;
