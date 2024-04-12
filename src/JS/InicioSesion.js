@@ -36,8 +36,7 @@ function IniciarSesion(){
 
                 //variables de sesión
                 localStorage.setItem('idUsuarios',idUsuarios);
-                localStorage.setItem('Nombre',Nombre);
-                localStorage.setItem('Apellido',Apellido);
+            
 
                 }
     

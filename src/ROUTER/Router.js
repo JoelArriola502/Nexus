@@ -1,6 +1,8 @@
 const express=require('express');
 const consulta=require('../DB/Consultas');
 const e = require('cors');
+const { json } = require('body-parser');
+const { route } = require('./RouterUpdate');
 
 const router=express.Router();
 router.get('/Usuarios',(req,res)=>{
@@ -40,6 +42,48 @@ router.get('/Publicaciones/:idUsuarios',(req,res)=>{
     .then(response=>res.json(response))
     .catch(error=>{
         res.status(500).json({error:"error"})
+    })
+})
+
+router.get('/PublicacionesLike/:idPublicaciones',(req,res)=>{
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.PublicacionVerLikes(idPublicaciones)
+    .then(response=>res.json(response))
+    .catch((Error)=>{
+        res.status(500).json({Error:"Error al ver like"})
+    })
+})
+
+router.get('/LikesUsuarios/:idUsuarios/:idPublicaciones',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.LikeUsuario(idUsuarios,idPublicaciones)
+    .then((response)=>{
+        if(response){
+            res.json(response)
+        }else{
+            res.status(404).json({message:"Like no Registrado"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json(error)
+    })
+})
+
+
+router.get('/PublicacionesUsuarios/:idUsuarios/:idPublicaciones',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.PublicacionesUsuarios(idUsuarios,idPublicaciones)
+    .then((response)=>{
+        if(response){
+            res.json(response)
+        }else{
+            res.status(404).json({message:"Publicacion no encontrada"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json(error)
     })
 })
 module.exports=router;

@@ -18,4 +18,19 @@ router.post('/NuevoUsuario',(req,res)=>{
         res.status(500).json({message:"Erro al agregar"})
     })
 })
+
+router.post('/InsertarLikeUsuario',(req,res)=>{
+    const AgregarLike=req.body;
+    insertar.InsertarLikesUsuario(
+        AgregarLike.idPublicaciones,
+        AgregarLike.idUsuarios
+    )
+    .then(()=>{
+        res.json({message:" like Agregado"})
+    })
+    .catch((error)=>{
+    res.status(500).json(error)
+})
+
+})
 module.exports=router;

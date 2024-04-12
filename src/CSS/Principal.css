@@ -76,7 +76,7 @@ body{
 .Botones-cerrar{
     cursor: pointer;
     width: 200px;
-     margin-top: 46px;
+     margin-top: 35px;
      padding: 5px;
      border-radius: 5px;
 
@@ -112,7 +112,7 @@ img{
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-   border: solid thin red;
+   
 }
 
 .barraBuscar{
@@ -257,16 +257,52 @@ i{
 .usuario{
     display: flex;
 }
-.Foto-Perfil-Publicacion{
+.fotousuario{
     width: 30px;
-    border-radius: 30px;
+    border-radius: none;
+    background-color: none;
     height: 30px; /* Asigna una altura si es necesario */
     object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
     object-position: center; /* Centra la imagen dentro del contenedor */
 
 }
+.Foto-Perfil-Publicacion{
+    width: 30px;
+    border:none;
+    border-radius: 20px;
+    background-color: transparent;
+    height: 30px; /* Asigna una altura si es necesario */
+    object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+
+}
+.fotousuarioEtiquetado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: solid thin rgb(247, 247, 247);
+    border-radius: 50%; 
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    object-fit: cover;
+    object-position: center;
+    background: #fff;
+}
+.Foto-Perfil-Publicacion-Etiquetado{
+    display: flex;
+    width: 100%;
+    border: none;
+    height: 100%;
+    background: #fff;
+    border-radius: 50%;
+    border: solid thin rgb(247, 247, 247);
+
+}
 .infoPubli{
     margin-left: 10px;
+    background: transparent;
+    
 }
 .fecha{
     font-size: 10px;
@@ -342,3 +378,16 @@ text-align: center;
     width: 1rem;
     height: 1rem;
 }
+
+.infoDatosPerfilEtiquetados{
+    display: flex;
+   
+    
+}
+.infoPubliEtiqueta{
+    display: flex;
+    align-items: center; /* Alinea verticalmente el contenido */
+    margin-left: 20px;
+   
+}
+
