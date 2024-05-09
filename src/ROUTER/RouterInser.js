@@ -22,6 +22,7 @@ router.post('/NuevoUsuario',(req,res)=>{
 router.post('/InsertarLikeUsuario',(req,res)=>{
     const AgregarLike=req.body;
     insertar.InsertarLikesUsuario(
+        AgregarLike.Estado,
         AgregarLike.idPublicaciones,
         AgregarLike.idUsuarios
     )

@@ -67,7 +67,7 @@ body{
 .Botones{
    cursor: pointer;
    width: 200px;
-    margin-top: 15px;
+    margin-top: 7px;
     padding: 5px;
     border-radius: 5px;
 }
@@ -89,6 +89,7 @@ body{
   }
 .botones-funciones{
     border: none;
+    cursor: pointer;
     background: transparent;
     color: #fff;
     width: 130px;

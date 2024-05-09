@@ -59,6 +59,12 @@ function LikeUsuario(idUsuarios,idPublicaciones){
     .where('idUsuarios',idUsuarios)
     .andWhere('idPublicaciones',idPublicaciones)
 }
+function LikeUsuarioPublicaciones(idUsuarios,idPublicaciones){
+    return conexion('LikePublicaciones')
+    .where('idUsuarios',idUsuarios)
+    .andWhere('idPublicaciones',idPublicaciones)
+    .andWhere('Estado','Like')
+}
 
 
 
@@ -83,4 +89,22 @@ function ComentariosPublicacionNumero(idPublicaciones){
          .join('Usuarios as u','u.idUsuarios','s.idUsuarios')
          .where('s.idPublicaciones',idPublicaciones)
 }
-module.exports={usuarios, CorreoUsuario,DatosPerfil,Publicaciones,PublicacionVerLikes,LikeUsuario,PublicacionesUsuarios,ComentariosPublicacionNumero,PublicacionesComentarios,ComentariosPublicacion};
+
+function Usuarios(idUsuarios) {
+    return conexion('Usuarios')
+      .where('idUsuarios', '<>', idUsuarios)
+      .whereNotIn('idUsuarios', function() {
+        this.select('idUsuariosDestino')
+          .from('Seguidores')
+          .where('idUsuariosOrigen', idUsuarios);
+      })
+      .whereNotIn('idUsuarios', function() {
+        this.select('idUsuariosOrigen')
+          .from('Seguidores')
+          .where('idUsuariosDestino', idUsuarios);
+      });
+  }
+module.exports={usuarios, CorreoUsuario,DatosPerfil,Publicaciones,PublicacionVerLikes,LikeUsuario,
+    PublicacionesUsuarios,ComentariosPublicacionNumero,PublicacionesComentarios,ComentariosPublicacion,
+    LikeUsuarioPublicaciones,Usuarios
+};
