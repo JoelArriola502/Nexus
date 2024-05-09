@@ -66,6 +66,21 @@ router.get('/LikesUsuarios/:idUsuarios/:idPublicaciones',(req,res)=>{
     })
 })
 
+router.get('/LikesUsuariosPublicaciones/:idUsuarios/:idPublicaciones',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.LikeUsuarioPublicaciones(idUsuarios,idPublicaciones)
+    .then((response)=>{
+        if(response){
+            res.json(response)
+        }else{
+            res.status(404).json({message:"Like no Registrado"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json(error)
+    })
+})
 
 router.get('/PublicacionesUsuarios/:idUsuarios/:idPublicaciones',(req,res)=>{
     const idUsuarios=req.params.idUsuarios;
@@ -127,5 +142,12 @@ router.get('/ComentariosPublicacionesNumero/:idPublicaciones',(req,res)=>{
     .catch((error)=>{
         res.status(500).json(error);
     })
+})
+
+router.get('/Usuarios/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.Usuarios(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((e)=>res.status(500).json(e))
 })
 module.exports=router;
