@@ -27,4 +27,13 @@ function LikesPublicacionesMenos(idPublicaciones,OLikes){
 
 }
 
-module.exports={LikesPublicaciones,LikesPublicacionesNull,LikesPublicacionesMenos}
+function ActualizarEstadoLike(idPublicaciones,idUsuarios,Estado){
+    return Actualizar('LikePublicaciones')
+    .where('idPublicaciones',idPublicaciones)
+    .andWhere('idUsuarios',idUsuarios)
+    .update({
+        Estado:Estado
+    })
+}
+
+module.exports={LikesPublicaciones,LikesPublicacionesNull,LikesPublicacionesMenos,ActualizarEstadoLike}

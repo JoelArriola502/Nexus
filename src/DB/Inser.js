@@ -10,9 +10,10 @@ function NuevoUsuario(Nombre,Apellido,Foto,Correo,Contrasena){
     })
 }
 
-function InsertarLikesUsuario(idPublicaciones,idUsuarios){
+function InsertarLikesUsuario(Estado,idPublicaciones,idUsuarios){
     return conexion('LikePublicaciones')
              .insert({
+                Estado:Estado,
                 idPublicaciones:idPublicaciones,
                 idUsuarios:idUsuarios
 

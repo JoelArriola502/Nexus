@@ -1,3 +1,4 @@
+
 const idUsuarios=localStorage.getItem("idUsuarios");
 const CargarPerfil=document.getElementById('DatosPerfil');
 const id=parseInt(idUsuarios);
@@ -206,40 +207,83 @@ function ActualizarLikes(idPublicaciones){
 
 //funcion para  registra el like del usuario 
 function InsertarLike(idPublicaciones){
+    const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
     fetch(`http://localhost:4000/LikesUsuarios/${id}/${idPublicaciones}`)
     .then(res=>res.json())
     .then(LikeUsuario=>{
         if(LikeUsuario.length===0){
             DarLike(idPublicaciones);
-            const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
                   likeButton.style.color = 'blue';
         }else{
-            let Likes=1;
-            fetch(`http://localhost:4000/LikesPublicacionesMenos/${idPublicaciones}`,{
-                method:"PUT",
-                headers:{
-                    "content-Type":"application/json",
-                },
-                body: JSON.stringify({Likes}),
-             })
-             .then((res)=>res.json())
-             .then((json)=>{
-                 //necesario actualiza numero like
-                 EliminarRegistroLike(idPublicaciones);
-                 ActualizarLikes(idPublicaciones);
-                 const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
-                  likeButton.style.color = 'black';
-                 
-             })
-             .catch((error)=>{
-               
-            })
+            fetch(`http://localhost:4000/LikesUsuarios/${id}/${idPublicaciones}`)
+            .then(res=>res.json())
+            .then(NoLikeUsuario=>{
+                const Estado=NoLikeUsuario.map((Estados)=>{return Estados.Estado}).join('');
+                if(Estado=='NoLike'){
+                    DarLikeActualizar(idPublicaciones);
+                    likeButton.style.color = 'blue';
+                    IncremntarLike(idPublicaciones);
+                    
+                }else{
+                  
+                    QuitarLike(idPublicaciones);
+                    DecrementacionLike(idPublicaciones);
+
+                }
+                
+        })
+           
         }
     })
 
 }
- 
 
+//Funcion incremntar like
+function IncremntarLike(idPublicaciones){
+    let Likes=1;
+     //decrementacion de like
+     fetch(`http://localhost:4000/LikesPublicaciones/${idPublicaciones}`,{
+        method:"PUT",
+        headers:{
+            "content-Type":"application/json",
+        },
+        body: JSON.stringify({Likes}),
+     })
+     .then((res)=>res.json())
+     .then((json)=>{
+   //necesario actualiza numero like
+   ActualizarLikes(idPublicaciones);
+
+     })
+     .catch((error)=>{
+        console.error("Error al ACtualizar Estado",error);
+    })
+
+}
+ 
+// funcion Decrementar like
+function DecrementacionLike(idPublicaciones){
+    let Likes=1;
+    fetch(`http://localhost:4000/LikesPublicacionesMenos/${idPublicaciones}`,{
+        method:"PUT",
+        headers:{
+            "content-Type":"application/json",
+        },
+        body: JSON.stringify({Likes}),
+     })
+     .then((res)=>res.json())
+     .then((json)=>{
+         //necesario actualiza numero like
+         QuitarLike(idPublicaciones);
+         ActualizarLikes(idPublicaciones);
+         const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
+          likeButton.style.color = 'black';
+         
+     })
+     .catch((error)=>{
+       
+    })
+}
 function DarLike(idPublicaciones) {
     let Likes=1;
     fetch(`http://localhost:4000/PublicacionesLike/${idPublicaciones}`)
@@ -286,18 +330,19 @@ function DarLike(idPublicaciones) {
                 console.error("Error al ACtualizar Estado",error);
             })
         }
-    });//esto
+    });
 }
 
+// funcion insertar like
 function RegistrarLike(idPublicaciones){
     const idUsuarios=id;
-    
+    let Estado="Like";
     fetch('http://localhost:4000/InsertarLikeUsuario',{
         method: "POST",
         headers:{
             "Content-Type":"application/json",
         },
-        body: JSON.stringify({idPublicaciones,idUsuarios}),
+        body: JSON.stringify({Estado,idPublicaciones,idUsuarios}),
     })
     .then((res)=>res.json())
     .then((json)=>{
@@ -310,35 +355,47 @@ function RegistrarLike(idPublicaciones){
 }
 
 
-function EliminarRegistroLike(idPublicaciones){
-    fetch(`http://localhost:4000/LikesUsuarios/${idPublicaciones}/${id}`,{
-        method:"DELETE",
-        headers:{
-            "Content-Type":"application/json",
+// Funcion Quitar Like
+
+function QuitarLike(idPublicaciones){
+    let Estado="NoLike";
+    fetch(`http://localhost:4000/ActualizarEstado/${idPublicaciones}/${id}`,{
+        method:"PUT",
+        headers: {
+            "content-Type":"application/json",
         },
-        
-    })
-    .then(res=>res.json())
-    .then((LikeEliminado)=>{
-        if(LikeEliminado){
-           
-        }else{
-           
-        }
-    })
+        body: JSON.stringify({Estado})
+    }
 
-}
-
-function ColorBoton(){
-    const LikeBoton = document.getElementById(`LikeBoton-${idPublicaciones}`);
+)
+.then(res=>res.json())
+.then((json)=>{
     
+})
+}
+// funcion Dar like
+function DarLikeActualizar(idPublicaciones){
+    let Estado="Like";
+    fetch(`http://localhost:4000/ActualizarEstado/${idPublicaciones}/${id}`,{
+        method:"PUT",
+        headers: {
+            "content-Type":"application/json",
+        },
+        body: JSON.stringify({Estado})
+    }
+
+)
+.then(res=>res.json())
+.then((json)=>{
+    
+})
 }
 
 
 
 
 function ColorBotonesLike(idPublicaciones){
-    fetch(`http://localhost:4000/LikesUsuarios/${id}/${idPublicaciones}`)
+    fetch(`http://localhost:4000/LikesUsuariosPublicaciones/${id}/${idPublicaciones}`)
     .then(res=>res.json())
     .then(LikeUsuario=>{
         if(LikeUsuario.length===0){

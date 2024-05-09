@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="../CSS/Principal.css">
     <link rel="stylesheet" href="../CSS/EstiloComentarios.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Grandstander:ital,wght@0,100..900;1,100..900&family=Imbue:opsz,wght@10..100,100..900&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Rakkas&family=Vast+Shadow&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Grandstander:ital,wght@0,100..900;1,100..900&family=Imbue:opsz,wght@10..100,100..900&family=Jersey+15&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Noto+Sans+JP&family=Pacifico&family=Rakkas&family=Vast+Shadow&display=swap"
+        rel="stylesheet">
     <title>Nexus</title>
     
 </head>
@@ -29,6 +40,9 @@
                     <label class="Botones" for=""><i class="fa-solid fa-users"></i>
                         <input class="botones-funciones"  type="button" value="Grupos">
                     </label>
+                    <label onclick="MostrarUsuarios()" class="Botones" for=""><i class="fa-solid fa-user-group"></i>
+                        <input class="botones-funciones"  type="button" value="Usuarios">
+                    </label>
 
                     <label class="Botones" for=""><i class="fa-solid fa-user-group"></i>
                         <input class="botones-funciones"  type="button" value="Amigos">
@@ -39,6 +53,7 @@
                     <label class="Botones" for=""><i class="fa-solid fa-user-check"></i>
                         <input class="botones-funciones" type="button" value="Siguiendo">
                     </label>
+                    
 
                     <label onclick="CerrarSesion()" class="Botones-cerrar" for=""><i class="fa-solid fa-power-off"></i>
                         <input class="botones-funciones" type="button" value="Cerrar Sesión">
@@ -83,4 +98,5 @@
 <script src="../JS/Principal.js"></script>
 <script src="../JS/CerrarSesion.js"></script>
 <script src="../JS/fnComentario.js"></script>
+<script src="../JS/Amigos.js"></script>
 </html>
