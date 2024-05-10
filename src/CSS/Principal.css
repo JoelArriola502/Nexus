@@ -11,6 +11,8 @@ body{
     height: 100%;
   
 }
+
+
 .Nexus{
     display: flex;
     flex-direction: column;
@@ -394,3 +396,16 @@ text-align: center;
    
 }
 
+
+
+.Botones:hover{
+    background: rgba(247, 247, 247, 0.255);
+}
+
+.Botones-cerrar:hover{
+    background: rgba(247, 247, 247, 0.255);
+}
+
+.seleccionado{
+    background-color: rgba(247, 247, 247, 0.255);
+}

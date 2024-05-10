@@ -6,18 +6,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../CSS/Principal.css">
     <link rel="stylesheet" href="../CSS/EstiloComentarios.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Grandstander:ital,wght@0,100..900;1,100..900&family=Imbue:opsz,wght@10..100,100..900&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Rakkas&family=Vast+Shadow&display=swap"
-        rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Grandstander:ital,wght@0,100..900;1,100..900&family=Imbue:opsz,wght@10..100,100..900&family=Jersey+15&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Noto+Sans+JP&family=Pacifico&family=Rakkas&family=Vast+Shadow&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/EstiloAmigos.css">
     <title>Nexus</title>
     
 </head>
@@ -28,29 +18,29 @@
                  
                 </div>
                 <div class="Botones-contenedor">
-                    <label onclick="Inicio()" class="Botones" for=""><i class="fa-solid fa-house"></i>
+                    <label onclick="Inicio(), seleccionarBoton('Inicio')" class="Botones" for=""><i class="fa-solid fa-house"></i>
                         <input class="botones-funciones"  type="button" value="Inicio">
                     </label>
-                    <label class="Botones" for=""><i class="fa-solid fa-comments"></i>
+                    <label onclick="seleccionarBoton('Mensajes')" class="Botones" for=""><i class="fa-solid fa-comments"></i>
                         <input class="botones-funciones"  type="button" value="Mensajes">
                     </label>
-                    <label class="Botones" for=""><i class="fa-solid fa-users-line"></i>
+                    <label onclick="seleccionarBoton('Comunidades')" class="Botones" for=""><i class="fa-solid fa-users-line"></i>
                         <input class="botones-funciones"  type="button" value="Comunidades">
                     </label>
-                    <label class="Botones" for=""><i class="fa-solid fa-users"></i>
+                    <label onclick="seleccionarBoton('Grupos')" class="Botones" for=""><i class="fa-solid fa-users"></i>
                         <input class="botones-funciones"  type="button" value="Grupos">
                     </label>
-                    <label onclick="MostrarUsuarios()" class="Botones" for=""><i class="fa-solid fa-user-group"></i>
+                    <label onclick="MostrarlosUsuarioscontenedor(),seleccionarBoton('Usuarios')" class="Botones" for=""><i class="fa-solid fa-user-group"></i>
                         <input class="botones-funciones"  type="button" value="Usuarios">
                     </label>
 
-                    <label class="Botones" for=""><i class="fa-solid fa-user-group"></i>
+                    <label onclick="seleccionarBoton('Amigos')" class="Botones" for=""><i class="fa-solid fa-user-group"></i>
                         <input class="botones-funciones"  type="button" value="Amigos">
                     </label>
-                    <label class="Botones" for=""><i class="fa-solid fa-user-plus"></i>
+                    <label onclick="seleccionarBoton('Seguidores')" class="Botones" for=""><i class="fa-solid fa-user-plus"></i>
                         <input class="botones-funciones" type="button" value="Seguidores">
                     </label>
-                    <label class="Botones" for=""><i class="fa-solid fa-user-check"></i>
+                    <label onclick="seleccionarBoton('Siguiendo')" class="Botones" for=""><i class="fa-solid fa-user-check"></i>
                         <input class="botones-funciones" type="button" value="Siguiendo">
                     </label>
                     
@@ -76,17 +66,10 @@
                     <input class="input" type="search" placeholder="Search" />
                 </div>
             </div>
-            <div class="publicaciones" id="publicaciones">
-                <div class="crearPublicacionContenedor" id="crearPublicacion">
-                  
-                </div>
+            <div class="publicaciones" id="ContenidoPrincipal">
+              
+            </div>
 
-                <div class="PublicacionVista" id="PublicacionVista">
-  
-                </div>
-                <div class="comentariosDiv" id="comentariosDiv">
-                    <!-- Este es el contenedor donde se muestra la ventana comentario -->
-                </div>
             </div>
         </div>
 

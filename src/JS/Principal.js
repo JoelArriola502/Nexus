@@ -1,7 +1,28 @@
 
 const idUsuarios=localStorage.getItem("idUsuarios");
 const CargarPerfil=document.getElementById('DatosPerfil');
+const PublicacionesCargar=document.getElementById('ContenidoPrincipal');
 const id=parseInt(idUsuarios);
+
+
+function MostrarTodoInicio(){
+
+    let html="";
+
+    html=html+`
+    <div class="crearPublicacionContenedor" id="crearPublicacion">
+                  
+    </div>
+
+    <div class="PublicacionVista" id="PublicacionVista">
+
+    </div>
+    <div class="comentariosDiv" id="comentariosDiv">
+        <!-- Este es el contenedor donde se muestra la ventana comentario -->
+    </div>
+    `
+    PublicacionesCargar.innerHTML=html;
+}
 function CargarDatosPerfil(){
     fetch(`http://localhost:4000/DatosPerfil/${id}`)
     .then(res=>res.json())
@@ -30,6 +51,7 @@ function CargarDatosPerfil(){
 CargarDatosPerfil();
 
 function Inicio(){
+    MostrarTodoInicio();
     CargarPublicacionCrear();
     CargarDatosPublicaciones();
 }
@@ -68,6 +90,7 @@ function CargarPublicacionCrear(){
     })
 }
   document.addEventListener("DOMContentLoaded",ev=>{   
+    MostrarTodoInicio();
     CargarPublicacionCrear();
     CargarDatosPublicaciones();
   })

@@ -1,116 +1,82 @@
-.qualification{
-    font-family: "Vast Shadow", serif;
-    font-style: normal;
+.Usuarios-Principal{
+    margin-top: 40px;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+   
+}
+.Foto_users {
+    width: 250px;
+    height: 120px;
+    display: flex; /* Establece el contenedor como un flex container */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
 }
 
-.qualification  h1{
-    font-weight: 400;
-}
-.qualification h2{
-    font-weight: 200;
-}
-
-article{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-    justify-content: space-around;
+.Fotos-usurios {
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    width: 100%;
+    height: 145%;
+    object-fit: cover; /* Ajusta la imagen para que cubra el contenedor sin distorsionarla */
+    background: rgb(177, 177, 177);
+    object-position: top; /* Muestra la parte superior de la imagen */
 }
 
-.frisends {
-    flex-basis: calc(50% - 10px);
-    padding: 2vw;
-    box-sizing: border-box;
+
+.Usuarios-Nexus{
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    box-shadow: 0 0 7px rgb(0, 0, 0);
-    background-color: #f3f3f4;  
+    margin-bottom: 15px;
+    
+  
+    
 }
-
-.frisends img{
-    border-radius: 10%;
-    max-width: 100%;
-    height: 90%;
-}
-.frisends .text{
-    margin: 2%;
-}
-
-.text h2{
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-style: normal;
-    margin: 0;
-    font-size: xx-large;
-    font-weight: bolder;
-}
-
-.botones{
+.Datos-Users{
+    width: auto;
+    height: 50px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    min-height: 45px;
-}
-.botones button{
-    font-size: 0.8em;
-    width: 100px;
-    height: 75%;
-    margin: 0 2%;
-    border-radius: 10px;
-    cursor:pointer;
-    transition-duration: 0.4s;
+    margin-top: 25px;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    text-align: center;
+    place-items: center;
+   
+    padding-left: 10px;
+    background: rgba(230, 227, 227, 0.323);
 }
 
-.delete_Amigo {
-    background-color: #C62828;
-    color: white;
-    border: #C62828 ;
-    font-size: large;
-}
-.send {
-    background-color:#1976D2;
-    color: rgb(255, 255, 255);
-    border: rgb(245, 10, 10);
+.text-Datos{
+    font-size: 10px;
+    width: 130px;
+    
+    
+   
+
 }
 
-.botones .delete_Amigo:hover {
-    background-color: rgb(255, 196, 0);
+.send{
+    box-shadow: 0px 2px 7px rgb(177, 176, 176);
+    background-color: transparent;
+    border-radius: 0.5em;
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+    border: none;
+    
 }
-
-/* Estilos para el botón "Enviar Mensaje" cuando pasa el cursor sobre él */
-.botones .send:hover {
-    background-color: rgb(0, 255, 213);
+.send:hover{
+    background-color: rgba(120, 120, 120, 0.69);
+    color: rgb(255, 0, 0);
 }
-
-/*Adaptacion de la pantalla*/
-@media screen and (min-width: 768px) {
-    .frisends {
-        flex-basis: calc(33.33% - 10px);
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .frisends {
-        flex-basis: calc(25% - 10px);
-    }
-}
-
-@media screen and (min-width: 1440px) {
-    .frisends {
-        flex-basis: calc(20% - 10px);
-    }
-    .botones button{
-        font-size: 0.8em;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .frisends {
-        flex-basis: calc(50% - 20px);
-    }
+.botones-users{
+    margin-left: 25px;
+    
+    width: 70px;
+    height: auto;
+    text-align: right;
+   padding-right: 10px;
+   
 }
