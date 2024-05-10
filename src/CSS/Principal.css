@@ -117,7 +117,6 @@ img{
     width: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-   
 }
 
 .barraBuscar{
@@ -171,8 +170,7 @@ img{
 .publicaciones{
     display: flex;
     flex-direction: column;
-   width: 600px;
-   
+    width: auto;
     padding-left: 50px;
 }
 .crearPublicacion{

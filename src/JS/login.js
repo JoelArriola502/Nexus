@@ -1,14 +1,15 @@
-const  IniciarSecion=document.getElementById("signUp");
-const  Registrarse=document.getElementById("signIn");
-const Reganimacion=document.querySelector(".Registrar");
-const iniAnimacion=document.querySelector(".Sesion");
+function animRegistro(){
+    const registrocont =  document.getElementById('regForm');
+    const inicio = document.getElementById('iniciofrom');
+    registrocont.style.display = "block";
+    inicio.style.display = "none";
+}
 
-IniciarSecion.addEventListener("click",ev=>{
-    iniAnimacion.classList.add("Registrar");
-    Reganimacion.classList.remove("Registrar")
-})
-Registrarse.addEventListener("click",ev=>{
-    Reganimacion.classList.add("Registrar");
-    iniAnimacion.classList.remove("Registrar")
-})
+function iniciosec(){
+    const conten = document.getElementById('iniciofrom');
+    conten.style.display = "flex";
+    const registrocont =  document.getElementById('regForm');
+    registrocont.style.display = "none";
+}
 
+iniciosec();
