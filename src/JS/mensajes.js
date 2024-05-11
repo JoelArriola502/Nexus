@@ -38,7 +38,7 @@ function despliegeMensaje(){
                 </div>
             </div>
             <div class="chat-botones">
-                <button class="btn-icono-foto"><i class="fa-solid fa-photo-film"></i></button>
+                <button class="btn-icono-foto"><i class="fa-solid fa-folder-open"></i></button>
                 <input class="escribir" type="text" name="mensaje" id="txtMensaje" placeholder="   Escribe un mensaje">
                 <button class="btn-enviar"><i class='bx bxs-send'></i></button>
             </div>

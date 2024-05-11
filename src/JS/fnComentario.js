@@ -142,7 +142,7 @@ function ComentariosPublicacion(idPublicaciones){
             html=html+`
             
           
-            <div class="containerComent">
+            <div class="containerComent animate__animated animate__fadeInDownBig">
                 <div class="fotoUserPerfil">
                     <img src="${Foto}" alt="foto" class="fotoU">
                 </div>
@@ -171,7 +171,6 @@ function InsertarComentario(idPublicaciones){
 
     const Comentario=ComentarioInput.value;
     if(!Comentario){
-        ComentarioInput.style.border = "solid thin red"; 
         ComentarioInput.classList.add("vacio"); 
     }else{
          fetch('http://localhost:4000/InsertarComentarios',{
@@ -184,7 +183,6 @@ function InsertarComentario(idPublicaciones){
     .then(res=>res.json())
     .then(DatosAgregados=>{
         ComentarioInput.value="";
-        ComentarioInput.style.border = "2px solid #9d9d9d"; 
         ComentarioInput.classList.remove("vacio"); 
         ActualizarNumeroComentarios(idPublicaciones);
         ComentariosPublicacion(idPublicaciones);
