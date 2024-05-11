@@ -6,7 +6,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../CSS/Principal.css">
     <link rel="stylesheet" href="../CSS/EstiloComentarios.css">
-
+    <link rel="stylesheet" href="../CSS/EstiloMensajes.css">
     <link rel="stylesheet" href="../CSS/EstiloAmigos.css">
     <title>Nexus</title>
     
@@ -18,10 +18,10 @@
                  
                 </div>
                 <div class="Botones-contenedor">
-                    <label onclick="Inicio(), seleccionarBoton('Inicio')" class="Botones" for=""><i class="fa-solid fa-house"></i>
+                    <label onclick="Inicio(), seleccionarBoton('Inicio')" class="Botones seleccionado" for=""><i class="fa-solid fa-house"></i>
                         <input class="botones-funciones"  type="button" value="Inicio">
                     </label>
-                    <label onclick="seleccionarBoton('Mensajes')" class="Botones" for=""><i class="fa-solid fa-comments"></i>
+                    <label onclick="seleccionarBoton('Mensajes'), despliegeMensaje()" class="Botones" for=""><i class="fa-solid fa-comments"></i>
                         <input class="botones-funciones"  type="button" value="Mensajes">
                     </label>
                     <label onclick="seleccionarBoton('Comunidades')" class="Botones" for=""><i class="fa-solid fa-users-line"></i>
@@ -59,7 +59,7 @@
 
 
 
-        <div class="contenido-Nexus"> 
+        <div class="contenido-Nexus" id="contenido-mensajes"> 
             <div class="barraBuscar">
                 <div class="group">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
@@ -82,4 +82,5 @@
 <script src="../JS/CerrarSesion.js"></script>
 <script src="../JS/fnComentario.js"></script>
 <script src="../JS/Amigos.js"></script>
+<script src="../JS/mensajes.js"></script>
 </html>
