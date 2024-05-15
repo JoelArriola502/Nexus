@@ -206,7 +206,6 @@ function AgregarAmigos(idUsuarios){
       if(Respuesta.length===0){
         console.log("Estoy en el if")
         InsertarAmigo(idUsuarios);
-        ConfimarSolicitud(idUsuarios);
       }else{
         console.log("Estoy en el else")
         ActualizarSolicitudEstado(idUsuarios);
@@ -293,6 +292,7 @@ function InsertarAmigo(idUsuarios){
         fetch(`http://localhost:4000/Usuarios/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
+            ActualizarSolicitudEstado(idUsuarios);
             if(respuesta.length===0){
                 MostrarlosUsuariosSeguidores();
             }else{
