@@ -28,4 +28,12 @@ function InsertarComentario(Comentario,idPublicaciones,idUsuarios){
         idUsuarios:idUsuarios
     })
 }
-module.exports={NuevoUsuario,InsertarLikesUsuario,InsertarComentario}
+function InsertarSeguidorNuevo(Estado,idUsuariosOrigen,idUsuariosDestino){
+    return conexion('Seguidores')
+    .insert({
+        Estado:Estado,
+        idUsuariosOrigen:idUsuariosOrigen,
+        idUsuariosDestino:idUsuariosDestino
+    })
+}
+module.exports={NuevoUsuario,InsertarLikesUsuario,InsertarComentario,InsertarSeguidorNuevo}

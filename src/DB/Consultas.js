@@ -96,15 +96,53 @@ function Usuarios(idUsuarios) {
       .whereNotIn('idUsuarios', function() {
         this.select('idUsuariosDestino')
           .from('Seguidores')
-          .where('idUsuariosOrigen', idUsuarios);
+          .where('idUsuariosOrigen', idUsuarios)
+          .whereIn('Estado', ['Siguiendo', 'Amigos']);
       })
       .whereNotIn('idUsuarios', function() {
         this.select('idUsuariosOrigen')
           .from('Seguidores')
-          .where('idUsuariosDestino', idUsuarios);
+          .where('idUsuariosDestino', idUsuarios)
+          .whereIn('Estado', ['Siguiendo', 'Amigos']);
       });
   }
+  
+function VerSeguidores(idUsuariosOrigen,idUsuariosDestino){
+    return conexion('Seguidores')
+          .where('idUsuariosOrigen',idUsuariosOrigen)
+          .andWhere('idUsuariosDestino',idUsuariosDestino)
+}
+
+function UsuariosSiguiendo(idUsuarios){
+    return conexion('Usuarios as u').select('u.idUsuarios','u.Nombre', 'u.Apellido', 'u.Foto')
+    .join('Seguidores as s','u.idUsuarios','s.idUsuariosDestino')
+    .where('s.idUsuariosOrigen',idUsuarios)
+    .andWhere('s.Estado','Siguiendo')
+}
+
+function UsuariosSeguidores(idUsuarios){
+    return conexion('Usuarios as u')
+    .select('u.idUsuarios','u.Nombre', 'u.Apellido', 'u.Foto' ,'u.FechaCreacion')
+    .join('Seguidores as s','u.idUsuarios','s.idUsuariosOrigen')
+    .where('s.idUsuariosDestino',idUsuarios)
+    .andWhere('s.Estado','Siguiendo')
+}
+
+// SELECT u.idUsuarios,u.Nombre, u.Apellido, u.Foto ,u.FechaCreacion
+// FROM Seguidores AS s
+// JOIN Usuarios AS u ON s.idUsuariosOrigen = u.idUsuarios
+// WHERE s.Estado = 'Amigos'
+//   AND s.idUsuariosDestino= 2;
+function AmigosUsuario(idUsuarios){
+    return conexion('Seguidores as s')
+    .select('u.idUsuarios','u.Nombre', 'u.Apellido', 'u.Foto' ,'u.FechaCreacion')
+    .join('Usuarios as u','s.idUsuariosOrigen','u.idUsuarios')
+    .where('s.Estado', 'Amigos')
+    .andWhere('s.idUsuariosDestino',idUsuarios)
+
+}
+
 module.exports={usuarios, CorreoUsuario,DatosPerfil,Publicaciones,PublicacionVerLikes,LikeUsuario,
     PublicacionesUsuarios,ComentariosPublicacionNumero,PublicacionesComentarios,ComentariosPublicacion,
-    LikeUsuarioPublicaciones,Usuarios
+    LikeUsuarioPublicaciones,Usuarios,VerSeguidores,UsuariosSiguiendo,UsuariosSeguidores,AmigosUsuario
 };

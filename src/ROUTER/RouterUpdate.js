@@ -72,4 +72,24 @@ router.put('/ActualizarEstado/:idPublicaciones/:idUsuarios',(req,res)=>{
     })
 
 })
+router.put('/EstadoSeguidor/:idUsuarioOrigen/:idUsuariosDestino',(req,res)=>{
+    const idUsuarioOrigen=req.params.idUsuarioOrigen;
+    const idUsuariosDestino=req.params.idUsuariosDestino;
+    const EstadoActualizar=req.body;
+    Actualizar.ActualizarEstadoSeguidor(
+        idUsuarioOrigen,
+        idUsuariosDestino,
+        EstadoActualizar.Estado
+    )
+    .then((response)=>{
+        if(response){
+            res.json({message:"Estado Actualizado"});
+        }else{
+            res.status(400).json({message:"Error al actualizae¿r"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay un error"})
+    })
+})
 module.exports=router;
