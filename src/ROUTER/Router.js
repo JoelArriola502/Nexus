@@ -150,4 +150,42 @@ router.get('/Usuarios/:idUsuarios',(req,res)=>{
     .then(response=>res.json(response))
     .catch((e)=>res.status(500).json(e))
 })
+router.get('/Seguidores/:idUsuariosOrigen/:ididUsuariosDestino',(req,res)=>{
+    const idUsuariosOrigen=req.params.idUsuariosOrigen;
+    const idUsuariosDestino=req.params.ididUsuariosDestino;
+    consulta.VerSeguidores(idUsuariosOrigen,idUsuariosDestino)
+    .then(response=>res.json(response))
+    .catch(error=>{
+        res.status(500).json(error)
+    })
+
+})
+
+router.get('/Siguiendo/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.UsuariosSiguiendo(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+router.get('/Seguidores/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.UsuariosSeguidores(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+router.get('/AmigosUsuarios/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.AmigosUsuario(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
 module.exports=router;

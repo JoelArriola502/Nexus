@@ -51,4 +51,22 @@ router.post('/InsertarComentarios',(req,res)=>{
         res.status(500).json(error);
     })
 })
+router.post('/NuevoSeguidor',(req,res)=>{
+    const AgregarNuevoSeguidor=req.body;
+    insertar.InsertarSeguidorNuevo(
+        AgregarNuevoSeguidor.Estado,
+        AgregarNuevoSeguidor.idUsuariosOrigen,
+        AgregarNuevoSeguidor.idUsuariosDestino
+    )
+    .then((response)=>{
+        if(response){
+            res.json({message:"Seguidor Nuevo Ageragado"})
+        }else{
+            res.status(400).json({message:"Error 400"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error})
+    })
+})
 module.exports=router;

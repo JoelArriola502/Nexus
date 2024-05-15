@@ -35,5 +35,14 @@ function ActualizarEstadoLike(idPublicaciones,idUsuarios,Estado){
         Estado:Estado
     })
 }
+function ActualizarEstadoSeguidor(idUsuariosOrigen,idUsuariosDestino,Estado){
+    return Actualizar('Seguidores')
+          .where('idUsuariosOrigen',idUsuariosOrigen)
+          .andWhere('idUsuariosDestino',idUsuariosDestino)
+          .update({
+            Estado:Estado
+          })
 
-module.exports={LikesPublicaciones,LikesPublicacionesNull,LikesPublicacionesMenos,ActualizarEstadoLike}
+}
+
+module.exports={LikesPublicaciones,LikesPublicacionesNull,LikesPublicacionesMenos,ActualizarEstadoLike,ActualizarEstadoSeguidor}
