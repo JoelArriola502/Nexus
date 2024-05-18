@@ -188,4 +188,24 @@ router.get('/AmigosUsuarios/:idUsuarios',(req,res)=>{
     })
    
 })
+
+router.get('/Maxid',(req,res)=>{
+    
+    consulta.ObtenerMaxIdPublicaciones()
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+
+router.get('/UsuariosEtiquetados/:idPublicaciones',(req,res)=>{
+    const idPublicaciones=req.params.idPublicaciones;
+    consulta.UsuariosEtiquetados(idPublicaciones)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
 module.exports=router;

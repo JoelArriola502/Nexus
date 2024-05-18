@@ -69,4 +69,48 @@ router.post('/NuevoSeguidor',(req,res)=>{
         res.status(500).json({error})
     })
 })
+
+router.post('/NuevaPublicacion',(req,res)=>{
+    const PublicacionDatos=req.body;
+    insertar.InsertarPublicacion(
+        PublicacionDatos.Descripcion,
+        PublicacionDatos.imagen,
+        PublicacionDatos.video,
+        PublicacionDatos.musica,
+        PublicacionDatos.idUsuarios
+
+    )
+    .then((respuesta)=>{
+        if(respuesta){
+            res.json({message:"Publicación creada exitosamente"});
+        }else{
+            res.status(400).json({message:"Error al crear la publicación"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+
+})
+
+router.post('/Etiquetar',(req,res)=>{
+    const Etiquetar=req.body;
+    insertar.InsertarEtiqueta(
+        Etiquetar.idPublicaciones,
+        Etiquetar.idUsuariosOrigen,
+        Etiquetar.idUsuariosDestino
+
+    )
+    .then((respuesta)=>{
+        if(respuesta){
+            res.json({message:"Publicación Etiquetada exitosamente"});
+        }else{
+            res.status(400).json({message:"Error al crear la etiquetar"})
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+
+})
 module.exports=router;

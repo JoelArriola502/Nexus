@@ -36,4 +36,25 @@ function InsertarSeguidorNuevo(Estado,idUsuariosOrigen,idUsuariosDestino){
         idUsuariosDestino:idUsuariosDestino
     })
 }
-module.exports={NuevoUsuario,InsertarLikesUsuario,InsertarComentario,InsertarSeguidorNuevo}
+
+function InsertarPublicacion(Descripcion,imagen,video,musica,idUsuarios){
+    return conexion('Publicaciones')
+           .insert({
+            Descripcion:Descripcion,
+            imagen:imagen,
+            video:video,
+            musica:musica,
+            idUsuarios:idUsuarios
+           })
+
+}
+
+function InsertarEtiqueta(idPublicaciones,idUsuariosOrigen,idUsuariosDestino){
+    return conexion('Etiqueta')
+          .insert({
+            idPublicaciones:idPublicaciones,
+            idUsuariosOrigen:idUsuariosOrigen,
+            idUsuariosDestino:idUsuariosDestino
+          })
+}
+module.exports={NuevoUsuario,InsertarLikesUsuario,InsertarComentario,InsertarSeguidorNuevo,InsertarEtiqueta,InsertarPublicacion}

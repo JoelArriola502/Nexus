@@ -18,16 +18,37 @@ return conexion('Usuarios').select(
 
 
 function Publicaciones(idUsuarios){
-    return conexion(' Publicaciones as p')
-    .select('u.Foto', 'u.Nombre', 'u.Apellido','ud.Foto as Foto2','ud.Nombre as Nombre2','ud.Apellido as Apellido2','p.idPublicaciones','p.Fecha',
-        'p.Descripcion','p.imagen','p.video', 'p.idUsuarios','p.Likes' )
-        .join('Usuarios as u',' p.idUsuarios', 'u.idUsuarios')
-        .leftJoin('Etiqueta as e', 'e.idPublicaciones', 'p.idPublicaciones')
-        .leftJoin( 'Usuarios as ud','e.idUsuariosDestino','ud.idUsuarios')
-        .where('u.idUsuarios',idUsuarios)
-        .orWhere('e.idUsuariosDestino',idUsuarios)
-        .orderBy(' p.Fecha','desc')
-
+    return conexion('Publicaciones as p')
+    .select(
+      'u.Foto', 
+      'u.Nombre', 
+      'u.Apellido', 
+      'p.idPublicaciones', 
+      'p.Fecha', 
+      'p.Descripcion', 
+      'p.imagen', 
+      'p.video', 
+      'p.idUsuarios', 
+      'p.Likes'
+    )
+    .join('Usuarios as u', 'p.idUsuarios', 'u.idUsuarios')
+    .leftJoin('Etiqueta as e', 'e.idPublicaciones', 'p.idPublicaciones')
+    .leftJoin('Usuarios as ud', 'e.idUsuariosDestino', 'ud.idUsuarios')
+    .where('u.idUsuarios', idUsuarios)
+    .orWhere('e.idUsuariosDestino', idUsuarios)
+    .groupBy(
+      'p.idPublicaciones', 
+      'u.Foto', 
+      'u.Nombre', 
+      'u.Apellido', 
+      'p.Fecha', 
+      'p.Descripcion', 
+      'p.imagen', 
+      'p.video', 
+      'p.idUsuarios', 
+      'p.Likes'
+    )
+    .orderBy('p.Fecha', 'desc');
 }
 
 
@@ -128,11 +149,7 @@ function UsuariosSeguidores(idUsuarios){
     .andWhere('s.Estado','Siguiendo')
 }
 
-// SELECT u.idUsuarios,u.Nombre, u.Apellido, u.Foto ,u.FechaCreacion
-// FROM Seguidores AS s
-// JOIN Usuarios AS u ON s.idUsuariosOrigen = u.idUsuarios
-// WHERE s.Estado = 'Amigos'
-//   AND s.idUsuariosDestino= 2;
+
 function AmigosUsuario(idUsuarios){
     return conexion('Seguidores as s')
     .select('u.idUsuarios','u.Nombre', 'u.Apellido', 'u.Foto' ,'u.FechaCreacion')
@@ -142,7 +159,20 @@ function AmigosUsuario(idUsuarios){
 
 }
 
+function ObtenerMaxIdPublicaciones(){
+    return conexion('Publicaciones')
+    .max('idPublicaciones as idPublicaciones')
+}
+// select *from Usuarios u
+// 	join Etiqueta as e on u.idUsuarios=e.idUsuariosDestino
+// 	where e.idPublicaciones=1002
+function UsuariosEtiquetados(idPublicaciones){
+     return conexion('Usuarios as u')
+        .join('Etiqueta as e','u.idUsuarios','e.idUsuariosDestino')
+        .where('e.idPublicaciones',idPublicaciones)
+}
 module.exports={usuarios, CorreoUsuario,DatosPerfil,Publicaciones,PublicacionVerLikes,LikeUsuario,
     PublicacionesUsuarios,ComentariosPublicacionNumero,PublicacionesComentarios,ComentariosPublicacion,
-    LikeUsuarioPublicaciones,Usuarios,VerSeguidores,UsuariosSiguiendo,UsuariosSeguidores,AmigosUsuario
+    LikeUsuarioPublicaciones,Usuarios,VerSeguidores,UsuariosSiguiendo,UsuariosSeguidores,AmigosUsuario,
+    ObtenerMaxIdPublicaciones,UsuariosEtiquetados
 };

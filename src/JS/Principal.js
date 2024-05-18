@@ -23,6 +23,7 @@ function MostrarTodoInicio(){
     `
     PublicacionesCargar.innerHTML=html;
 }
+
 function CargarDatosPerfil(){
     fetch(`http://localhost:4000/DatosPerfil/${id}`)
     .then(res=>res.json())
@@ -49,7 +50,6 @@ function CargarDatosPerfil(){
     })
 }
 CargarDatosPerfil();
-
 function Inicio(){
     MostrarTodoInicio();
     CargarPublicacionCrear();
@@ -71,13 +71,15 @@ function CargarPublicacionCrear(){
         <div class="crearPublicacion" id="crearPublicacion">
         <div class="inputPublicacion">
         <img class="Foto-Perfil_p" src="${Foto}" alt="Usuario"/>
-        <input class="Crear-Texto-Publicacion" type="text" placeholder="¿Qué estas pensando?" />
+        <input id="Descripcion" class="Crear-Texto-Publicacion" type="text" placeholder="¿Qué estas pensando?" />
     </div>
     <div class="botonesPubli">
-        
-        <button class="multimedia"><i class="fa-solid fa-photo-film"></i> Foto/Video</button>
-        <button class="Etiquetar"><i class="fa-solid fa-tag"></i>Etiquetar</button>
-        <button class="btnPublicar">Publicar</button>
+    <progress id="img-Progeros-Carga" value="0" max="100" style="width: 100%; display: none;"></progress>
+    <input type="file" class="multimedia" id="FilePublicacion">
+    <label for="FilePublicacion" class="SubirImagenPublicacion"><i class="fa-solid fa-photo-film"></i> Foto/Video</label>
+        <button class="Etiquetar" onclick="CargarDatosEtiquetados()"><i class="fa-solid fa-tag"></i>Etiquetar</button>
+        <button class="btnPublicar" id="PublicarPublicacion">Publicar</button>
+        <div id="modalContainer"></div>
     </div>
     </div>
         `
@@ -86,133 +88,191 @@ function CargarPublicacionCrear(){
  crearPublicacion.innerHTML=html;
 
        }
+       Servidor();
+       
 
     })
 }
+
+
+
+function openModal() {
+    const CargarDatosUsuarios=document.getElementById("modalContainer");
+    let html="";
+    html =html+ `
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>Selecciona los amigos que quieres etiquetar en tu publicación</p>
+                    <i class="fa-solid fa-x" onclick="closeModal(),EliminarDatosArray()">close</i>
+                </div>
+                <label class="content-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="search-bar" placeholder="Buscar amigos">
+                </label>
+                
+                <ul class="friend-list" id="DatosUsuariosEtiquetar">
+                    
+                </ul>
+                <button class="etiquetar-confirm" onclick="closeModal()">Etiquetar</button>
+            </div>
+        </div>`;
+        CargarDatosUsuarios.innerHTML = html;
+    document.getElementById('modalContainer').style.display = 'block';
+}
+
+function CargarDatosEtiquetados(){
+    openModal();
+    UsuariosEtiquetar();
+}
+
+function UsuariosEtiquetar(){
+    const CargarDatosUsuarios = document.getElementById("DatosUsuariosEtiquetar");
+    fetch(`http://localhost:4000/AmigosUsuarios/${id}`)
+    .then(res => res.json())
+    .then((Usuarios) => {
+        let html = ``;
+        for (let i = 0; i < Usuarios.length; i++) {
+            const Foto = Usuarios[i].Foto;
+            const Nombre = Usuarios[i].Nombre;
+            const Apellido = Usuarios[i].Apellido;
+            const idUsuarios = Usuarios[i].idUsuarios;
+
+            // Agregar el usuario a la lista HTML
+            html += `
+                <li class="friend-item">
+                    <div class="usuarioEtiqueta">
+                        <img src="${Foto}">
+                        <p>${Nombre} ${Apellido}</p>
+                    </div>
+                    <input class="check" type="checkbox" value="${idUsuarios}" data-id="${idUsuarios}" onchange="handleCheckboxChange(this)">
+                </li>
+            `;
+        }
+
+        // Actualizar el HTML en el contenedor
+        CargarDatosUsuarios.innerHTML = html;
+
+        MarcarUsuariosEtiquetado();
+    })
+}
+
+
+function closeModal() {
+    document.getElementById('modalContainer').innerHTML = '';
+    
+}
+
   document.addEventListener("DOMContentLoaded",ev=>{   
     MostrarTodoInicio();
     CargarPublicacionCrear();
     CargarDatosPublicaciones();
   })
-function CargarDatosPublicaciones(){
-    const MostrarPublicaciones=document.getElementById("PublicacionVista");
+  
+  function CargarDatosPublicaciones() {
+    const MostrarPublicaciones = document.getElementById("PublicacionVista");
     fetch(`http://localhost:4000/Publicaciones/${id}`)
-    .then(res=>res.json())
-    .then((DatosPublicaciones)=>{
-    let html="";
-    for(let i=0; i<DatosPublicaciones.length;i++){
-        const idPublicaciones=DatosPublicaciones[i].idPublicaciones;
-        const Foto=DatosPublicaciones[i].Foto;
-        const Nombre=DatosPublicaciones[i].Nombre;
-        const Apellido=DatosPublicaciones[i].Apellido;
-        const FotoEtiquetado=DatosPublicaciones[i].Foto2;
-        const NombreEtiquetado=DatosPublicaciones[i].Nombre2;
-        const ApellidoEtiquetado=DatosPublicaciones[i].Apellido2;
-        const Fecha=DatosPublicaciones[i].Fecha;
-        const Descripcion=DatosPublicaciones[i].Descripcion;
-        const imagenPublicacion=DatosPublicaciones[i].imagen;
-        const Likes=DatosPublicaciones[i].Likes;
+        .then(res => res.json())
+        .then((DatosPublicaciones) => {
+            let html = "";
+            for (let i = 0; i < DatosPublicaciones.length; i++) {
+                const idPublicaciones = DatosPublicaciones[i].idPublicaciones;
+                const Foto = DatosPublicaciones[i].Foto;
+                const Nombre = DatosPublicaciones[i].Nombre;
+                const Apellido = DatosPublicaciones[i].Apellido;
+                const Fecha = DatosPublicaciones[i].Fecha;
+                const Descripcion = DatosPublicaciones[i].Descripcion;
+                const imagenPublicacion = DatosPublicaciones[i].imagen;
+                const Likes = DatosPublicaciones[i].Likes;
 
-    //Obtner dato fecha y darle nombre
-    const fechaObtener=new Date(Fecha);
-        const nombresMeses = [
-            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-          ];
-        const Dia=fechaObtener.getDate();
-        const Mes=fechaObtener.getMonth();
-        const Anio=fechaObtener.getFullYear();
-        const MesNombre = nombresMeses[Mes];
-        let LikeNull;
-        if(Likes===null){
-            LikeNull="";
-        }else{
-            LikeNull=Likes;
-        }
+                const fechaObtener = new Date(Fecha);
+                const nombresMeses = [
+                    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                ];
+                const Dia = fechaObtener.getDate();
+                const Mes = fechaObtener.getMonth();
+                const Anio = fechaObtener.getFullYear();
+                const MesNombre = nombresMeses[Mes];
+                const LikeNull = Likes === null ? "" : Likes;
 
- 
+                html += `
+                    <div class="vistaPublicacion">
+                        <div class="usuario">
+                            <div class="fotousuario">
+                                <img class="Foto-Perfil-Publicacion" src="${Foto}" alt="Usuario">
+                            </div>
+                            <div class="infoDatosPerfilEtiquetados">
+                                <div class="infoPubli">
+                                    <h5 class="nameUsuario">${Nombre} ${Apellido}</h5>
+                                    <p class="fecha">${Dia} ${MesNombre} ${Anio}</p>
+                                </div>
+                                <div class="infoPubliEtiqueta" id="infoPubliEtiqueta-${idPublicaciones}">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="descripcion">
+                            <p>${Descripcion}</p>
+                        </div>
+                        <div class="fotoPubli">
+                            <img class="imagenPublicacion" id="OcultarImagenP-${idPublicaciones}" src="${imagenPublicacion}">
+                        </div>
+                        <div class="btnPublicaciones">
+                            <button class="like" id="LikeBoton-${idPublicaciones}"  onclick="InsertarLike(${idPublicaciones})">
+                                <i class="fa-solid fa-thumbs-up"></i> Like
+                            </button>
+                            <p class="numLike" id="NumeroLikes-${idPublicaciones}">${LikeNull}</p>
+                            <button class="comentar" onclick="mostrarComentarios(${idPublicaciones})">
+                                <i class="fa-regular fa-comment"></i> Comentar
+                            </button>
+                            <p class="numComent" id="NumeroComentarios-${idPublicaciones}"></p>
+                        </div>
+                        <div class="comentariosDiv" id="comentariosDiv">
+                            
+                        </div>
+                    </div>
+                `;
 
-        let DatosUsuarioEtiquetado,NombreNoNull,ApellidoNoNull,FotoNoNull;
-        if(NombreEtiquetado===null&& ApellidoEtiquetado===null){
-            
-            NombreNoNull="";
-            ApellidoNoNull="";
-            FotoNoNull=" ";
-            
-            
-        }else{
-            NombreNoNull=NombreEtiquetado;
-            ApellidoNoNull=ApellidoEtiquetado;
-            FotoNoNull=FotoEtiquetado;
-        }
-      
-        
+                Numerocomentarios(idPublicaciones);
+                ColorBotonesLike(idPublicaciones);
+                OcultarImagenPublicacion(idPublicaciones);
+            }
+            // Establecer el contenido HTML en el contenedor de publicaciones
+            MostrarPublicaciones.innerHTML = html;
 
+            // Llenar el contenedor de usuarios etiquetados de cada publicación
+            DatosPublicaciones.forEach(publicacion => {
+                const idPublicaciones = publicacion.idPublicaciones;
+                UsuariosEtiquetadosPublicaciones(idPublicaciones);
+            });
+        })
+}
 
-       
-
-        html=html+` 
-        <div class="vistaPublicacion">
-    <div class="usuario">
-        <div class="fotousuario">
-            <img class="Foto-Perfil-Publicacion" src="${Foto}" alt="Usuario">
-        </div>
-        <div class="infoDatosPerfilEtiquetados">
-            <div class="infoPubli">
-                <h5 class="nameUsuario">${Nombre} ${Apellido}</h5>
-                <p class="fecha">${Dia} ${MesNombre} ${Anio}</p>
-            </div>
-            <div class="infoPubliEtiqueta">
-            <div class="fotousuarioEtiquetado" >
-            <img class="Foto-Perfil-Publicacion-Etiquetado"  src="${FotoNoNull}" id="FotoEtiquetada-${idPublicaciones}">
-            </div>
-                <h5 class="nameUsuario">${NombreNoNull} ${ApellidoNoNull}</h5>
-                
-            </div>
-
-        </div>
-    </div>
-    <div class="descripcion">
-        <p>${Descripcion}</p>
-    </div>
-    <div class="fotoPubli">
-        <img class="imagenPublicacion" id="OcultarImagenP-${idPublicaciones}" src="${imagenPublicacion}">
-    </div>
-    <div class="btnPublicaciones">
-        <button class="like" id="LikeBoton-${idPublicaciones}"  onclick="InsertarLike(${idPublicaciones})">
-        <i class="fa-solid fa-thumbs-up"></i> Like
-        </button>
-        <p class="numLike" id="NumeroLikes-${idPublicaciones}">${LikeNull}</p>
-        <button class="comentar" onclick="mostrarComentarios(${idPublicaciones})">
-            <i class="fa-regular fa-comment"></i> Comentar
-        </button>
-        <p class="numComent" id="NumeroComentarios-${idPublicaciones}"></p>
-    </div>
-    <div class="comentariosDiv" id="comentariosDiv">
-        
-    </div>
-</div>
-
-        `
-        MostrarPublicaciones.innerHTML=html;
-        Numerocomentarios(idPublicaciones);
-        OcultarPerfilEtiquetaNoExiste(idPublicaciones);
-        ColorBotonesLike(idPublicaciones);
-        OcultarImagenPublicacion(idPublicaciones);
-       
-       
-       
-
-
-    }
-
-
-    })
-        
-    }
     
+ //funcion ver usuarios etiquetados 
+ function UsuariosEtiquetadosPublicaciones(idPublicaciones) {
+    const MostrarEtiquetadosUsuarios = document.getElementById(`infoPubliEtiqueta-${idPublicaciones}`);
+    fetch(`http://localhost:4000/UsuariosEtiquetados/${idPublicaciones}`)
+        .then(res => res.json())
+        .then((UsuariosEtiquetados => {
+            let html = "";
+            for (let i = 0; i < UsuariosEtiquetados.length; i++) {
+                const Foto = UsuariosEtiquetados[i].Foto;
+                const Nombre = UsuariosEtiquetados[i].Nombre;
+                const Apellido = UsuariosEtiquetados[i].Apellido;
+                html += `
+                    <div class="usuario-etiquetado">
+                        <h5 class="nameUsuario">${Nombre} ${Apellido}</h5>
+                    </div>
+                `; 
+            }
+            // Se agrega el contenido al contenedor correspondiente
+            MostrarEtiquetadosUsuarios.innerHTML = html;
+        }))
+}
 
- 
+
     //actualizar likes
 function ActualizarLikes(idPublicaciones){
     const NumeroLike = document.getElementById(`NumeroLikes-${idPublicaciones}`);
@@ -435,31 +495,6 @@ function ColorBotonesLike(idPublicaciones){
         }
     })
 
-}
-
-function OcultarPerfilEtiquetaNoExiste(idPublicaciones){
-    fetch(`http://localhost:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
-    .then(res=>res.json())
-    .then((DatosPublicacionesFotos)=>{ 
-        const FotosVEr = document.getElementById(`FotoEtiquetada-${idPublicaciones}`);
-        for(let i=0;i<DatosPublicacionesFotos.length;i++){
-            const NombreET=DatosPublicacionesFotos[i].Nombre2;
-             
-        if(NombreET===null){
-            
-            FotosVEr.style.display = 'None';
-            
-            
-        }else{
-           
-            FotosVEr.style.display = 'blook';
-           
-        }
-        }
-      
-
-        
-    })
 }
 
 
