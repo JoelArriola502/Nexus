@@ -407,3 +407,23 @@ text-align: center;
 .seleccionado{
     background-color: rgba(247, 247, 247, 0.255);
 }
+
+input[type="file"]{
+    display: none;
+}
+
+.SubirImagenPublicacion{
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 0.5em;
+
+}
+.SubirImagenPublicacion:hover{
+
+  box-shadow: 0px 2px 5px black;
+    
+}
+
+.Crear-Texto-Publicacion.vacio::placeholder{
+    color:red;
+}
