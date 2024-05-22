@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../CSS/EstiloComentarios.css">
     <link rel="stylesheet" href="../CSS/EstiloMensajes.css">
     <link rel="stylesheet" href="../CSS/EstiloAmigos.css">
+    <link rel="stylesheet" href="../CSS/perfil.css">
+    <link rel="stylesheet" href="../CSS/grupos.css">
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -18,7 +20,7 @@
 <body>
     <div class="Nexus-Contenedor">
         <div class="Nexus">
-                <div class="DatosPerfil" id="DatosPerfil">
+                <div class="DatosPerfil" id="DatosPerfil" onclick="mostrarPerfil()">
                  
                 </div>
                 <div class="Botones-contenedor">
@@ -31,7 +33,7 @@
                     <label onclick="seleccionarBoton('Comunidades')" class="Botones" for=""><i class="fa-solid fa-users-line"></i>
                         <input class="botones-funciones"  type="button" value="Comunidades">
                     </label>
-                    <label onclick="seleccionarBoton('Grupos')" class="Botones" for=""><i class="fa-solid fa-users"></i>
+                    <label onclick="seleccionarBoton('Grupos'), mostrarGrupos()" class="Botones" for=""><i class="fa-solid fa-users"></i>
                         <input class="botones-funciones"  type="button" value="Grupos">
                     </label>
                     <label onclick="MostrarlosUsuarioscontenedor(),seleccionarBoton('Usuarios')" class="Botones" for=""><i class="fa-solid fa-user-group"></i>
@@ -88,4 +90,7 @@
 <script src="../JS/Usuarios.js"></script>
 <script src="../JS/Siguiendo.js"></script>
 <script src="../JS/mensajes.js"></script>
+<script src="../JS/perfil.js"></script>
+<script src="../JS/grupos.js"></script>
+
 </html>
