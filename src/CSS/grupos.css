@@ -152,6 +152,7 @@
 }
 
 /* Estilos para los input */
+<<<<<<< HEAD
 .gru1 {
     width: 100%; /* Establece el ancho al 100% */
     padding: 10px;
@@ -163,6 +164,8 @@
     display: none;
 }
 
+=======
+>>>>>>> 3b8bbfb55630bde3cd3d99722b7ba6e5a9e6bdb3
 .gru {
     width: 100%; /* Establece el ancho al 100% */
     padding: 10px;

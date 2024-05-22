@@ -95,9 +95,14 @@ function nuevoGrupo() {
                 </div>
             <form id="formCrearGrupo">
                 <div class="formL">
+<<<<<<< HEAD
                     <input type="file" id="archivoPortada" class="gru1" required>
                     <label class="v1" for="archivoPortada" ><i class="fa-solid fa-camera-retro"></i>
                         
+=======
+                    <label class="v1">Imagen de portada
+                        <input type="file" id="archivoPortada" class="gru" required>
+>>>>>>> 3b8bbfb55630bde3cd3d99722b7ba6e5a9e6bdb3
                     </label>
                     <label class="v1">Nombre del grupo
                         <input type="text" id="nombreGrupo" class="gru" placeholder="Nombre del grupo" required>
@@ -132,7 +137,11 @@ function vergrupo(){
                 </button>
             </div>
             <div class="image-placeholder">
+<<<<<<< HEAD
                 <img src="https://vamos.com.py/wp-content/uploads/2016/06/del-rio-viajes-portada.jpg">
+=======
+                <img src="https://i0.wp.com/memoflores.com/fotos-de-boudoir-01.jpg">
+>>>>>>> 3b8bbfb55630bde3cd3d99722b7ba6e5a9e6bdb3
             </div>
         </div>
         <div class="infogrupo">
@@ -170,7 +179,11 @@ function verMisgrupo(){
                 <button onclick="mostrarGrupos()"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
             <div class="image-placeholder">
+<<<<<<< HEAD
                 <img src="https://vamos.com.py/wp-content/uploads/2016/06/del-rio-viajes-portada.jpg" alt="Imagen del grupo">
+=======
+                <img src="https://st3.depositphotos.com/9880800/i/600/depositphotos_173487630-stock-photo-woman-in-sexy-lingerie-with.jpg" alt="Imagen del grupo">
+>>>>>>> 3b8bbfb55630bde3cd3d99722b7ba6e5a9e6bdb3
             </div>
         </div>
         <div class="infogrupo">
