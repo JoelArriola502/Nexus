@@ -208,4 +208,35 @@ router.get('/UsuariosEtiquetados/:idPublicaciones',(req,res)=>{
     })
    
 })
+
+router.get('/UsuariosMensajes/:idUsuarios',(req,res)=>{
+    const idUsuario=req.params.idUsuarios;
+    consulta.MostraUsuariosMensaje(idUsuario)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+router.get('/UltimoMensaje/:idUsuarios/:idUsuariosDestino',(req,res)=>{
+    const idUsuario=req.params.idUsuarios;
+    const idUsuarioDestino=req.params.idUsuariosDestino;
+    consulta.ultimos_mensajes(idUsuario,idUsuarioDestino)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+
+router.get('/Mensajeschat/:idUsuarios/:idUsuariosDestino',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const idUsuariosDestino=req.params.idUsuariosDestino;
+    consulta.MostrarMensajesChatUsuarios(idUsuarios,idUsuariosDestino)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
 module.exports=router;

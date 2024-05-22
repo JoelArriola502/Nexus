@@ -113,4 +113,22 @@ router.post('/Etiquetar',(req,res)=>{
     })
 
 })
+
+router.post('/InsertarMensaje',(req,res)=>{
+    const AgregarMensaje=req.body;
+    insertar.InsertarNuevoMensaje(AgregarMensaje.Mensaje,
+                                  AgregarMensaje.idUsuarioOrigen,
+                                  AgregarMensaje.idUsuarioDestino
+    )
+    .then((respuesta)=>{
+        if(respuesta){
+            res.json({message:"Mensaje Insertado Con Exito"});
+        }else{
+            res.status(400).json({message:"error"})
+        }
+    }).catch((error)=>{
+        res.status(500).json({error:"Hay error"})
+    })
+
+})
 module.exports=router;

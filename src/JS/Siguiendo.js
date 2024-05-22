@@ -368,6 +368,7 @@ function UsuariosAmigosCargar(){
         
                 <div class="botones-users">
                     <button class="CancelarSeguir"  onclick="EliminarAmigos(${idUsuarios})">X</button>
+                    <button class="Seguir-Tambien"  onclick="EnviarMensajeUsuariosAmigo(${idUsuarios})">Enviar Mensaje</button>
                 </div>
              </div>
         </div>
@@ -387,7 +388,27 @@ function EliminarAmigos(idUsuarios){
 
 }
 
+function EnviarMensajeUsuariosAmigo(idUsuarios){
+    const Mensaje="";
+    const idUsuarioOrigen=id;
+    const idUsuarioDestino=idUsuarios;
 
+fetch('http://localhost:4000/InsertarMensaje',{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json",
+    },
+    body: JSON.stringify({Mensaje,idUsuarioOrigen,idUsuarioDestino}),
+})
+.then(res=>res.json())
+.then((respuesta)=>{
+    
+    despliegeMensaje();
+    MensajesUsuariosNexus(idUsuarios);
+})
+
+
+}
 function ActualizarEstadoAmistadUno(idUsuarios){
     const idUsuariosOrigen=idUsuarios;
     const idUsuariosDestino=id;
