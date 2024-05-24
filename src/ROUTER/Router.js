@@ -239,4 +239,23 @@ router.get('/Mensajeschat/:idUsuarios/:idUsuariosDestino',(req,res)=>{
     })
    
 })
+router.get('/TotalAmigos/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.CantidadAmigos(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+
+router.get('/TotalSeguidores/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.CantidadSeguidores(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
 module.exports=router;

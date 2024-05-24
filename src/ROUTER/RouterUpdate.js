@@ -92,4 +92,42 @@ router.put('/EstadoSeguidor/:idUsuarioOrigen/:idUsuariosDestino',(req,res)=>{
         res.status(500).json({error:"Hay un error"})
     })
 })
+router.put('/ActualizaNombre/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const DatosActualizar=req.body;
+    Actualizar.ActualizarNombreApellido(
+        idUsuarios,
+        DatosActualizar.Nombre,
+        DatosActualizar.Apellido
+    )
+    .then((response)=>{
+        if(response){
+            res.json({message:"Datos Actualizado"});
+        }else{
+            res.status(400).json({message:"Error al actualizar"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay un error"})
+    })
+})
+
+router.put('/ActualizaFotoPerfil/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const DatosActualizar=req.body;
+    Actualizar.ActualizarFotoPerfil(
+        idUsuarios,
+        DatosActualizar.Foto,
+    )
+    .then((response)=>{
+        if(response){
+            res.json({message:"Datos Actualizado"});
+        }else{
+            res.status(400).json({message:"Error al actualizar"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay un error"})
+    })
+})
 module.exports=router;

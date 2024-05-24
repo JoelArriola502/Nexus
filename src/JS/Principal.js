@@ -36,7 +36,7 @@ function CargarDatosPerfil(){
        
         html=html+`
         <h1 class="Titulo-Nexus">Nexus</h1>
-        <button class="Perfil_boton">
+        <button class="Perfil_boton" onclick="mostrarPerfil()">
         <img class="Foto-Perfil" src="${Foto}">
         <h5 class="Nombre">${Nombre} ${Apellido}</h5>
     </button>
@@ -104,7 +104,7 @@ function openModal() {
             <div class="modal-content">
                 <div class="modal-header">
                     <p>Selecciona los amigos que quieres etiquetar en tu publicación</p>
-                    <i class="fa-solid fa-x" onclick="closeModal(),EliminarDatosArray()">close</i>
+                    <i class="fa-solid fa-x" onclick="closeModal()"></i>
                 </div>
                 <label class="content-search">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -263,7 +263,7 @@ function closeModal() {
                 const Apellido = UsuariosEtiquetados[i].Apellido;
                 html += `
                     <div class="usuario-etiquetado">
-                        <h5 class="nameUsuario">${Nombre} ${Apellido}</h5>
+                        <h6 class="nameUsuarioEtiquetado">${Nombre} ${Apellido}</h6>
                     </div>
                 `; 
             }

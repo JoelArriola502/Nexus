@@ -253,6 +253,23 @@ function MostrarMensajesChatUsuarios(idUsuario, idUsuarioDestino) {
     .orderBy('FechaMensaje');
 }
 
+
+function CantidadAmigos(idUsuarios){
+    return conexion('Seguidores as s')
+          .count('idUsuarios as TotalAmigos')
+          .join('Usuarios as u','s.idUsuariosOrigen','u.idUsuarios')
+          .where('s.Estado','Amigos')
+          .andWhere('s.idUsuariosDestino',idUsuarios)
+
+}
+
+function CantidadSeguidores(idUsuarios) {
+  return conexion("Usuarios as u")
+    .count('idUsuarios as TotalSeguidores')
+    .join("Seguidores as s", "u.idUsuarios", "s.idUsuariosOrigen")
+    .where("s.idUsuariosDestino", idUsuarios)
+    .andWhere("s.Estado", "Siguiendo");
+}
 module.exports = {
   usuarios,
   CorreoUsuario,
@@ -274,5 +291,7 @@ module.exports = {
   UsuariosEtiquetados,
   MostraUsuariosMensaje,
   ultimos_mensajes,
-  MostrarMensajesChatUsuarios
+  MostrarMensajesChatUsuarios,
+  CantidadAmigos,
+  CantidadSeguidores
 };

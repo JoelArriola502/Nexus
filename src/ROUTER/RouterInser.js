@@ -131,4 +131,19 @@ router.post('/InsertarMensaje',(req,res)=>{
     })
 
 })
+
+router.post('/InsertarFoto',(req,res)=>{
+    const AgregarFoto=req.body;
+    insertar.InsertarFoto(AgregarFoto.Foto,AgregarFoto.idUsuarios)
+    .then((respuesta)=>{
+        if(respuesta){
+            res.json({message:"Foto Insertada Con exito"});
+        }else{
+            res.status(400).json({message:"Error"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay error"})
+    })
+})
 module.exports=router;
