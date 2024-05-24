@@ -23,7 +23,7 @@
 }
 
 
-
+/// no tiene funcionalidad
  function EliminarDatosArray(){
     datosArray=[];
     console.log("Estoy en funcion eliminar",datosArray);
