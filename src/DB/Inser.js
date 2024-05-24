@@ -65,6 +65,14 @@ function InsertarNuevoMensaje(Mensaje, idUsuarioOrigen, idUsuarioDestino) {
     idUsuarioDestino: idUsuarioDestino,
   });
 }
+
+function InsertarFoto(Foto,idUsuarios){
+  return conexion('FotosPerfil').insert({
+Foto:Foto,
+idUsuarios:idUsuarios
+
+  })
+}
 module.exports = {
   NuevoUsuario,
   InsertarLikesUsuario,
@@ -72,5 +80,6 @@ module.exports = {
   InsertarSeguidorNuevo,
   InsertarEtiqueta,
   InsertarPublicacion,
-  InsertarNuevoMensaje
+  InsertarNuevoMensaje,
+  InsertarFoto
 };
