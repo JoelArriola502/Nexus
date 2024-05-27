@@ -72,4 +72,62 @@ router.put('/ActualizarEstado/:idPublicaciones/:idUsuarios',(req,res)=>{
     })
 
 })
+router.put('/EstadoSeguidor/:idUsuarioOrigen/:idUsuariosDestino',(req,res)=>{
+    const idUsuarioOrigen=req.params.idUsuarioOrigen;
+    const idUsuariosDestino=req.params.idUsuariosDestino;
+    const EstadoActualizar=req.body;
+    Actualizar.ActualizarEstadoSeguidor(
+        idUsuarioOrigen,
+        idUsuariosDestino,
+        EstadoActualizar.Estado
+    )
+    .then((response)=>{
+        if(response){
+            res.json({message:"Estado Actualizado"});
+        }else{
+            res.status(400).json({message:"Error al actualizae¿r"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay un error"})
+    })
+})
+router.put('/ActualizaNombre/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const DatosActualizar=req.body;
+    Actualizar.ActualizarNombreApellido(
+        idUsuarios,
+        DatosActualizar.Nombre,
+        DatosActualizar.Apellido
+    )
+    .then((response)=>{
+        if(response){
+            res.json({message:"Datos Actualizado"});
+        }else{
+            res.status(400).json({message:"Error al actualizar"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay un error"})
+    })
+})
+
+router.put('/ActualizaFotoPerfil/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    const DatosActualizar=req.body;
+    Actualizar.ActualizarFotoPerfil(
+        idUsuarios,
+        DatosActualizar.Foto,
+    )
+    .then((response)=>{
+        if(response){
+            res.json({message:"Datos Actualizado"});
+        }else{
+            res.status(400).json({message:"Error al actualizar"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay un error"})
+    })
+})
 module.exports=router;
