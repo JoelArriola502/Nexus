@@ -1,5 +1,6 @@
 const express=require('express');
 const consulta=require('../DB/Consultas');
+const  bcryptjs=require('bcryptjs');
 const router=express.Router();
 router.get('/Usuarios',(req,res)=>{
     consulta.usuarios()
@@ -8,6 +9,34 @@ router.get('/Usuarios',(req,res)=>{
         res.status(500).json(e)
     })
 });
+
+router.post('/IniciarSesion',(req,res)=>{
+    const Correo=req.body.Correo;
+    const Contrasena=req.body.Contrasena;
+
+    consulta.InicoSesion(Correo)
+    .then(response=>{
+        if(response){
+            const ContraBD = response.map(usuario => usuario.Contrasena)[0]; // Obtener la contraseña de la base de datos
+            const idUsuario=response.map(usuario => usuario.idUsuarios)[0];
+            // Comparar la contraseña proporcionada con la contraseña almacenada en la base de datos
+            
+            const contraseñaValida = bcryptjs.compareSync(Contrasena, ContraBD);
+            if (contraseñaValida) {
+                res.json({ message: "ContrasenaValida",idUsuario });
+            } else {
+                res.status(401).json({ message: "Contrasenaincorrecta" });
+            }
+        } else {
+            res.status(404).json({ message: "Usuario no encontrado." });
+        }
+    })
+    .catch((e)=>{
+        res.status(500).json(e)
+    })
+});
+
+
 
 router.get('/Correo',(req,res)=>{
     consulta.CorreoUsuario()
@@ -233,6 +262,25 @@ router.get('/Mensajeschat/:idUsuarios/:idUsuariosDestino',(req,res)=>{
     const idUsuarios=req.params.idUsuarios;
     const idUsuariosDestino=req.params.idUsuariosDestino;
     consulta.MostrarMensajesChatUsuarios(idUsuarios,idUsuariosDestino)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+router.get('/TotalAmigos/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.CantidadAmigos(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((error)=>{
+        res.status(500).json({error:"Error "})
+    })
+   
+})
+
+router.get('/TotalSeguidores/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.CantidadSeguidores(idUsuarios)
     .then(response=>res.json(response))
     .catch((error)=>{
         res.status(500).json({error:"Error "})

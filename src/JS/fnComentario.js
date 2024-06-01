@@ -76,6 +76,7 @@ function mostrarComentarios(idPublicaciones) {
 comentariosDiv.innerHTML = contenidoComentarios;
 OcultarImagenPublicacionUnica(idPublicaciones);
 ComentariosPublicacion(idPublicaciones);
+PresionarEnterComentario(idPublicaciones);
     
       }
 
@@ -84,6 +85,15 @@ ComentariosPublicacion(idPublicaciones);
     })
    
 }
+
+function PresionarEnterComentario(idPublicaciones){
+    document.getElementById(`ComentarioPublicacion-${idPublicaciones}`).addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            // Ejecutar la función que desees
+            InsertarComentario(idPublicaciones);
+        }
+    });
+    }
 
 function cerrarVentanaComentario() {
     var comentariosDiv = document.getElementById("comentariosDiv");

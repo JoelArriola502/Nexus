@@ -441,3 +441,9 @@ input[type="file"]{
 .Crear-Texto-Publicacion.vacio::placeholder{
     color:red;
 }
+
+.nameUsuarioEtiquetado{
+    margin-left: 5px;
+    font-size: 12px;
+    
+}

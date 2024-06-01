@@ -17,13 +17,15 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
+  <script src="http://localhost:4000/socket.io/socket.io.js"></script>
+  
     <title>Nexus</title>
     
 </head>
 <body>
     <div class="Nexus-Contenedor">
         <div class="Nexus">
-                <div class="DatosPerfil" id="DatosPerfil" onclick="mostrarPerfil()">
+                <div class="DatosPerfil" id="DatosPerfil">
                  
                 </div>
                 <div class="Botones-contenedor">
@@ -85,8 +87,10 @@
     </div>
 </body>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script src="../JS/SocketCustom.js"></script>
 <script src="https://kit.fontawesome.com/3019248dcc.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script src="../JS/Principal.js"></script>
 <script src="../JS/CerrarSesion.js"></script>
 <script src="../JS/fnComentario.js"></script>
@@ -97,5 +101,5 @@
 <script src="../JS/grupos.js"></script>
 <script src="../SERVER/SERVERIMG.js"></script>
 <script src="../JS/EtiquetarPublicaciones.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="../JS/ActualizarFotoPerfil.js"></script>
 </html>
