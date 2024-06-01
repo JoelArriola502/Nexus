@@ -368,11 +368,13 @@ function UsuariosAmigosCargar(){
         
                 <div class="botones-users">
                     <button class="CancelarSeguir"  onclick="EliminarAmigos(${idUsuarios})">X</button>
-                    <button class="Seguir-Tambien"  onclick="EnviarMensajeUsuariosAmigo(${idUsuarios})">Enviar Mensaje</button>
+                    <button class="Seguir-Tambien"  onclick="msjAmigo()">Enviar Mensaje</button>
                 </div>
              </div>
         </div>
         
+        <div id="msjrapido"></div>
+
         </div>
        
             `
@@ -380,6 +382,53 @@ function UsuariosAmigosCargar(){
         }
 
     })
+}
+
+function msjAmigo() {
+    const cambiar = document.getElementById('msjrapido');
+    const html = `
+        <div class="msjcontenido">
+            <div class="ventanaflotante">
+                <div class="encabezado-msj">
+                    <div class="foto-usuario-msj">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrmRXbObuANjRXxUTTLPhJRSY8BRb6sIr4AlKOe5KxAQ&s" alt=""> 
+                    </div>
+                    <h4>Angel López</h4>
+                    <i class="fa-solid fa-xmark" onclick="closemsjAmigo()"></i>
+                </div>
+                <div class="chat-msj">
+                    <p class="msj-amigo">Hola tal Joel</p>
+                    <p class="msj-yo">Hola que tal Carla, me encuentro bien</p>
+                </div>
+                <div class="controles">
+                    <input type="file" id="msjEnviar" style="display: none;"> 
+                    <label for="msjEnviar"><i class="fa-solid fa-folder-open"></i></label>
+                    <input class="msjInput" type="text" name="mensaje" id="msjR" placeholder="Escribe un mensaje">
+                    <button class="msj-enviar" ><i class='bx bxs-send'></i></button>
+                </div>
+            </div>
+        </div>
+    `;
+    cambiar.innerHTML = html;
+}
+
+function initializeEmojiPicker() {
+    const input = document.getElementById('msjR');
+    const picker = new EmojiButton();
+
+    picker.on('emoji', emoji => {
+        input.value += emoji;
+    });
+
+    picker.togglePicker();
+}
+
+
+
+function closemsjAmigo() {
+    const cambiar = document.getElementById('msjrapido');
+    const html = ``;
+    cambiar.innerHTML = html;
 }
 
 function EliminarAmigos(idUsuarios){

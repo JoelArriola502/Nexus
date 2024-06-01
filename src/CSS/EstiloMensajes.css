@@ -1,20 +1,29 @@
 .contenido-Mensajes{
     display: flex;
-    position: relative;
-    left: -50px;
-    max-width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* border: solid blue 2px; */
 }
 
 .encabezado{
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    gap: 20px;
 }
+
+.encabezado h2 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
 .nav-mensajes{
-    background-color: #f0f0f0;
-    height: 690px;
+    background-color: #ffffff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
     width: 334px;
+    min-height: 100%;
 }
 
 .con-bucar {
@@ -27,12 +36,12 @@
 }
 
 .input {
-    width: 310px;
+    width: 100%;
     height: 40px;
     /* line-height: 28px; */
     padding: 0 1rem;
     padding-left: 2.5rem;
-    border: 2px solid transparent;
+    border: 1px solid #ddd;
     border-radius: 8px;
     outline: none;
     background-color: #ffffff;
@@ -50,45 +59,50 @@
 
 .personas{
     display: flex;
+    align-items: center;
     padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .personas:hover{
-    background-color: #fff;
+    background-color: #f9f9f9;
 }
 
 .foto-perfil img{
     width: 50px;
     height: 50px;
     margin-right: 20px;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 .nombre-persona{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: 1;
 }
 
 .nombre-persona p{
     font-size: 12px;
+    margin: 5px 0 0;
+    color: #666;
+    align-self: flex-end; /* Alinear al extremo derecho */
+    max-width: 150px; /* Ancho máximo del mensaje */
+    word-wrap: break-word;
 }
 
 .hora{
-    margin-left: 80px;
-    padding: 12px;
     font-size: 12px;
 }
 
 .nav-mensajes{
-    overflow-y: auto;
+    /* overflow-y: auto; */
     height: 622px;
 }
 
 .chat-personas{
+    flex: 1;
     overflow-y: auto;
-    max-height: 600px;
-    cursor: pointer;
+    padding: 20px;
   
 }
 
@@ -111,26 +125,27 @@
 
 /* Estilo del contenedor de chats */
 .container-chat{
-    max-width: 500px;
-    width: 100%;
+    /* max-width: 500px; */
+    max-width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* border: solid 2px blue; */
 }
 
 .el-perfil{
     display: flex;
+    align-items: center;
     gap: 10px;
-    padding: 10px;
-    width: 943px;
-    height: 70px;
-    padding-left: 20px;
-    border-left: 2px solid #E1E1E1;
-    border-bottom: 2px solid #f0f0f0;
+    padding: 5px;
+    border-bottom:  1px solid #ddd;;
 }
 
 .el-perfil img{
-    height: 69px;
-    width: 70px;
-    border-radius: 15px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .el-perfil h4{
@@ -138,21 +153,18 @@
 }
 
 .txt-chat{
-    border-left: 2px solid #E1E1E1;
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    background-color: white;
-    padding: 20px;
-    width: 770px;
-    height: 429px;
-    
+    width: 900px;
 }
 
 .container-texto{
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio entre los mensajes */
-    overflow-y: auto;
+    gap: 10px;
 }
 
 .container-texto::-webkit-scrollbar {
@@ -172,44 +184,40 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.mensaje-tercero {
-    background-color: #e5e5ea;
+.mensaje-tercero, .tu-mensaje {
     padding: 10px;
-    border-radius: 15px;
-    align-self: flex-start; /* Alinear al extremo izquierdo */
-    max-width: 70%; /* Ancho máximo del mensaje */
+    border-radius: 5px;
+    max-width: 70%;
     word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+.mensaje-tercero {
+    align-self: flex-start;
+    background-color: #e5e5ea;
 }
 
 .tu-mensaje {
+    align-self: flex-end;
     background-color: #0184FF;
     color: white;
-    padding: 10px;
-    margin-right: 20px;
-    border-radius: 15px;
-    align-self: flex-end; /* Alinear al extremo derecho */
-    max-width: 70%; /* Ancho máximo del mensaje */
-    word-wrap: break-word;
 }
 
 .chat-botones{
-    border-left: 2px solid #E1E1E1;
-    background-color: #f0f0f0;
-    width: 833.5px;
-    height: 50px;
     display: flex;
-    padding: 5px;
-    justify-content: center;
     align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
 }
 
 .escribir{
-    width: 752px;
-    height: 40px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 15px;
-    text-indent: 15px;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 0 10px;
     background: transparent;
     border: none;
     outline: none;
@@ -220,6 +228,7 @@
     width: 50px;
     height: 50px;
     cursor: pointer;
+    background: transparent;
 }
 
 .btn-enviar{
@@ -227,6 +236,7 @@
     width: 50px;
     height: 50px;
     cursor: pointer;
+    background: transparent;
 }
 
 .btn-icono-foto i{

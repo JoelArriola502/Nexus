@@ -48,6 +48,35 @@ function mostrarGrupos(){
             </div>
         </div>
        
+        <div class="group-item">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+            <h3>Nombre del Grupo</h3>
+            <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+            <div class="group-buttons">
+                <button class="view-button" onclick="vergrupo()">Ver</button>
+                <button class="join-button">Unirse</button>
+            </div>
+        </div>
+
+        <div class="group-item">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+            <h3>Nombre del Grupo</h3>
+            <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+            <div class="group-buttons">
+                <button class="view-button" onclick="vergrupo()">Ver</button>
+                <button class="join-button">Unirse</button>
+            </div>
+        </div>
+
+        <div class="group-item">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+            <h3>Nombre del Grupo</h3>
+            <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+            <div class="group-buttons">
+                <button class="view-button" onclick="vergrupo()">Ver</button>
+                <button class="join-button">Unirse</button>
+            </div>
+        </div>
 
         <!-- Repite este bloque para cada tarjeta de grupo -->
     </div>
@@ -68,6 +97,60 @@ function selectButton(button) {
 function misGrupos(){
     const misgrupos = document.getElementById('groupsContainer');
     html = `
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
     <div class="group-item">
         <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
         <h3>Nombre del Grupo</h3>
