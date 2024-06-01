@@ -9,6 +9,7 @@
 .profile-container {
     width: 97%;
     height: 100%;
+    padding-left: 25px;
     margin-top: 10px;
     background-color: #fff;
     overflow: hidden;
@@ -316,4 +317,11 @@
 .CargarImagenSubir{
     width: auto;
     
+}
+
+.PublicacionesPerfilUsuarios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
