@@ -89,7 +89,8 @@ function insertarPublicacionSinImagen() {
   const musica = "";
   const Descripcion = DescripcionInput.value;
   const idUsuarios = id;
-  fetch("http://localhost:4000/NuevaPublicacion", {
+
+  return fetch("http://localhost:4000/NuevaPublicacion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -103,6 +104,48 @@ function insertarPublicacionSinImagen() {
     });
 }
 
+function insertarPublicacionSinImagenEtiquetado() {
+  const DescripcionInput = document.getElementById("Descripcion");
+  const imagen = "";
+  const video = "";
+  const musica = "";
+  const Descripcion = DescripcionInput.value;
+  const idUsuarios = id;
+
+  return fetch("http://localhost:4000/NuevaPublicacion", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ Descripcion, imagen, video, musica, idUsuarios }),
+  })
+    .then((res) => res.json())
+    .then((respuesta) => {
+      DescripcionInput.value = "";
+
+      InsertarPublicacionEtiquetada();
+      CargarDatosPublicaciones();
+    });
+}
+
+function InsertarPublicacionEtiquetada() {
+  fetch("http://localhost:4000/Maxid")
+    .then((res) => res.json())
+    .then((respuesta) => {
+      const idPublicacionesMax = respuesta
+        .map((id) => {
+          return id.idPublicaciones;
+        })
+        .join("");
+      const idPubli = parseInt(idPublicacionesMax);
+      const idUsuariosOrigen = id;
+      datosArray.forEach(function (dato) {
+        const idPublicaciones = idPubli;
+        EtiquetarPublicacion(dato.idUsuario, idPublicaciones);
+        console.log("Exitosa Etiquetado", idPublicaciones);
+      });
+    });
+}
 function insertarPublicacionConImagen(URL_imagen) {
   console.log("funcion ver cuantas veces se ejecuta ");
   const DescripcionInput = document.getElementById("Descripcion");
@@ -125,6 +168,33 @@ function insertarPublicacionConImagen(URL_imagen) {
 
       // Restablecer el valor del input
       input.value = "";
+      CargarDatosPublicaciones();
+    });
+}
+
+function insertarPublicacionConImagenEtiquetado(URL_imagen) {
+  console.log("funcion ver cuantas veces se ejecuta ");
+  const DescripcionInput = document.getElementById("Descripcion");
+  const imagen = URL_imagen;
+  const video = "";
+  const musica = "";
+  const Descripcion = DescripcionInput.value;
+  const idUsuarios = id;
+  fetch("http://localhost:4000/NuevaPublicacion", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ Descripcion, imagen, video, musica, idUsuarios }),
+  })
+    .then((res) => res.json())
+    .then((respuesta) => {
+      DescripcionInput.value = "";
+      const input = document.getElementById("FilePublicacion");
+
+      // Restablecer el valor del input
+      input.value = "";
+      InsertarPublicacionEtiquetada();
       CargarDatosPublicaciones();
     });
 }

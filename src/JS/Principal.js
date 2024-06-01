@@ -1,4 +1,3 @@
-
 const idUsuarios=localStorage.getItem("idUsuarios");
 const CargarPerfil=document.getElementById('DatosPerfil');
 const PublicacionesCargar=document.getElementById('ContenidoPrincipal');
@@ -10,6 +9,9 @@ function MostrarTodoInicio(){
     let html="";
 
     html=html+`
+
+    <div class="scrroll">
+
     <div class="crearPublicacionContenedor" id="crearPublicacion">
                   
     </div>
@@ -19,6 +21,8 @@ function MostrarTodoInicio(){
     </div>
     <div class="comentariosDiv" id="comentariosDiv">
         <!-- Este es el contenedor donde se muestra la ventana comentario -->
+    </div>
+
     </div>
     `
     PublicacionesCargar.innerHTML=html;

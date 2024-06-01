@@ -3,12 +3,17 @@
     grid-template-rows: repeat(auto-fit, 0fr);
     grid-template-columns: repeat(4, 0fr);
     width: auto;
-    margin-left: -10px;
-    height: auto;
+    height: 92%;
     justify-content: left;
     place-items: center;
-    
+    padding-left: 10px;
+    overflow-y: auto;
 }
+
+.Tituilo-Users{
+    margin-left: 10px;
+}
+
 .Foto_users {
     width: 250px;
     height: 170px;

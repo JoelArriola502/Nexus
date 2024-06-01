@@ -1,77 +1,68 @@
-const PasswordInput=document.getElementById("password");
-const EmailInput=document.getElementById("email");
+const PasswordInput = document.getElementById("password");
+const EmailInput = document.getElementById("email");
 
-function IniciarSesion(){
-    const Password=PasswordInput.value;
-    const Email=EmailInput.value;
-    if(!Password || !Email){
+function IniciarSesion() {
+    const Password = PasswordInput.value;
+    const Email = EmailInput.value;
 
+    if (!Password || !Email) {
         Swal.fire({
-            icon:'error',
-            title:'Error',
-            text:'LLene Los Campos'
-        })
+            icon: 'error',
+            title: 'Error',
+            text: 'LLene Los Campos'
+        });
         return;
-    }else{
+    }
 
-        fetch('http://localhost:4000/Usuarios')
-        .then(res=>res.json())
-        .then(DatosSesion=>{
-            let ValidarCredenciales=false;//variable inicialisada en false
-    
-            for(let i=0;i<DatosSesion.length;i++){
-                console.log("Datos",DatosSesion);
-                const Nombre=DatosSesion[i].Nombre;
-                const Apellido=DatosSesion[i].Apellido;
-                const Contrasena=DatosSesion[i].Contrasena;
-                const Correo=DatosSesion[i].Correo;
-                const idUsuarios=DatosSesion[i].idUsuarios;
-                console.log("Correo",Correo);
-                console.log("Contra",Contrasena);
+    console.log(Email, Password);
 
-                if(Email===Correo && Password===Contrasena){
-                     //la comparar si todo es igual la variable Validad credenciales pasa a verdadera
-                    ValidarCredenciales=true; 
-                   
+    fetch(`http://localhost:4000/IniciarSesion`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ Correo: Email, Contrasena: Password })
+    })
+    .then(res => res.json())
+    .then(DatosSesion => {
+        console.log(DatosSesion);
 
-                //variables de sesión
-                localStorage.setItem('idUsuarios',idUsuarios);
-            
+        let ValidarCredenciales = false;
+        const message = DatosSesion.message;
+        const idUsuarios = DatosSesion.idUsuario;
 
-                }
-    
-    
-    
-                
-            }
-            //validacion de inicio sesión 
-            if(ValidarCredenciales){
-                // si la validacion es verdadera dirigira al panel principal
-              
-                
-                window.location="../HTML/index.html";
+        console.log("mensaje", message);
+        console.log("id", idUsuarios);
+        let Validar = "ContrasenaValida";
 
-            }else{
-                Swal.fire({
-                    icon:'error',
-                    title:'Error',
-                    text:'CREDENCIALES INCORRECTAS'
+        if (Validar === message) {
+            ValidarCredenciales = true;
+            console.log("Validar", ValidarCredenciales);
 
-                });
+            // Guardar variables de sesión
+            localStorage.setItem('idUsuarios', idUsuarios);
+        }
 
-            }
-    
-        })
-        .catch((error)=>{
+        // Validación de inicio sesión
+        if (ValidarCredenciales) {
+            window.location = "../HTML/index.html";
+            console.log("Validar", ValidarCredenciales);
+        } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Error al verificar las credenciales. Por favor, inténtalo de nuevo.'
+                text: 'CREDENCIALES INCORRECTAS'
             });
-        })
-
-    }
-
-  
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al verificar las credenciales. Por favor, inténtalo de nuevo.'
+        });
+    });
 }
+
 
