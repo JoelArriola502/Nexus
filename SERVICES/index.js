@@ -11,7 +11,7 @@ app.use(express.json())//Insertar datos
 const srcpath=path.resolve(__dirname,'../src');
 app.use(express.static(srcpath));
 app.get('/',(req, res)=>{
-    res.sendFile(path.resolve(__dirname,'../src/HTML/index.html'));
+    res.sendFile(path.resolve(__dirname,'../src/HTML/login.html'));
 })
 let server=http.createServer(app);
 app.use(cors());
@@ -19,19 +19,9 @@ app.use('/',require('../src/ROUTER/Router'));//requerimos nuestras rutas
 app.use('/',require('../src/ROUTER/RouterInser'));
 app.use('/',require('../src/ROUTER/RouterUpdate'));
 app.use('/',require('../src/ROUTER/RouterDelete'));
-let io=socket(server);
 
-io.on('connect', function(cliente){
-    console.log('Conectado al servidor')
-
-    cliente.on('disconnect', function(){
-        console.log('Desconectado del servidor')
-    })
-
-  cliente.on('mensaje',(mensajes)=>{
-    io.emit('mensajes',mensajes);
-  })
-})
+module.exports.io=socket(server);
+require('./SOCKETS/Socket');
 server.listen(port,()=>{
     console.log(`Corriendo en el puerto ${port}` )
 })

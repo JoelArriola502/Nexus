@@ -1,4 +1,3 @@
-
 const idUsuarios=localStorage.getItem("idUsuarios");
 const CargarPerfil=document.getElementById('DatosPerfil');
 const PublicacionesCargar=document.getElementById('ContenidoPrincipal');
