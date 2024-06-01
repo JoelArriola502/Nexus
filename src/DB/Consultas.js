@@ -2,6 +2,12 @@ const conexion = require("./Conexion");
 function usuarios() {
   return conexion("Usuarios");
 }
+
+function InicoSesion(Correo){
+  return conexion("Usuarios")
+  .where("Correo",Correo);
+
+}
 function CorreoUsuario() {
   return conexion("Usuarios").select("Correo");
 }
@@ -293,5 +299,6 @@ module.exports = {
   ultimos_mensajes,
   MostrarMensajesChatUsuarios,
   CantidadAmigos,
-  CantidadSeguidores
+  CantidadSeguidores,
+  InicoSesion
 };

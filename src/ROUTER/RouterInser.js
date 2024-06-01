@@ -1,9 +1,16 @@
 const express=require('express');
 const insertar=require('../DB/Inser')
+const  bcryptjs=require('bcryptjs');
 const router=express.Router();
 
 router.post('/NuevoUsuario',(req,res)=>{
     const AgregarUsuario=req.body;
+
+    if (! AgregarUsuario.Contrasena) {
+        return res.status(400).json({ message: "no password" });
+    }
+    const passwordhash=bcryptjs.hashSync( AgregarUsuario.Contrasena,9);
+    AgregarUsuario.Contrasena=passwordhash;
     insertar.NuevoUsuario(
         AgregarUsuario.Nombre,
         AgregarUsuario.Apellido,
