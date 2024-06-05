@@ -102,7 +102,7 @@ function LikeUsuarioPublicaciones(idUsuarios, idPublicaciones) {
 
 function PublicacionesComentarios(idPublicaciones) {
   return conexion("Usuarios as u")
-    .join("Publicaciones as P", "p.idUsuarios", "u.idUsuarios")
+    .join("Publicaciones as p", "p.idUsuarios", "u.idUsuarios")
     .where("p.idPublicaciones", idPublicaciones);
 }
 
