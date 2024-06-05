@@ -182,9 +182,7 @@ function AmigosUsuario(idUsuarios) {
 function ObtenerMaxIdPublicaciones() {
   return conexion("Publicaciones").max("idPublicaciones as idPublicaciones");
 }
-// select *from Usuarios u
-// 	join Etiqueta as e on u.idUsuarios=e.idUsuariosDestino
-// 	where e.idPublicaciones=1002
+
 function UsuariosEtiquetados(idPublicaciones) {
   return conexion("Usuarios as u")
     .join("Etiqueta as e", "u.idUsuarios", "e.idUsuariosDestino")
@@ -276,6 +274,18 @@ function CantidadSeguidores(idUsuarios) {
     .where("s.idUsuariosDestino", idUsuarios)
     .andWhere("s.Estado", "Siguiendo");
 }
+
+function FotosPortadaMostrar(idUsuarios) {
+  return conexion("FotosPortada")
+    .select('Foto', 'Fecha')
+    .where('idUsuarios', idUsuarios)
+    .andWhere('Fecha', '=', function() {
+      this.select(conexion.raw('MAX(Fecha)'))
+        .from('FotosPortada')
+        .where('idUsuarios', idUsuarios);
+    });
+}
+
 module.exports = {
   usuarios,
   CorreoUsuario,
@@ -300,5 +310,6 @@ module.exports = {
   MostrarMensajesChatUsuarios,
   CantidadAmigos,
   CantidadSeguidores,
-  InicoSesion
+  InicoSesion,
+  FotosPortadaMostrar
 };

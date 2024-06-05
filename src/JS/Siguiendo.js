@@ -368,7 +368,7 @@ function UsuariosAmigosCargar(){
         
                 <div class="botones-users">
                     <button class="CancelarSeguir"  onclick="EliminarAmigos(${idUsuarios})">X</button>
-                    <button class="Seguir-Tambien"  onclick="msjAmigo()">Enviar Mensaje</button>
+                    <button class="Seguir-Tambien"  onclick="msjAmigo(${idUsuarios})">Enviar Mensaje</button>
                 </div>
              </div>
         </div>
@@ -384,33 +384,138 @@ function UsuariosAmigosCargar(){
     })
 }
 
-function msjAmigo() {
+function msjAmigo(idUsuarios) {
     const cambiar = document.getElementById('msjrapido');
     const html = `
         <div class="msjcontenido">
             <div class="ventanaflotante">
-                <div class="encabezado-msj">
-                    <div class="foto-usuario-msj">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrmRXbObuANjRXxUTTLPhJRSY8BRb6sIr4AlKOe5KxAQ&s" alt=""> 
-                    </div>
-                    <h4>Angel López</h4>
-                    <i class="fa-solid fa-xmark" onclick="closemsjAmigo()"></i>
+                <div class="encabezado-msj" id="encabezado-msj">
+                
                 </div>
-                <div class="chat-msj">
-                    <p class="msj-amigo">Hola tal Joel</p>
-                    <p class="msj-yo">Hola que tal Carla, me encuentro bien</p>
+                <div class="chat-msj" id="chat-msj">
+                   
                 </div>
                 <div class="controles">
                     <input type="file" id="msjEnviar" style="display: none;"> 
                     <label for="msjEnviar"><i class="fa-solid fa-folder-open"></i></label>
                     <input class="msjInput" type="text" name="mensaje" id="msjR" placeholder="Escribe un mensaje">
-                    <button class="msj-enviar" ><i class='bx bxs-send'></i></button>
+                    <button class="msj-enviar" onclick=" EnviarMensajeUsuarioFlotante(${idUsuarios})"><i class='bx bxs-send'></i></button>
                 </div>
             </div>
         </div>
     `;
     cambiar.innerHTML = html;
+    PerfilMenajeFlotante(idUsuarios);
+    MensajesUsuariosNexusFlotante(idUsuarios);
+    PresionarEnterFlotante(idUsuarios);
 }
+
+
+function PerfilMenajeFlotante(idUsuarios){
+    console.log(idUsuarios);
+    const CargarPerfilFlotante = document.getElementById('encabezado-msj');
+    let html="";
+    fetch(`http://localhost:4000/DatosPerfil/${idUsuarios}`)
+    .then(res=>res.json())
+    .then((respuesta)=>{
+        console.log(respuesta);
+        for(let i=0;i<respuesta.length;i++){
+        const Nombre=respuesta[i].Nombre;
+        const Apellido=respuesta[i].Apellido;
+        const Foto=respuesta[i].Foto;
+        
+        html=html+`
+        <div class="foto-usuario-msj">
+            <img src="${Foto}" alt=""> 
+            </div>
+            <h4>${Nombre} ${Apellido}</h4>
+            <i class="fa-solid fa-xmark" onclick="closemsjAmigo()"></i>
+        `
+        CargarPerfilFlotante.innerHTML=html;
+
+        }
+    })
+
+}
+
+function MensajesUsuariosNexusFlotante(idUsu){
+    const MensajesUsuariosFlotante=document.getElementById('chat-msj');
+    const idUsuarios=id; // Esto parece ser un error, ¿debería ser "idUsuario"?
+    const idUsuarioDestino=idUsu;
+    fetch(`http://localhost:4000/Mensajeschat/${idUsuarios}/${idUsuarioDestino}`)
+    .then(res => res.json())
+    .then((respuesta) => {
+        let html = "";
+
+        for (let i = 0; i < respuesta.length; i++) {
+            const mensaje = respuesta[i].Mensaje;
+            const idUsuarioOrigen = respuesta[i].idUsuarioOrigen;
+            const idUsuarioDestino = respuesta[i].idUsuarioDestino;
+            // Determinar si el mensaje es del usuario actual (origen) o del usuario con el que está chateando (destino)
+            if (idUsuarioOrigen == idUsu) {
+                html += `<p class="msj-amigo">${mensaje}</p>`;
+            } else if (idUsuarioDestino == idUsu) {
+                html += ` <p class="msj-yo">${mensaje}</p>`;
+            }
+        }
+        
+        MensajesUsuariosFlotante.innerHTML = html;
+    });
+    
+}
+
+function EnviarMensajeUsuarioFlotante(idUsuario){
+    const MensajeInput=document.getElementById('msjR');
+    const Mensaje=MensajeInput.value;
+    const idUsuarioOrigen=id;
+    const idUsuarioDestino=idUsuario;
+
+fetch('http://localhost:4000/InsertarMensaje',{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json",
+    },
+    body: JSON.stringify({Mensaje,idUsuarioOrigen,idUsuarioDestino}),
+})
+.then(res=>res.json())
+.then((respuesta)=>{
+    socket.emit('mensajes',{
+        Mensaje:Mensaje,
+        idUsuarioOrigen:idUsuarioOrigen,
+        idUsuarioDestino:idUsuarioDestino,
+        
+    });
+    MensajeInput.value="";
+    
+    MensajesUsuariosNexusFlotante(idUsuario);
+    
+  
+})
+
+}
+
+socket.on('mensajes', (data) => {
+    const mensaje = data.Mensaje;
+    const html = `<p class="msj-amigo">${mensaje}</p>`;
+    console.log("Mensaje recibido:", mensaje);
+
+    // Verificar que el elemento 'Mensajes-Usuarios' exista
+    const MensajesUsuarios = document.getElementById('chat-msj');
+    if (MensajesUsuarios) {
+      MensajesUsuarios.insertAdjacentHTML('beforeend', html);
+    } else {
+     const Tumensajes = document.getElementById('Tumensajes');
+    }
+  });
+
+function PresionarEnterFlotante(idUsuarios){
+    document.getElementById("msjR").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            // Ejecutar la función que desees
+            EnviarMensajeUsuarioFlotante(idUsuarios);
+        }
+    });
+    }
 
 function initializeEmojiPicker() {
     const input = document.getElementById('msjR');
@@ -516,3 +621,9 @@ function ActualizarEstadoAmistadDos(idUsuarios){
     })
 
 }
+
+
+
+
+   
+    
