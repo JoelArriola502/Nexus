@@ -67,6 +67,46 @@
             height: 100%;
         }
         
+        /*VENTANA FLOTANTE PARA BUCAR USUARIOS*/
+        .floating-window{
+            width: 400px;
+        }
+        
+        
+        .header-perfil-foto i{
+            font-size: 30px;
+            margin-left: 80px;
+        }
+    
+        .verFperfil img{
+            width: 300px;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .camara{
+            width: 50px;
+        }
+
+        .verFperfil{
+            width: 300px;
+            height: 250px;
+        }
+
+        .icono-fPerfil{
+            font-size: 20px;
+        }
+
+        .cambiosFperfil{
+            margin-left: 100px;
+        }
+
+        /*GRUPOS footer*/
+        .footer{
+            display: flex;
+            justify-content: space-between;
+        }
+
     }
 
     @media screen and (max-width: 600px) {
@@ -182,10 +222,6 @@
            max-height: auto;
         }
 
-        .containerComentarios{
-            border: solid red 2px;
-        }
-
         .group {
             margin-left: 25px;
         }
@@ -293,6 +329,44 @@
             flex-direction: column;
             width: 270px;
         
+        }
+
+        .floating-window{
+            width: 250px;
+        }
+        
+        
+        .header-perfil-foto i{
+            font-size: 30px;
+            margin-left: 80px;
+        }
+    
+        .verFperfil img{
+            width: 170px;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .camara{
+            width: 50px;
+        }
+
+        .verFperfil{
+            width: 170px;
+            height: 220px;
+        }
+
+        .icono-fPerfil{
+            font-size: 20px;
+        }
+
+        .cambiosFperfil{
+            margin-left: 20px;
+        }
+
+        .footer{
+            display: flex;
+            justify-content: space-around;
         }
         
     }
