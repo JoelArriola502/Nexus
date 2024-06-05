@@ -16,7 +16,7 @@ router.post('/IniciarSesion',(req,res)=>{
 
     consulta.InicoSesion(Correo)
     .then(response=>{
-        if(response){
+        if(response.length>0){
             const ContraBD = response.map(usuario => usuario.Contrasena)[0]; // Obtener la contraseña de la base de datos
             const idUsuario=response.map(usuario => usuario.idUsuarios)[0];
             // Comparar la contraseña proporcionada con la contraseña almacenada en la base de datos
@@ -35,8 +35,6 @@ router.post('/IniciarSesion',(req,res)=>{
         res.status(500).json(e)
     })
 });
-
-
 
 router.get('/Correo',(req,res)=>{
     consulta.CorreoUsuario()
@@ -286,5 +284,14 @@ router.get('/TotalSeguidores/:idUsuarios',(req,res)=>{
         res.status(500).json({error:"Error "})
     })
    
+})
+
+router.get('/FotoPortadaMax/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.FotosPortadaMostrar(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((Error)=>{
+        res.status(500).json({Error:"Error al ver Portada"})
+    })
 })
 module.exports=router;
