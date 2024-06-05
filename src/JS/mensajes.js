@@ -124,7 +124,7 @@ function ChatUsuarios(idUsuario){
     </div>
 </div>
 <div class="chat-botones">
-    <button class="btn-icono-foto"><i class="fa-solid fa-folder-open"></i></button>
+    <!-- <button class="btn-icono-foto"><i class="fa-solid fa-folder-open"></i></button> -->
     <input class="escribir" type="text" name="mensaje" id="txtMensaje" placeholder="   Escribe un mensaje">
     <button class="btn-enviar" onclick="EnviarMensajeUsuario(${idUsuario})"><i class='bx bxs-send'></i></button>
 </div>
