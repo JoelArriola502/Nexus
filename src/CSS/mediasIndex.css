@@ -227,7 +227,7 @@
         }
 
         .profile-container {
-            margin-left: 5px;
+            margin-left: 0px;
         }
 
         .cover-photo {
@@ -338,7 +338,7 @@
         
         .header-perfil-foto i{
             font-size: 30px;
-            margin-left: 80px;
+            margin-left: 50px;
         }
     
         .verFperfil img{

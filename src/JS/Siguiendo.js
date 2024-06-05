@@ -397,7 +397,7 @@ function msjAmigo(idUsuarios) {
                 </div>
                 <div class="controles">
                     <input type="file" id="msjEnviar" style="display: none;"> 
-                    <label for="msjEnviar"><i class="fa-solid fa-folder-open"></i></label>
+                    <!-- <label for="msjEnviar"><i class="fa-solid fa-folder-open"></i></label> -->
                     <input class="msjInput" type="text" name="mensaje" id="msjR" placeholder="Escribe un mensaje">
                     <button class="msj-enviar" onclick=" EnviarMensajeUsuarioFlotante(${idUsuarios})"><i class='bx bxs-send'></i></button>
                 </div>
