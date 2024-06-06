@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../CSS/EstiloEtiqueta.css">
     <link rel="stylesheet" href="../CSS/perfil.css">
     <link rel="stylesheet" href="../CSS/grupos.css">
+    <link rel="stylesheet" href="../CSS/msjAmigo.css">
+    <link rel="stylesheet" href="../CSS/mediasIndex.css">
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -34,9 +36,9 @@
                     <!-- <label onclick="seleccionarBoton('Comunidades')" class="Botones" for=""><i class="fa-solid fa-users-line"></i>
                         <input class="botones-funciones"  type="button" value="Comunidades">
                     </label> -->
-                    <label onclick="seleccionarBoton('Grupos'), mostrarGrupos()" class="Botones" for=""><i class="fa-solid fa-users"></i>
+                    <!-- <label onclick="seleccionarBoton('Grupos'), mostrarGrupos()" class="Botones" for=""><i class="fa-solid fa-users"></i>
                         <input class="botones-funciones"  type="button" value="Grupos">
-                    </label>
+                    </label> -->
                     <label onclick="MostrarlosUsuarioscontenedor(),seleccionarBoton('Usuarios')" class="Botones" for=""><i class="fa-solid fa-user-group"></i>
                         <input class="botones-funciones"  type="button" value="Usuarios">
                     </label>
@@ -70,8 +72,9 @@
             <div class="barraBuscar">
                 <div class="group">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
-                    <input class="input" type="search" placeholder="Search" />
+                    <input class="input" type="search" placeholder="Search" onclick="buscarUserN()"/>
                 </div>
+                <div id="seachUser"></div>
             </div>
             <div class="publicaciones" id="ContenidoPrincipal">
               
@@ -104,4 +107,6 @@
 <script src="../SERVER/SERVERIMG.js"></script>
 <script src="../JS/EtiquetarPublicaciones.js"></script>
 <script src="../JS/ActualizarFotoPerfil.js"></script>
+<script src="../JS/buscarUser.js"></script>
+<script src="../JS/SubirFotoPortada.js"></script>
 </html>

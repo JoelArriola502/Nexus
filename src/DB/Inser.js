@@ -73,6 +73,15 @@ idUsuarios:idUsuarios
 
   })
 }
+
+
+
+function InsertarFotoPortada(Foto,idUsuarios){
+return conexion('FotosPortada').insert({
+  Foto:Foto,
+  idUsuarios:idUsuarios
+});
+}
 module.exports = {
   NuevoUsuario,
   InsertarLikesUsuario,
@@ -81,5 +90,6 @@ module.exports = {
   InsertarEtiqueta,
   InsertarPublicacion,
   InsertarNuevoMensaje,
-  InsertarFoto
+  InsertarFoto,
+  InsertarFotoPortada
 };
