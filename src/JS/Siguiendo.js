@@ -198,16 +198,12 @@ function CancelarSeguimiento(idUsuarios){
 function AgregarAmigos(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
-    console.log("estoy Agregando solicitud ",idUsuariosOrigen,idUsuariosDestino)
     fetch(`http://localhost:4000/Seguidores/${idUsuariosOrigen}/${idUsuariosDestino}`)
     .then(res=>res.json())
     .then(Respuesta=>{
-    console.log(Respuesta);
       if(Respuesta.length===0){
-        console.log("Estoy en el if")
         InsertarAmigo(idUsuarios);
       }else{
-        console.log("Estoy en el else")
         ActualizarSolicitudEstado(idUsuarios);
         ConfimarSolicitud(idUsuarios);
         
@@ -220,7 +216,6 @@ function ConfimarSolicitud(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="Amigos";
-    console.log("estoy Confirmando solicitud ",idUsuariosOrigen,idUsuariosDestino,Estado)
     fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
@@ -250,7 +245,6 @@ function ActualizarSolicitudEstado(idUsuarios){
     const idUsuariosOrigen=idUsuarios;
     const idUsuariosDestino=id;
     let Estado="Amigos"
-    console.log("estoy Actualizando solicitud ",idUsuariosOrigen,idUsuariosDestino,Estado)
     fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
@@ -279,7 +273,6 @@ function InsertarAmigo(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="Amigos";
-    console.log("estoy insertando solicitud ",idUsuariosOrigen,idUsuariosDestino,Estado)
     fetch(`http://localhost:4000/NuevoSeguidor`,{
         method:"POST",
         headers:{
@@ -412,13 +405,11 @@ function msjAmigo(idUsuarios) {
 
 
 function PerfilMenajeFlotante(idUsuarios){
-    console.log(idUsuarios);
     const CargarPerfilFlotante = document.getElementById('encabezado-msj');
     let html="";
     fetch(`http://localhost:4000/DatosPerfil/${idUsuarios}`)
     .then(res=>res.json())
     .then((respuesta)=>{
-        console.log(respuesta);
         for(let i=0;i<respuesta.length;i++){
         const Nombre=respuesta[i].Nombre;
         const Apellido=respuesta[i].Apellido;
@@ -497,7 +488,6 @@ fetch('http://localhost:4000/InsertarMensaje',{
 socket.on('mensajes', (data) => {
     const mensaje = data.Mensaje;
     const html = `<p class="msj-amigo">${mensaje}</p>`;
-    console.log("Mensaje recibido:", mensaje);
 
     // Verificar que el elemento 'Mensajes-Usuarios' exista
     const MensajesUsuarios = document.getElementById('chat-msj');

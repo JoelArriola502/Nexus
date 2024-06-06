@@ -66,7 +66,7 @@ function ImagenPortada() {
             InsertarFotoPortadaUsuario(FotoPerfil);
           } catch (error) {
             //manejo de errores de subida de la imagen
-            console.error("Error al subir la imagen:", error);
+
             alert("Error al subir la imagen. Por favor, intenta de nuevo.");
           }
         }

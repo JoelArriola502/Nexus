@@ -1,7 +1,23 @@
-const idUsuarios=localStorage.getItem("idUsuarios");
 const CargarPerfil=document.getElementById('DatosPerfil');
 const PublicacionesCargar=document.getElementById('ContenidoPrincipal');
-const id=parseInt(idUsuarios);
+
+let idUsuariosDesincriptado; // Definir la variable fuera del bloque if
+
+const encryptedId = localStorage.getItem('idUsuarios');
+
+if (encryptedId) {
+    // Desencriptar el valor
+    const bytes = CryptoJS.AES.decrypt(encryptedId, 'tu_clave_secreta');
+    idUsuariosDesincriptado = bytes.toString(CryptoJS.enc.Utf8); // Asignar el valor desencriptado a la variable
+} else {
+    // console.log('No hay valor encriptado almacenado en localStorage.');
+}
+
+// Ahora puedes usar idUsuariosDesincriptado fuera del bloque if
+
+
+const id=idUsuariosDesincriptado;
+
 
 
 function MostrarTodoInicio(){
@@ -565,3 +581,13 @@ function ActualizarNumeroComentarios(idPublicaciones){
         NumerocomentariosP.textContent=ComentNumber;
     })
 }
+
+
+document.addEventListener('DOMContentLoaded', (ev) => {
+    const idToken=localStorage.getItem('idUsuarios');
+    if (idToken) {
+        
+    }else{
+        window.location.href = "/Login";
+    }
+})
