@@ -48,6 +48,35 @@ function mostrarGrupos(){
             </div>
         </div>
        
+        <div class="group-item">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+            <h3>Nombre del Grupo</h3>
+            <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+            <div class="group-buttons">
+                <button class="view-button" onclick="vergrupo()">Ver</button>
+                <button class="join-button">Unirse</button>
+            </div>
+        </div>
+
+        <div class="group-item">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+            <h3>Nombre del Grupo</h3>
+            <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+            <div class="group-buttons">
+                <button class="view-button" onclick="vergrupo()">Ver</button>
+                <button class="join-button">Unirse</button>
+            </div>
+        </div>
+
+        <div class="group-item">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+            <h3>Nombre del Grupo</h3>
+            <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+            <div class="group-buttons">
+                <button class="view-button" onclick="vergrupo()">Ver</button>
+                <button class="join-button">Unirse</button>
+            </div>
+        </div>
 
         <!-- Repite este bloque para cada tarjeta de grupo -->
     </div>
@@ -76,6 +105,60 @@ function misGrupos(){
             <button class="view-button" onclick="verMisgrupo()">Ver</button>
         </div>
     </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
+
+    <div class="group-item">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/jujutsu-kaisen-3-653902d844077.jpg?resize=980:*" alt="Portada del Grupo" class="group-image">
+        <h3>Nombre del Grupo</h3>
+        <p>Descripción corta del grupo... est es la continucaciond ela descripcion de la carder delskd ddnwindakdnaodnnadnidnadnadnaodn</p>
+        <div class="group-buttons">
+            <button class="view-button" onclick="verMisgrupo()">Ver</button>
+        </div>
+    </div>
     `;
 
     misgrupos.innerHTML=html;
@@ -96,8 +179,9 @@ function nuevoGrupo() {
             <form id="formCrearGrupo">
                 <div class="formL">
                     <input type="file" id="archivoPortada" class="gru1" required>
-                    <label class="v1" for="archivoPortada" ><i class="fa-solid fa-camera-retro"></i>
-                        
+                    <label class="v1 c1" for="archivoPortada" ><i class="fa-solid fa-camera-retro"></i>
+                        <p>Subir foto</p>
+                    </label>
                     <label class="v1">Nombre del grupo
                         <input type="text" id="nombreGrupo" class="gru" placeholder="Nombre del grupo" required>
                     </label>
@@ -142,20 +226,55 @@ function vergrupo(){
             <p>¡Bienvenido a nuestro grupo de amantes de los viajes! Aquí compartimos nuestras experiencias, consejos y fotos de nuestros viajes por el mundo. Únete a nosotros para inspirarte y descubrir nuevos destinos.</p>
         </div>
         <div class="footer">
-            <div class="publications">
+            <div class="publications" onclick="PublicacionesGrupos()">
                 <h2>Publicaciones</h2>
             </div>
-            <div class="members">
+            <div class="members" onclick="miembrosGPS()">
                 <h2>Miembros</h2>
             </div>
         </div>
-        <div class="cargar">
+        <div class="cargar" id="conteGPS">
             
         </div>
     </div>
     `;
 
     ver.innerHTML = html;
+}
+
+//FUNCIONES PARA CARGAR CONTENIDO
+function PublicacionesGrupos(){
+    const pgrupos = document.getElementById('conteGPS')
+    html = `HOla publicaciones`;
+    pgrupos.innerHTML = html;
+}
+
+
+function miembrosGPS(){
+    const miembrosDeGPS = document.getElementById('conteGPS')
+    html = `
+    <div class="user-list">
+    <div class="user">
+        <img src="user1.jpg" alt="User 1" class="user-photo">
+        <div class="user-info">
+            <h2>John Doe</h2>
+        </div>
+    </div>
+    <div class="user">
+        <img src="user2.jpg" alt="User 2" class="user-photo">
+        <div class="user-info">
+            <h2>Jane Smith</h2>
+        </div>
+    </div>
+    <div class="user">
+        <img src="user3.jpg" alt="User 3" class="user-photo">
+        <div class="user-info">
+            <h2>Michael Brown</h2>
+        </div>
+    </div>
+    </div>
+    `;
+    miembrosDeGPS.innerHTML = html;
 }
 
 //funcion para cargar el contenido de los grupos 

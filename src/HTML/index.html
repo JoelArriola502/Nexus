@@ -11,10 +11,15 @@
     <link rel="stylesheet" href="../CSS/EstiloEtiqueta.css">
     <link rel="stylesheet" href="../CSS/perfil.css">
     <link rel="stylesheet" href="../CSS/grupos.css">
+    <link rel="stylesheet" href="../CSS/msjAmigo.css">
+    <link rel="stylesheet" href="../CSS/mediasIndex.css">
+    <link rel="icon" href="../img/ne.png" type="application/atom+xml" title="Atom">
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
+  <script src="http://localhost:4000/socket.io/socket.io.js"></script>
+  
     <title>Nexus</title>
     
 </head>
@@ -31,12 +36,12 @@
                     <label onclick="seleccionarBoton('Mensajes'), despliegeMensaje()" class="Botones" for=""><i class="fa-solid fa-comments"></i>
                         <input class="botones-funciones"  type="button" value="Mensajes">
                     </label>
-                    <label onclick="seleccionarBoton('Comunidades')" class="Botones" for=""><i class="fa-solid fa-users-line"></i>
+                    <!-- <label onclick="seleccionarBoton('Comunidades')" class="Botones" for=""><i class="fa-solid fa-users-line"></i>
                         <input class="botones-funciones"  type="button" value="Comunidades">
-                    </label>
-                    <label onclick="seleccionarBoton('Grupos'), mostrarGrupos()" class="Botones" for=""><i class="fa-solid fa-users"></i>
+                    </label> -->
+                    <!-- <label onclick="seleccionarBoton('Grupos'), mostrarGrupos()" class="Botones" for=""><i class="fa-solid fa-users"></i>
                         <input class="botones-funciones"  type="button" value="Grupos">
-                    </label>
+                    </label> -->
                     <label onclick="MostrarlosUsuarioscontenedor(),seleccionarBoton('Usuarios')" class="Botones" for=""><i class="fa-solid fa-user-group"></i>
                         <input class="botones-funciones"  type="button" value="Usuarios">
                     </label>
@@ -70,8 +75,9 @@
             <div class="barraBuscar">
                 <div class="group">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
-                    <input class="input" type="search" placeholder="Search" />
+                    <input class="input" type="search" placeholder="Search" onclick="buscarUserN()"/>
                 </div>
+                <div id="seachUser"></div>
             </div>
             <div class="publicaciones" id="ContenidoPrincipal">
               
@@ -83,8 +89,10 @@
     </div>
 </body>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script src="../JS/SocketCustom.js"></script>
 <script src="https://kit.fontawesome.com/3019248dcc.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 <script src="../JS/Principal.js"></script>
 <script src="../JS/CerrarSesion.js"></script>
 <script src="../JS/fnComentario.js"></script>
@@ -96,5 +104,6 @@
 <script src="../SERVER/SERVERIMG.js"></script>
 <script src="../JS/EtiquetarPublicaciones.js"></script>
 <script src="../JS/ActualizarFotoPerfil.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="../JS/buscarUser.js"></script>
+<script src="../JS/SubirFotoPortada.js"></script>
 </html>

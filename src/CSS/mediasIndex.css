@@ -1,0 +1,373 @@
+    @media screen and (max-width: 992px) {
+
+        .Usuarios-Principal{
+            display: grid;
+            grid-template-rows: repeat(auto-fit, 240px);
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .msjcontenido{
+            position: fixed;
+            top: 55%;
+            left: 55%;
+            transform: translate(-30%, -30%);
+            
+        }
+
+        .Botones-contenedor{
+            width: 170px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .Botones{
+            width: 180px;
+        }
+        
+        /*GRUPOS*/
+        .left-panel{
+            width: 300px;
+        }
+
+        .contenedor-todo{
+            display: grid;
+        }
+
+        .right-panel{
+            width: 100%;
+        }
+
+        .group-item img.group-image {
+            width: 360px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .group-item {
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+        }
+
+        /*perfil*/
+        .profile-container {
+            margin-left: 5px;
+        }
+
+        .cover-photo {
+            height: 40%;
+        }
+        
+        .foto-portada{
+            width: 100%;
+            height: 100%;
+        }
+        
+        /*VENTANA FLOTANTE PARA BUCAR USUARIOS*/
+        .floating-window{
+            width: 400px;
+        }
+        
+        
+        .header-perfil-foto i{
+            font-size: 30px;
+            margin-left: 80px;
+        }
+    
+        .verFperfil img{
+            width: 300px;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .camara{
+            width: 50px;
+        }
+
+        .verFperfil{
+            width: 300px;
+            height: 250px;
+        }
+
+        .icono-fPerfil{
+            font-size: 20px;
+        }
+
+        .cambiosFperfil{
+            margin-left: 100px;
+        }
+
+        /*GRUPOS footer*/
+        .footer{
+            display: flex;
+            justify-content: space-between;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .botones-funciones{
+            display: none;
+        }
+
+        .Botones-contenedor{
+            width: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .Botones{
+            width: 25px;
+        }
+
+        .Botones i{
+            font-size: 20px;
+        }
+
+        .Botones-cerrar{
+            width: 25px;
+        }
+
+        .DatosPerfil{
+            width: 50px;
+        }
+
+        .Titulo-Nexus{
+            font-size: 18px
+        }
+
+        .Foto-Perfil{
+            height: 40px;
+            width: 40px;
+        }
+
+        .Nexus {
+            padding: 0;
+            width: 70px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .Nombre{
+            font-size: 12px;
+        }
+
+        .publicaciones{
+            width: 100%;
+            
+        }
+
+        .crearPublicacion{
+            width: 250px;
+            
+        }
+
+        .vistaPublicacion{
+            width: 250px;
+        }
+
+        .comentar{
+            margin-left: 50px;
+        }
+
+        .botonesPubli{
+            display: grid;
+            place-items: center;
+            gap: 5px;
+        }
+
+        .Etiquetar{
+            margin: 0;
+
+        }
+        .btnPublicar{
+            margin: 0;
+        }
+
+        .ventanaComentarios{
+            width: 350px;
+        }
+        
+        .caja{
+            overflow-x: hidden;
+        }
+
+        .encabezadoPublicacion{
+            width: 100%;
+        }
+
+        .containerPubliUsuario{
+            width: 350;
+        }
+
+        .userPubli{
+            width: 290px;
+        }
+
+        .fotoPu{
+            max-width: 290px;
+            max-height: auto;
+
+        }
+
+        .imagenPublicacion{
+           max-width: 290px;
+           max-height: auto;
+        }
+
+        .group {
+            margin-left: 25px;
+        }
+
+        .profile-container {
+            margin-left: 0px;
+        }
+
+        .cover-photo {
+            height: 35%;
+        }
+        
+        .foto-portada{
+            width: 100%;
+            height: 100%;
+        }
+
+        /*Mensajes*/
+        .contenido-Mensajes {
+            display: grid;
+        }
+    
+        .nav-mensajes {
+            width: 100%;
+            max-height: 250px;
+            border-right: none;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        .container-chat {
+            width: 100%;
+            height: 380px;
+        }
+    
+        .txt-chat {
+            max-width: 250px;
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-texto{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-botones{
+            display: flex;
+        }
+
+        .btn-icono-foto, .btn-enviar {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    
+        .escribir {
+            width: 100px;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .mensaje-tercero, .tu-mensaje {
+            max-width: 90%;
+        }
+
+        /*Amigos, usuarios, segidos y seguidores*/
+        .Usuarios-Principal{
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .msjcontenido{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-40%, -30%);
+            
+        }
+
+        /*Grupos*/
+        .left-panel{
+            width: 210px;
+        }
+
+        .contenedor-todo{
+            display: grid;
+        }
+
+        .right-panel{
+            width: 100%;
+        }
+
+        .group-item img.group-image {
+            width: 230px;
+            height: auto;
+        }
+
+        .group-item {
+            display: flex;
+            flex-direction: column;
+            width: 270px;
+        
+        }
+
+        .floating-window{
+            width: 250px;
+        }
+        
+        
+        .header-perfil-foto i{
+            font-size: 30px;
+            margin-left: 50px;
+        }
+    
+        .verFperfil img{
+            width: 170px;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .camara{
+            width: 50px;
+        }
+
+        .verFperfil{
+            width: 170px;
+            height: 220px;
+        }
+
+        .icono-fPerfil{
+            font-size: 20px;
+        }
+
+        .cambiosFperfil{
+            margin-left: 20px;
+        }
+
+        .footer{
+            display: flex;
+            justify-content: space-around;
+        }
+        
+    }
+

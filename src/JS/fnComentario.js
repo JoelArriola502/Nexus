@@ -27,7 +27,7 @@ function mostrarComentarios(idPublicaciones) {
             const MesNombre = nombresMeses[Mes];
     // Contenido HTML de los comentarios
     var contenidoComentarios = `
-    <div class="ventanaComentarios animate__animated animate__slideInDown">
+    <div class="ventanaComentarios">
         <div class="encabezadoPublicacion">
             <h3>Publicación de ${Nombre}</h3>
             <button class="cerrarVentanaComentario" onclick="cerrarVentanaComentario()">
@@ -152,7 +152,7 @@ function ComentariosPublicacion(idPublicaciones){
             html=html+`
             
           
-            <div class="containerComent animate__animated animate__fadeInDownBig">
+            <div class="containerComent">
                 <div class="fotoUserPerfil">
                     <img src="${Foto}" alt="foto" class="fotoU">
                 </div>

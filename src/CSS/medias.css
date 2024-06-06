@@ -1,0 +1,205 @@
+@media screen and (max-width: 992px) {
+    .body {
+        min-height: auto;
+    }
+
+    .container {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+    }
+    .container-input {
+        width: 500px;
+        border-radius: 0;
+    }
+    .container-logo {
+        width: 460px;
+        border-radius: 0;
+        text-align: center;
+    }
+    .container-logo h1 {
+        text-align: center;
+    }
+
+    /*Registro*/
+
+    .Nexus h1 {
+        color: #ffffff;
+        font-size: 40px;
+        text-align: center;
+    }
+    .Nexus p {
+        display: block;
+        width: 425px;
+    }
+
+    .Nexus {
+        display: flex;
+        text-align: center;
+        width: 430px;
+        height: 100px;
+        border-radius: 0;
+    }
+
+    .contendor-central {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .Principal-Login {
+        width: 450px;
+        border-radius: 0px;
+    }
+
+    .Tabla-Registros {
+        width: 100%;
+    }
+
+    .Tabla-Registros tr {
+        display: flex;
+    }
+
+    .Tabla-Registros td {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .Nombre-Apellido,
+    .Correo,
+    .Contrasena {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .Boton-registrar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .home {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .body {
+        min-height: auto;
+        overflow: auto;
+    }
+
+    .container {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-input {
+        width: 320px;
+        padding-top: 0px;
+        border-radius: 0;
+    }
+    .container-input input,
+    button {
+        width: 220px;
+    }
+    .container-logo {
+        width: 280px;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0;
+        text-align: center;
+        font-size: 5px;
+    }
+
+    .container-logo p {
+        display: none;
+    }
+    .container-logo h1 {
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .btnSubmit {
+        width: 275px;
+    }
+
+    .olvidar-contra {
+        max-width: 220px;
+    }
+
+    .boton-crear {
+        width: 275px;
+    }
+
+    /*Registro*/
+
+    .Nexus h1 {
+        color: #ffffff;
+        font-size: 40px;
+        text-align: center;
+    }
+    .Nexus p {
+        display: none;
+    }
+
+    .Nexus {
+        display: flex;
+        width: 330px;
+        height: 10px;
+        border-radius: 0;
+    }
+
+    .contendor-central {
+        display: grid;
+        place-items: center;
+        max-width: 100%;
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .Principal-Login {
+        width: 350px;
+        border-radius: 0px;
+    }
+
+    .Tabla-Registros {
+        width: 100%;
+    }
+
+    .Tabla-Registros tr {
+        display: flex;
+        /* flex-direction: column; */
+    }
+
+    .Tabla-Registros td {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .Nombre-Apellido,
+    .Correo,
+    .Contrasena {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .Boton-registrar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .home {
+        text-align: center;
+        margin-top: 10px;
+    }
+}

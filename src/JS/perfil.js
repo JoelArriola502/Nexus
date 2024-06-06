@@ -5,8 +5,8 @@ function mostrarPerfil() {
         <div class="main-container">
         <div class="profile-container">
         <div class="cover-photo">
-        <img class="foto-portada" src="" alt="">
-            <div class="change-cover-photo" >
+        <img class="foto-portada" id="FotoPortadaPerfil" src="" alt="">
+            <div class="change-cover-photo" onclick="AgregarFotoPortada()" >
                 <i class="fas fa-camera"></i>
                 <p><strong>Agrega foto de portada</strong></p>
             </div>
@@ -65,6 +65,7 @@ function mostrarPerfil() {
     TotalAmigosPerfil();
     TotalSeguidoresPerfil();
     CargarPublicacionesPerfil();
+    CargarFotoPortadaPerfil();
   
 }
 
@@ -295,4 +296,34 @@ function closeFloatingWindow() {
         
     `;
     cambiar.innerHTML = html;
+}
+
+
+
+function AgregarFotoPortada(){
+    const cambiar = document.getElementById('cambio');
+    const html = `
+        <div class="floating-window">
+            <div class="floating-window-content">
+                <div class="header-perfil-foto">
+                <h2>Cargar foto</h2>
+                <i class="fa-solid fa-xmark" onclick="closeFloatingWindow()"></i>
+                </div>
+                <p>Seleccione una foto</p>
+                <div class="panelCargarPerfil">
+                    <div class="camara">
+                    <input type="file" id="fPerilPortada" style="display: none;">
+                    <label class="icono-fPerfil" for="fPerilPortada"><i class="fa-solid fa-camera"></i></label>
+                    </div>
+                    <div class="verFperfil">
+                    <img src="" id="CargarImagenSubirPortada"  class="CargarImagenSubir" style="display: none;">
+                    </div>
+                </div>
+                <progress id="img-Progeros-Actualizacion" value="0" max="100" style="width: 100%; display: none;"></progress>
+                <input class="cambiosFperfil" type="button" id="BotonFotoPerfil_Portada" value="Guardar cambios">
+            </div>
+        </div>
+    `;
+    cambiar.innerHTML = html;
+    ImagenPortada();
 }

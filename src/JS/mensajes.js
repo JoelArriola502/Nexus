@@ -1,3 +1,6 @@
+var socket=io();
+
+
 function despliegeMensaje(){
 
     const mensajes = document.getElementById('ContenidoPrincipal');
@@ -37,6 +40,8 @@ function MensajesUsuarios(){
             const Apellido=respuesta[i].Apellido;
             const Foto=respuesta[i].Foto;
             const idUsuario=respuesta[i].idUsuarios;
+
+            localStorage.setItem('ChatUsuarios',idUsuario)
             html=html+`
             <div class="personas" onclick="ChatUsuarios(${idUsuario})">
                     <div class="foto-perfil">
@@ -119,7 +124,7 @@ function ChatUsuarios(idUsuario){
     </div>
 </div>
 <div class="chat-botones">
-    <button class="btn-icono-foto"><i class="fa-solid fa-folder-open"></i></button>
+    <!-- <button class="btn-icono-foto"><i class="fa-solid fa-folder-open"></i></button> -->
     <input class="escribir" type="text" name="mensaje" id="txtMensaje" placeholder="   Escribe un mensaje">
     <button class="btn-enviar" onclick="EnviarMensajeUsuario(${idUsuario})"><i class='bx bxs-send'></i></button>
 </div>
@@ -170,15 +175,31 @@ function MensajesUsuariosNexus(idUsuario){
             const idUsuarioDestino = respuesta[i].idUsuarioDestino;
             // Determinar si el mensaje es del usuario actual (origen) o del usuario con el que está chateando (destino)
             if (idUsuarioOrigen == idUsuario) {
-                html += `<p class="mensaje-tercero">${mensaje}</p>`;
+                html += `<p class="mensaje-tercero" id="mensaje-tercero">${mensaje}</p>`;
             } else if (idUsuarioDestino == idUsuario) {
-                html += `<p class="tu-mensaje">${mensaje}</p>`;
+                html += `<p class="tu-mensaje" id="tu-mensaje">${mensaje}</p>`;
             }
         }
         
         MensajesUsuarios.innerHTML = html;
     });
+    
 }
+
+
+socket.on('mensajes', (data) => {
+    const mensaje = data.Mensaje;
+    const html = `<p class="mensaje-tercero">${mensaje}</p>`;
+    console.log("Mensaje recibido:", mensaje);
+
+    // Verificar que el elemento 'Mensajes-Usuarios' exista
+    const MensajesUsuarios = document.getElementById('Mensajes-Usuarios');
+    if (MensajesUsuarios) {
+      MensajesUsuarios.insertAdjacentHTML('beforeend', html);
+    } else {
+     const Tumensajes = document.getElementById('Tumensajes');
+    }
+  });
 
 
 function EnviarMensajeUsuario(idUsuario){
@@ -196,12 +217,19 @@ fetch('http://localhost:4000/InsertarMensaje',{
 })
 .then(res=>res.json())
 .then((respuesta)=>{
-    
+    socket.emit('mensajes',{
+        Mensaje:Mensaje,
+        idUsuarioOrigen:idUsuarioOrigen,
+        idUsuarioDestino:idUsuarioDestino,
+        
+    });
     MensajeInput.value="";
     MensajesUsuariosNexus(idUsuario);
     MensajesUsuarios();
     UltimoMensajeEnviado(idUsuario);
     UltimoMensajeEnviadoHora(idUsuario);
+    
+  
 })
 
 }

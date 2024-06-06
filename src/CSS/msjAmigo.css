@@ -1,0 +1,124 @@
+.msjcontenido{
+    position: fixed;
+    top: 85%;
+    left: 85%;
+    transform: translate(-50%, -80%);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+                0 3px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 0.5em;
+    width: 300px;
+    height: 450px;
+}
+
+.ventanaflotante{
+    position: relative;
+}
+
+.encabezado-msj{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    transition: box-shadow 0.3s ease; /* Transición suave para la sombra */
+    padding: 5px;
+}
+
+.foto-usuario-msj{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+    margin-right: 5px;
+}
+
+.foto-usuario-msj img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.encabezado-msj h4{
+    font-size: .9375rem;
+    width: 225px;
+    text-align: start;
+}
+
+.encabezado-msj i{
+    font-size: 20px;
+}
+
+.chat-msj{
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre los mensajes */
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.msj-amigo {
+    background-color: #e5e5ea;
+    padding: 10px;
+    align-self: flex-start; /* Alinear al extremo izquierdo */
+    max-width: 65%; /* Ancho máximo del mensaje */
+    word-wrap: break-word;
+    border-radius: 10px;
+}
+
+.msj-yo {
+    background-color: #0184FF;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-end; /* Alinear al extremo derecho */
+    max-width: 65%; /* Ancho máximo del mensaje */
+    word-wrap: break-word;
+}
+
+.controles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.controles label{
+    margin: 10px;
+    
+}
+
+.msjInput{
+    height: 30px;
+    outline: none;
+    border: none;
+    margin-right: 15px;
+}
+
+.msj-enviar{
+    background: transparent;
+    border: none;
+}
+
+.msj-enviar i{
+    font-size: 25px;
+    background: linear-gradient(
+        to right,
+        #006eff 20%,
+        #38b6ff 40%,
+        #38b6ff 60%,
+        #006eff 80%
+    );
+    background-size: 200%;
+    color: transparent;
+    background-clip: text;
+    animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+    to{
+        background-position: 200% center;
+    }
+}

@@ -34,6 +34,8 @@ const Contrasena2=ConfirmarContrasenaInput.value;
        
         
     }else{
+
+
            // Si las contraseñas coinciden, continuar con el registro 
            //metodo validar que no exista el correo   
            fetch("http://localhost:4000/Correo")
@@ -50,7 +52,6 @@ const Contrasena2=ConfirmarContrasenaInput.value;
                });
                return;
            }else{
-            
             RegistroCuenta(Nombre, Apellido, Correo, Contrasena)
            }
            })

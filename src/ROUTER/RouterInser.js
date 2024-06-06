@@ -1,9 +1,16 @@
 const express=require('express');
 const insertar=require('../DB/Inser')
+const  bcryptjs=require('bcryptjs');
 const router=express.Router();
 
 router.post('/NuevoUsuario',(req,res)=>{
     const AgregarUsuario=req.body;
+
+    if (! AgregarUsuario.Contrasena) {
+        return res.status(400).json({ message: "no password" });
+    }
+    const passwordhash=bcryptjs.hashSync( AgregarUsuario.Contrasena,9);
+    AgregarUsuario.Contrasena=passwordhash;
     insertar.NuevoUsuario(
         AgregarUsuario.Nombre,
         AgregarUsuario.Apellido,
@@ -146,4 +153,20 @@ router.post('/InsertarFoto',(req,res)=>{
         res.status(500).json({error:"Hay error"})
     })
 })
+
+router.post('/InsertarFotoPortada',(req,res)=>{
+    const AgregarFoto=req.body;
+    insertar.InsertarFotoPortada(AgregarFoto.Foto,AgregarFoto.idUsuarios)
+    .then((respuesta)=>{
+        if(respuesta){
+            res.json({message:"Foto Insertada Con exito"});
+        }else{
+            res.status(400).json({message:"Error"});
+        }
+    })
+    .catch((error)=>{
+        res.status(500).json({error:"Hay error"})
+    })
+})
+
 module.exports=router;

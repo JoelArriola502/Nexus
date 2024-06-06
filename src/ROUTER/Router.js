@@ -1,9 +1,36 @@
 const express=require('express');
 const consulta=require('../DB/Consultas');
+const  bcryptjs=require('bcryptjs');
 const router=express.Router();
 router.get('/Usuarios',(req,res)=>{
     consulta.usuarios()
     .then(response=>res.json(response))
+    .catch((e)=>{
+        res.status(500).json(e)
+    })
+});
+
+router.post('/IniciarSesion',(req,res)=>{
+    const Correo=req.body.Correo;
+    const Contrasena=req.body.Contrasena;
+
+    consulta.InicoSesion(Correo)
+    .then(response=>{
+        if(response.length>0){
+            const ContraBD = response.map(usuario => usuario.Contrasena)[0]; // Obtener la contraseña de la base de datos
+            const idUsuario=response.map(usuario => usuario.idUsuarios)[0];
+            // Comparar la contraseña proporcionada con la contraseña almacenada en la base de datos
+            
+            const contraseñaValida = bcryptjs.compareSync(Contrasena, ContraBD);
+            if (contraseñaValida) {
+                res.json({ message: "ContrasenaValida",idUsuario });
+            } else {
+                res.status(401).json({ message: "Contrasenaincorrecta" });
+            }
+        } else {
+            res.status(404).json({ message: "Usuario no encontrado." });
+        }
+    })
     .catch((e)=>{
         res.status(500).json(e)
     })
@@ -257,5 +284,14 @@ router.get('/TotalSeguidores/:idUsuarios',(req,res)=>{
         res.status(500).json({error:"Error "})
     })
    
+})
+
+router.get('/FotoPortadaMax/:idUsuarios',(req,res)=>{
+    const idUsuarios=req.params.idUsuarios;
+    consulta.FotosPortadaMostrar(idUsuarios)
+    .then(response=>res.json(response))
+    .catch((Error)=>{
+        res.status(500).json({Error:"Error al ver Portada"})
+    })
 })
 module.exports=router;
