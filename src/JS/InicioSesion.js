@@ -14,8 +14,6 @@ function IniciarSesion() {
         return;
     }
 
-    console.log(Email, Password);
-
     fetch(`http://localhost:4000/IniciarSesion`, {
         method: 'POST',
         headers: {
@@ -25,28 +23,23 @@ function IniciarSesion() {
     })
     .then(res => res.json())
     .then(DatosSesion => {
-        console.log(DatosSesion);
-
         let ValidarCredenciales = false;
         const message = DatosSesion.message;
         const idUsuarios = DatosSesion.idUsuario;
 
-        console.log("mensaje", message);
-        console.log("id", idUsuarios);
         let Validar = "ContrasenaValida";
 
         if (Validar === message) {
             ValidarCredenciales = true;
-            console.log("Validar", ValidarCredenciales);
-
+          
             // Guardar variables de sesión
-            localStorage.setItem('idUsuarios', idUsuarios);
+            const encryptedId = CryptoJS.AES.encrypt(idUsuarios.toString(), 'tu_clave_secreta').toString();
+            localStorage.setItem('idUsuarios', encryptedId);
         }
 
         // Validación de inicio sesión
         if (ValidarCredenciales) {
-            window.location = "../HTML/index.html";
-            console.log("Validar", ValidarCredenciales);
+            window.location.href= "/Nexus";
         } else {
             Swal.fire({
                 icon: 'error',
@@ -56,7 +49,6 @@ function IniciarSesion() {
         }
     })
     .catch((error) => {
-        console.error('Error:', error);
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -65,4 +57,11 @@ function IniciarSesion() {
     });
 }
 
-
+document.addEventListener('DOMContentLoaded', (ev) => {
+    const idToken=localStorage.getItem('idUsuarios');
+    if (idToken) {
+        window.location.href= "/Nexus";
+    } else {
+        // El usuario no ha iniciado sesión, se puede hacer algo aquí si es necesario
+    }
+});

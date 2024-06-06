@@ -9,7 +9,7 @@ function despliegeMensaje(){
         <div class="nav-mensajes">
             <div class="encabezado">
                 <h2>Mensajes</h2>
-                <div class="con-bucar">
+                <div class="con-bucar" style="display: none;">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
                     <input class="input" type="search" placeholder="Buscar" />
                 </div>
@@ -41,7 +41,7 @@ function MensajesUsuarios(){
             const Foto=respuesta[i].Foto;
             const idUsuario=respuesta[i].idUsuarios;
 
-            localStorage.setItem('ChatUsuarios',idUsuario)
+           
             html=html+`
             <div class="personas" onclick="ChatUsuarios(${idUsuario})">
                     <div class="foto-perfil">
@@ -190,7 +190,6 @@ function MensajesUsuariosNexus(idUsuario){
 socket.on('mensajes', (data) => {
     const mensaje = data.Mensaje;
     const html = `<p class="mensaje-tercero">${mensaje}</p>`;
-    console.log("Mensaje recibido:", mensaje);
 
     // Verificar que el elemento 'Mensajes-Usuarios' exista
     const MensajesUsuarios = document.getElementById('Mensajes-Usuarios');
