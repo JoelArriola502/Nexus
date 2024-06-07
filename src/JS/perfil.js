@@ -104,7 +104,7 @@ function cerrarVentana() {
 
 function CargarFotoPerfilUsuarios(){
     const CargarFotoPerfil=document.getElementById('CargarFotoPerfil')
-    fetch(`http://localhost:4000/DatosPerfil/${id}`)
+    fetch(`http://${ip}:4000/DatosPerfil/${id}`)
     .then(res=>res.json())
     .then(DatosPerfil=>{
        let html="";
@@ -128,7 +128,7 @@ function CargarFotoPerfilUsuarios(){
 
 function CargarNombrePerfilUsuario(){
     const NombrePerfilUsuario=document.getElementById('NombrePerfilUsuarios');
-    fetch(`http://localhost:4000/DatosPerfil/${id}`)
+    fetch(`http://${ip}:4000/DatosPerfil/${id}`)
     .then(res=>res.json())
     .then(DatosPerfil=>{
        let html="";
@@ -149,7 +149,7 @@ function CargarNombrePerfilUsuario(){
 
 function UsuariosAmigosPerfil(){
     const CargarUsuariosPerfil=document.getElementById("AmigosPerfil");
-    fetch(`http://localhost:4000/AmigosUsuarios/${id}`)
+    fetch(`http://${ip}:4000/AmigosUsuarios/${id}`)
     .then(res=>res.json())
     .then((Usuarios)=>{
         let html=` `;
@@ -181,7 +181,7 @@ function UsuariosAmigosPerfil(){
 
 function TotalAmigosPerfil(){
     const CargarAmigosTotal=document.getElementById('TotalAmigos');
-    fetch(`http://localhost:4000/TotalAmigos/${id}`)
+    fetch(`http://${ip}:4000/TotalAmigos/${id}`)
     .then(res=>res.json())
     .then((respuesta)=>{
         respuesta.forEach(TotalAmigosPerfil => {
@@ -195,7 +195,7 @@ function TotalAmigosPerfil(){
 
 function TotalSeguidoresPerfil(){
     const CargarSeguidoresTotal=document.getElementById('TotalSeguidores');
-    fetch(`http://localhost:4000/TotalSeguidores/${id}`)
+    fetch(`http://${ip}:4000/TotalSeguidores/${id}`)
     .then(res=>res.json())
     .then((respuesta)=>{
         respuesta.forEach(TotalSeguidoresPerfil => {
@@ -221,7 +221,7 @@ function ActualizarDatosUsuario(){
     }else{
 
         if(validarNombre(Nombre)&& validarNombre(Apellido)){
-    fetch(`http://localhost:4000/ActualizaNombre/${id}`,{
+    fetch(`http://${ip}:4000/ActualizaNombre/${id}`,{
                 method:"PUT",
                 headers:{
                     "content-Type":"application/json",

@@ -54,7 +54,7 @@ function EtiquetarPublicacion(dato, idPublicaciones) {
   const DescripcionInput = document.getElementById("Descripcion");
   const idUsuariosOrigen = id;
   const idUsuariosDestino = dato; //Este sera El id Que SE optiene del chek
-  fetch("http://localhost:4000/Etiquetar", {
+  fetch(`http://${ip}:4000/Etiquetar`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

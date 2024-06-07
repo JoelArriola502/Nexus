@@ -31,7 +31,7 @@ function despliegeMensaje(){
 
 function MensajesUsuarios(){
     const CargarChat=document.getElementById('ChatUsuarios');
-    fetch(`http://localhost:4000/UsuariosMensajes/${id}`)
+    fetch(`http://${ip}:4000/UsuariosMensajes/${id}`)
     .then(res=>res.json())
     .then(respuesta=>{
         let html="";
@@ -69,7 +69,7 @@ function MensajesUsuarios(){
 
 function UltimoMensajeEnviado(idUsuario){
     const CargarUltimoMensaje=document.getElementById(`UltimoMensaje-${idUsuario}`);
-    fetch(`http://localhost:4000/UltimoMensaje/${id}/${idUsuario}`)
+    fetch(`http://${ip}:4000/UltimoMensaje/${id}/${idUsuario}`)
     .then(res=>res.json())
     .then((respuesta)=>{
         for(let i=0;i<respuesta.length;i++){
@@ -81,7 +81,7 @@ function UltimoMensajeEnviado(idUsuario){
 
 function UltimoMensajeEnviadoHora(idUsuario) {
     const CargarUltimoMensajeHora = document.getElementById(`HoraMensaje-${idUsuario}`);
-    fetch(`http://localhost:4000/UltimoMensaje/${id}/${idUsuario}`)
+    fetch(`http://${ip}:4000/UltimoMensaje/${id}/${idUsuario}`)
     .then(res => res.json())
     .then((respuesta) => {
         if (respuesta.length > 0) {
@@ -140,7 +140,7 @@ function ChatUsuarios(idUsuario){
 
 function UsuarioPerfilchat(idUsuario){
     const CargarPerilChat=document.getElementById('Perfil-Chat')
-    fetch(`http://localhost:4000/DatosPerfil/${idUsuario}`)
+    fetch(`http://${ip}:4000/DatosPerfil/${idUsuario}`)
     .then(res=>res.json())
     .then((respuesta)=>{
         let html="";
@@ -164,7 +164,7 @@ function MensajesUsuariosNexus(idUsuario){
     const MensajesUsuarios=document.getElementById('Mensajes-Usuarios');
     const idUsuarios=id; // Esto parece ser un error, ¿debería ser "idUsuario"?
     const idUsuarioDestino=idUsuario;
-    fetch(`http://localhost:4000/Mensajeschat/${idUsuarios}/${idUsuarioDestino}`)
+    fetch(`http://${ip}:4000/Mensajeschat/${idUsuarios}/${idUsuarioDestino}`)
     .then(res => res.json())
     .then((respuesta) => {
         let html = "";
@@ -207,7 +207,7 @@ function EnviarMensajeUsuario(idUsuario){
     const idUsuarioOrigen=id;
     const idUsuarioDestino=idUsuario;
 
-fetch('http://localhost:4000/InsertarMensaje',{
+fetch(`http://${ip}:4000/InsertarMensaje`,{
     method:"POST",
     headers:{
         "Content-Type":"application/json",

@@ -13,7 +13,7 @@ app.use(express.json())//Insertar datos
 const srcpath=path.resolve(__dirname,'../src');
 app.use(express.static(srcpath));
 app.get('/Login',(req, res)=>{
-    res.sendFile(path.resolve(__dirname,'../src/HTML/login.html'));
+    res.sendFile(path.resolve(__dirname,'../src/HTML/Login.html'));
 })
 
 app.get('/Nexus',(req, res)=>{

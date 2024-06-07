@@ -1,9 +1,9 @@
-const idUs=localStorage.getItem('idUsuarios');
+
 function mostrarComentarios(idPublicaciones) {
     Numerocomentarios(idPublicaciones);
     var comentariosDiv = document.getElementById("comentariosDiv");
         comentariosDiv.style.display = "flex";
-    fetch(`http://localhost:4000/Publicacionescomentarios/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/Publicacionescomentarios/${idPublicaciones}`)
     .then(res=>res.json(res))
     .then((PublicacionComentariosVEr)=>{ 
       
@@ -101,7 +101,7 @@ function cerrarVentanaComentario() {
 }
 
 function OcultarImagenPublicacionUnica(idPublicaciones){
-    fetch(`http://localhost:4000/Publicacionescomentarios/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/Publicacionescomentarios/${idPublicaciones}`)
     .then(res=>res.json())
     .then((DatosPublicacionesImagenOcultar)=>{ 
         const FotosVEr = document.getElementById(`OcultarImagenPublicacion-${idPublicaciones}`);
@@ -127,7 +127,7 @@ function OcultarImagenPublicacionUnica(idPublicaciones){
 
 function ComentariosPublicacion(idPublicaciones){
     const ImprimirDatos=document.getElementById('ComentariosPublicacion');
-    fetch(`http://localhost:4000/ComentariosPublicaciones/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/ComentariosPublicaciones/${idPublicaciones}`)
     .then(res=>res.json(res))
     .then((ComentariosPublicacionDatos)=>{
         let html="";
@@ -176,14 +176,14 @@ function ComentariosPublicacion(idPublicaciones){
 
 function InsertarComentario(idPublicaciones){
 
-    const idUsuarios=String(idUs);
+    const idUsuarios=String(id);
     const ComentarioInput=document.getElementById(`ComentarioPublicacion-${idPublicaciones}`);
 
     const Comentario=ComentarioInput.value;
     if(!Comentario){
         ComentarioInput.classList.add("vacio"); 
     }else{
-         fetch('http://localhost:4000/InsertarComentarios',{
+         fetch(`http://${ip}:4000/InsertarComentarios`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
