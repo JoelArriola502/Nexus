@@ -1,7 +1,23 @@
-const idUsuarios=localStorage.getItem("idUsuarios");
 const CargarPerfil=document.getElementById('DatosPerfil');
 const PublicacionesCargar=document.getElementById('ContenidoPrincipal');
-const id=parseInt(idUsuarios);
+const ip="161.35.141.68";
+let idUsuariosDesincriptado; // Definir la variable fuera del bloque if
+
+const encryptedId = localStorage.getItem('idUsuarios');
+
+if (encryptedId) {
+    // Desencriptar el valor
+    const bytes = CryptoJS.AES.decrypt(encryptedId, 'tu_clave_secreta');
+    idUsuariosDesincriptado = bytes.toString(CryptoJS.enc.Utf8); // Asignar el valor desencriptado a la variable
+} else {
+    // console.log('No hay valor encriptado almacenado en localStorage.');
+}
+
+// Ahora puedes usar idUsuariosDesincriptado fuera del bloque if
+
+
+const id=idUsuariosDesincriptado;
+
 
 
 function MostrarTodoInicio(){
@@ -29,7 +45,7 @@ function MostrarTodoInicio(){
 }
 
 function CargarDatosPerfil(){
-    fetch(`http://localhost:4000/DatosPerfil/${id}`)
+    fetch(`http://${ip}:4000/DatosPerfil/${id}`)
     .then(res=>res.json())
     .then(DatosPerfil=>{
        let html="";
@@ -62,7 +78,7 @@ function Inicio(){
 //función Mostrar Crear publicaciones
 function CargarPublicacionCrear(){
     const crearPublicacion=document.getElementById("crearPublicacion");
-    fetch(`http://localhost:4000/DatosPerfil/${id}`)
+    fetch(`http://${ip}:4000/DatosPerfil/${id}`)
     .then(res=>res.json())
     .then(DatosPerfil=>{
        let html="";
@@ -132,7 +148,7 @@ function CargarDatosEtiquetados(){
 
 function UsuariosEtiquetar(){
     const CargarDatosUsuarios = document.getElementById("DatosUsuariosEtiquetar");
-    fetch(`http://localhost:4000/AmigosUsuarios/${id}`)
+    fetch(`http://${ip}:4000/AmigosUsuarios/${id}`)
     .then(res => res.json())
     .then((Usuarios) => {
         let html = ``;
@@ -175,7 +191,7 @@ function closeModal() {
   
   function CargarDatosPublicaciones() {
     const MostrarPublicaciones = document.getElementById("PublicacionVista");
-    fetch(`http://localhost:4000/Publicaciones/${id}`)
+    fetch(`http://${ip}:4000/Publicaciones/${id}`)
         .then(res => res.json())
         .then((DatosPublicaciones) => {
             let html = "";
@@ -257,7 +273,7 @@ function closeModal() {
  //funcion ver usuarios etiquetados 
  function UsuariosEtiquetadosPublicaciones(idPublicaciones) {
     const MostrarEtiquetadosUsuarios = document.getElementById(`infoPubliEtiqueta-${idPublicaciones}`);
-    fetch(`http://localhost:4000/UsuariosEtiquetados/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/UsuariosEtiquetados/${idPublicaciones}`)
         .then(res => res.json())
         .then((UsuariosEtiquetados => {
             let html = "";
@@ -280,7 +296,7 @@ function closeModal() {
     //actualizar likes
 function ActualizarLikes(idPublicaciones){
     const NumeroLike = document.getElementById(`NumeroLikes-${idPublicaciones}`);
-    fetch(`http://localhost:4000/PublicacionesLike/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/PublicacionesLike/${idPublicaciones}`)
     .then(res => res.json())
     .then((DatosPublicacionLikeActualizar) => {
         const LikesActualizacion = DatosPublicacionLikeActualizar[0].Likes;
@@ -295,14 +311,14 @@ function ActualizarLikes(idPublicaciones){
 //funcion para  registra el like del usuario 
 function InsertarLike(idPublicaciones){
     const likeButton = document.getElementById(`LikeBoton-${idPublicaciones}`);
-    fetch(`http://localhost:4000/LikesUsuarios/${id}/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/LikesUsuarios/${id}/${idPublicaciones}`)
     .then(res=>res.json())
     .then(LikeUsuario=>{
         if(LikeUsuario.length===0){
             DarLike(idPublicaciones);
                   likeButton.style.color = 'blue';
         }else{
-            fetch(`http://localhost:4000/LikesUsuarios/${id}/${idPublicaciones}`)
+            fetch(`http://${ip}:4000/LikesUsuarios/${id}/${idPublicaciones}`)
             .then(res=>res.json())
             .then(NoLikeUsuario=>{
                 const Estado=NoLikeUsuario.map((Estados)=>{return Estados.Estado}).join('');
@@ -329,7 +345,7 @@ function InsertarLike(idPublicaciones){
 function IncremntarLike(idPublicaciones){
     let Likes=1;
      //decrementacion de like
-     fetch(`http://localhost:4000/LikesPublicaciones/${idPublicaciones}`,{
+     fetch(`http://${ip}:4000/LikesPublicaciones/${idPublicaciones}`,{
         method:"PUT",
         headers:{
             "content-Type":"application/json",
@@ -351,7 +367,7 @@ function IncremntarLike(idPublicaciones){
 // funcion Decrementar like
 function DecrementacionLike(idPublicaciones){
     let Likes=1;
-    fetch(`http://localhost:4000/LikesPublicacionesMenos/${idPublicaciones}`,{
+    fetch(`http://${ip}:4000/LikesPublicacionesMenos/${idPublicaciones}`,{
         method:"PUT",
         headers:{
             "content-Type":"application/json",
@@ -373,13 +389,13 @@ function DecrementacionLike(idPublicaciones){
 }
 function DarLike(idPublicaciones) {
     let Likes=1;
-    fetch(`http://localhost:4000/PublicacionesLike/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/PublicacionesLike/${idPublicaciones}`)
     .then(res => res.json())
     .then((DatosPublicacionLike) => {
         const LikesP = DatosPublicacionLike[0].Likes;
         if (LikesP === null) {
             
-             fetch(`http://localhost:4000/LikesPublicacionesNull/${idPublicaciones}`,{
+             fetch(`http://${ip}:4000/LikesPublicacionesNull/${idPublicaciones}`,{
                 method:"PUT",
                 headers:{
                     "content-Type":"application/json",
@@ -399,7 +415,7 @@ function DarLike(idPublicaciones) {
 
         } else {
             //decrementacion de like
-            fetch(`http://localhost:4000/LikesPublicaciones/${idPublicaciones}`,{
+            fetch(`http://${ip}:4000/LikesPublicaciones/${idPublicaciones}`,{
                 method:"PUT",
                 headers:{
                     "content-Type":"application/json",
@@ -424,7 +440,7 @@ function DarLike(idPublicaciones) {
 function RegistrarLike(idPublicaciones){
     const idUsuarios=id;
     let Estado="Like";
-    fetch('http://localhost:4000/InsertarLikeUsuario',{
+    fetch(`http://${ip}:4000/InsertarLikeUsuario`,{
         method: "POST",
         headers:{
             "Content-Type":"application/json",
@@ -446,7 +462,7 @@ function RegistrarLike(idPublicaciones){
 
 function QuitarLike(idPublicaciones){
     let Estado="NoLike";
-    fetch(`http://localhost:4000/ActualizarEstado/${idPublicaciones}/${id}`,{
+    fetch(`http://${ip}:4000/ActualizarEstado/${idPublicaciones}/${id}`,{
         method:"PUT",
         headers: {
             "content-Type":"application/json",
@@ -463,7 +479,7 @@ function QuitarLike(idPublicaciones){
 // funcion Dar like
 function DarLikeActualizar(idPublicaciones){
     let Estado="Like";
-    fetch(`http://localhost:4000/ActualizarEstado/${idPublicaciones}/${id}`,{
+    fetch(`http://${ip}:4000/ActualizarEstado/${idPublicaciones}/${id}`,{
         method:"PUT",
         headers: {
             "content-Type":"application/json",
@@ -482,7 +498,7 @@ function DarLikeActualizar(idPublicaciones){
 
 
 function ColorBotonesLike(idPublicaciones){
-    fetch(`http://localhost:4000/LikesUsuariosPublicaciones/${id}/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/LikesUsuariosPublicaciones/${id}/${idPublicaciones}`)
     .then(res=>res.json())
     .then(LikeUsuario=>{
         if(LikeUsuario.length===0){
@@ -503,7 +519,7 @@ function ColorBotonesLike(idPublicaciones){
 
 
 function OcultarImagenPublicacion(idPublicaciones){
-    fetch(`http://localhost:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
     .then(res=>res.json())
     .then((DatosPublicacionesImagenOcultar)=>{ 
         const FotosVEr = document.getElementById(`OcultarImagenP-${idPublicaciones}`);
@@ -529,7 +545,7 @@ function OcultarImagenPublicacion(idPublicaciones){
 
 function Numerocomentarios(idPublicaciones){
 
-    fetch(`http://localhost:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/PublicacionesUsuarios/${id}/${idPublicaciones}`)
     .then(res=>res.json())
     .then((DatosPublicacionesFotos)=>{ 
         const FotosVEr = document.getElementById(`FotoEtiquetada-${idPublicaciones}`);
@@ -557,7 +573,7 @@ function Numerocomentarios(idPublicaciones){
 
 function ActualizarNumeroComentarios(idPublicaciones){
     const NumerocomentariosP=document.getElementById(`NumeroComentarios-${idPublicaciones}`)
-    fetch(`http://localhost:4000/ComentariosPublicacionesNumero/${idPublicaciones}`)
+    fetch(`http://${ip}:4000/ComentariosPublicacionesNumero/${idPublicaciones}`)
 
     .then(res=>res.json())
     .then((NumeroComentariosPublicaciones)=>{
@@ -565,3 +581,13 @@ function ActualizarNumeroComentarios(idPublicaciones){
         NumerocomentariosP.textContent=ComentNumber;
     })
 }
+
+
+document.addEventListener('DOMContentLoaded', (ev) => {
+    const idToken=localStorage.getItem('idUsuarios');
+    if (idToken) {
+        
+    }else{
+        window.location.href = "/Login";
+    }
+})

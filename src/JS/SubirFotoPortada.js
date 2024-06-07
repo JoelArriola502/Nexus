@@ -66,7 +66,7 @@ function ImagenPortada() {
             InsertarFotoPortadaUsuario(FotoPerfil);
           } catch (error) {
             //manejo de errores de subida de la imagen
-            console.error("Error al subir la imagen:", error);
+
             alert("Error al subir la imagen. Por favor, intenta de nuevo.");
           }
         }
@@ -79,7 +79,7 @@ function ImagenPortada() {
    
     const Foto = FotoUrl;
     const idUsuarios = id;
-    fetch('http://localhost:4000/InsertarFotoPortada',{
+    fetch(`http://${ip}:4000/InsertarFotoPortada`,{
         method:"POST",
         headers:{
             "content-Type":"application/json",
@@ -97,7 +97,7 @@ function ImagenPortada() {
   }
 
   function CargarFotoPortadaPerfil(){
-    fetch(`http://localhost:4000/FotoPortadaMax/${id}`)
+    fetch(`http://${ip}:4000/FotoPortadaMax/${id}`)
     .then(res=>res.json())
     .then((respuesta)=>{
         for(let i=0;i<respuesta.length;i++){

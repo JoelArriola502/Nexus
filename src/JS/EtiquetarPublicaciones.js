@@ -24,14 +24,13 @@ function handleCheckboxChange(checkbox) {
 /// no tiene funcionalidad
 function EliminarDatosArray() {
   datosArray = [];
-  console.log("Estoy en funcion eliminar", datosArray);
+ 
   mostrarDatos();
 }
 // Función para mostrar los datos en la lista
 function mostrarDatos() {
   // Iterar sobre los datos y agregarlos a la lista como elementos de lista
   datosArray.forEach(function (dato) {
-    console.log(dato);
   });
 }
 // Obtener todos los checkboxes
@@ -53,10 +52,9 @@ function CrearPublicacionetiquetadaSinImagen() {
 
 function EtiquetarPublicacion(dato, idPublicaciones) {
   const DescripcionInput = document.getElementById("Descripcion");
-  console.log("Dato en la funcion es ", dato);
   const idUsuariosOrigen = id;
   const idUsuariosDestino = dato; //Este sera El id Que SE optiene del chek
-  fetch("http://localhost:4000/Etiquetar", {
+  fetch(`http://${ip}:4000/Etiquetar`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -69,7 +67,7 @@ function EtiquetarPublicacion(dato, idPublicaciones) {
   })
     .then((res) => res.json())
     .then((respuesta) => {
-      console.log("Etiquetado con exito");
+    
       datosArray = [];
     });
 }

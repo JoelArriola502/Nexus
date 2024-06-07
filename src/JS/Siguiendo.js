@@ -20,7 +20,7 @@ function MostrarlosUsuariosSiguiendo(){
 
 function MostrarUsuariosSiguiendo(){
     const CargarDatosUsuarios=document.getElementById("ContenidoUsuarios");
-    fetch(`http://localhost:4000/Siguiendo/${id}`)
+    fetch(`http://${ip}:4000/Siguiendo/${id}`)
     .then(res=>res.json())
     .then((Usuarios)=>{
         let html=` `;
@@ -67,7 +67,7 @@ function DejarDeSeguirUsuarios(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="NoSiguiendo";
-    fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
+    fetch(`http://${ip}:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -76,7 +76,7 @@ function DejarDeSeguirUsuarios(idUsuarios){
     })
     .then(res=>res.json())
     .then((respuesta)=>{
-        fetch(`http://localhost:4000/Siguiendo/${id}`)
+        fetch(`http://${ip}:4000/Siguiendo/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){
@@ -124,7 +124,7 @@ function MostrarlosUsuariosSeguidores(){
 
 function MostrarUsuariosSeguidores(){
     const CargarDatosUsuarios=document.getElementById("ContenidoUsuarios");
-    fetch(`http://localhost:4000/Seguidores/${id}`)
+    fetch(`http://${ip}:4000/Seguidores/${id}`)
     .then(res=>res.json())
     .then((Usuarios)=>{
         let html=` `;
@@ -170,7 +170,7 @@ function CancelarSeguimiento(idUsuarios){
     const idUsuariosOrigen=idUsuarios;
     const idUsuariosDestino=id;
     let Estado="NoSiguiendo"
-    fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
+    fetch(`http://${ip}:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -179,7 +179,7 @@ function CancelarSeguimiento(idUsuarios){
     })
     .then(res=>res.json())
     .then((respuesta)=>{
-        fetch(`http://localhost:4000/Seguidores/${id}`)
+        fetch(`http://${ip}:4000/Seguidores/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){
@@ -198,16 +198,12 @@ function CancelarSeguimiento(idUsuarios){
 function AgregarAmigos(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
-    console.log("estoy Agregando solicitud ",idUsuariosOrigen,idUsuariosDestino)
-    fetch(`http://localhost:4000/Seguidores/${idUsuariosOrigen}/${idUsuariosDestino}`)
+    fetch(`http://${ip}:4000/Seguidores/${idUsuariosOrigen}/${idUsuariosDestino}`)
     .then(res=>res.json())
     .then(Respuesta=>{
-    console.log(Respuesta);
       if(Respuesta.length===0){
-        console.log("Estoy en el if")
         InsertarAmigo(idUsuarios);
       }else{
-        console.log("Estoy en el else")
         ActualizarSolicitudEstado(idUsuarios);
         ConfimarSolicitud(idUsuarios);
         
@@ -220,8 +216,7 @@ function ConfimarSolicitud(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="Amigos";
-    console.log("estoy Confirmando solicitud ",idUsuariosOrigen,idUsuariosDestino,Estado)
-    fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
+    fetch(`http://${ip}:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -230,7 +225,7 @@ function ConfimarSolicitud(idUsuarios){
     })
     .then(res=>res.json())
     .then((respuesta)=>{
-        fetch(`http://localhost:4000/Seguidores/${id}`)
+        fetch(`http://${ip}:4000/Seguidores/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){
@@ -250,8 +245,7 @@ function ActualizarSolicitudEstado(idUsuarios){
     const idUsuariosOrigen=idUsuarios;
     const idUsuariosDestino=id;
     let Estado="Amigos"
-    console.log("estoy Actualizando solicitud ",idUsuariosOrigen,idUsuariosDestino,Estado)
-    fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
+    fetch(`http://${ip}:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -260,7 +254,7 @@ function ActualizarSolicitudEstado(idUsuarios){
     })
     .then(res=>res.json())
     .then((respuesta)=>{
-        fetch(`http://localhost:4000/Seguidores/${id}`)
+        fetch(`http://${ip}:4000/Seguidores/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){
@@ -279,8 +273,7 @@ function InsertarAmigo(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="Amigos";
-    console.log("estoy insertando solicitud ",idUsuariosOrigen,idUsuariosDestino,Estado)
-    fetch(`http://localhost:4000/NuevoSeguidor`,{
+    fetch(`http://${ip}:4000/NuevoSeguidor`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -289,7 +282,7 @@ function InsertarAmigo(idUsuarios){
     })
     .then(res=>res.json())
     .then(insert=>{
-        fetch(`http://localhost:4000/Usuarios/${id}`)
+        fetch(`http://${ip}:4000/Usuarios/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             ActualizarSolicitudEstado(idUsuarios);
@@ -339,7 +332,7 @@ function MostrarlosUsuariosAmigos(){
 
 function UsuariosAmigosCargar(){
     const CargarDatosUsuarios=document.getElementById("ContenidoUsuarios");
-    fetch(`http://localhost:4000/AmigosUsuarios/${id}`)
+    fetch(`http://${ip}:4000/AmigosUsuarios/${id}`)
     .then(res=>res.json())
     .then((Usuarios)=>{
         let html=` `;
@@ -412,13 +405,11 @@ function msjAmigo(idUsuarios) {
 
 
 function PerfilMenajeFlotante(idUsuarios){
-    console.log(idUsuarios);
     const CargarPerfilFlotante = document.getElementById('encabezado-msj');
     let html="";
-    fetch(`http://localhost:4000/DatosPerfil/${idUsuarios}`)
+    fetch(`http://${ip}:4000/DatosPerfil/${idUsuarios}`)
     .then(res=>res.json())
     .then((respuesta)=>{
-        console.log(respuesta);
         for(let i=0;i<respuesta.length;i++){
         const Nombre=respuesta[i].Nombre;
         const Apellido=respuesta[i].Apellido;
@@ -438,11 +429,18 @@ function PerfilMenajeFlotante(idUsuarios){
 
 }
 
+function scrolM() {
+    const containerChat = document.getElementById('chat-msj');
+    setTimeout(function() {
+        containerChat.scrollTop = containerChat.scrollHeight;
+    }, 100);
+}
+
 function MensajesUsuariosNexusFlotante(idUsu){
     const MensajesUsuariosFlotante=document.getElementById('chat-msj');
     const idUsuarios=id; // Esto parece ser un error, ¿debería ser "idUsuario"?
     const idUsuarioDestino=idUsu;
-    fetch(`http://localhost:4000/Mensajeschat/${idUsuarios}/${idUsuarioDestino}`)
+    fetch(`http://${ip}:4000/Mensajeschat/${idUsuarios}/${idUsuarioDestino}`)
     .then(res => res.json())
     .then((respuesta) => {
         let html = "";
@@ -460,6 +458,7 @@ function MensajesUsuariosNexusFlotante(idUsu){
         }
         
         MensajesUsuariosFlotante.innerHTML = html;
+        scrolM();
     });
     
 }
@@ -470,7 +469,7 @@ function EnviarMensajeUsuarioFlotante(idUsuario){
     const idUsuarioOrigen=id;
     const idUsuarioDestino=idUsuario;
 
-fetch('http://localhost:4000/InsertarMensaje',{
+fetch(`http://${ip}:4000/InsertarMensaje`,{
     method:"POST",
     headers:{
         "Content-Type":"application/json",
@@ -488,7 +487,7 @@ fetch('http://localhost:4000/InsertarMensaje',{
     MensajeInput.value="";
     
     MensajesUsuariosNexusFlotante(idUsuario);
-    
+    scrolM();
   
 })
 
@@ -497,7 +496,6 @@ fetch('http://localhost:4000/InsertarMensaje',{
 socket.on('mensajes', (data) => {
     const mensaje = data.Mensaje;
     const html = `<p class="msj-amigo">${mensaje}</p>`;
-    console.log("Mensaje recibido:", mensaje);
 
     // Verificar que el elemento 'Mensajes-Usuarios' exista
     const MensajesUsuarios = document.getElementById('chat-msj');
@@ -547,7 +545,7 @@ function EnviarMensajeUsuariosAmigo(idUsuarios){
     const idUsuarioOrigen=id;
     const idUsuarioDestino=idUsuarios;
 
-fetch('http://localhost:4000/InsertarMensaje',{
+fetch(`http://${ip}:4000/InsertarMensaje`,{
     method:"POST",
     headers:{
         "Content-Type":"application/json",
@@ -567,7 +565,7 @@ function ActualizarEstadoAmistadUno(idUsuarios){
     const idUsuariosOrigen=idUsuarios;
     const idUsuariosDestino=id;
     let Estado="NoSiguiendo"
-    fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
+    fetch(`http://${ip}:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -576,7 +574,7 @@ function ActualizarEstadoAmistadUno(idUsuarios){
     })
     .then(res=>res.json())
     .then((respuesta)=>{
-        fetch(`http://localhost:4000/AmigosUsuarios/${id}`)
+        fetch(`http://${ip}:4000/AmigosUsuarios/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){
@@ -597,7 +595,7 @@ function ActualizarEstadoAmistadDos(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="NoSiguiendo"
-    fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
+    fetch(`http://${ip}:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -606,7 +604,7 @@ function ActualizarEstadoAmistadDos(idUsuarios){
     })
     .then(res=>res.json())
     .then((respuesta)=>{
-        fetch(`http://localhost:4000/AmigosUsuarios/${id}`)
+        fetch(`http://${ip}:4000/AmigosUsuarios/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){

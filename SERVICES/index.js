@@ -4,14 +4,20 @@ const socket=require('socket.io');
 const http=require('http');
 const morgan=require('morgan');
 const path=require('path');
+const CryptoJS = require('crypto-js');
+
 const app=express();
 const port=4000;
 app.use(express.json())//Insertar datos 
 // app.use(morgan('dev'));
 const srcpath=path.resolve(__dirname,'../src');
 app.use(express.static(srcpath));
-app.get('/',(req, res)=>{
-    res.sendFile(path.resolve(__dirname,'../src/HTML/login.html'));
+app.get('/Login',(req, res)=>{
+    res.sendFile(path.resolve(__dirname,'../src/HTML/Login.html'));
+})
+
+app.get('/Nexus',(req, res)=>{
+    res.sendFile(path.resolve(__dirname,'../src/HTML/index.html'));
 })
 let server=http.createServer(app);
 app.use(cors());

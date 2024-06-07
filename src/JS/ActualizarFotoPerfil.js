@@ -79,7 +79,7 @@ function ImagenPerfil() {
 function InsertarFotoPerfilUsuarios(FotoPerfil) {
   const Foto = FotoPerfil;
   const idUsuarios = id;
-  fetch("http://localhost:4000/InsertarFoto", {
+  fetch(`http://${ip}:4000/InsertarFoto`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -93,7 +93,7 @@ function InsertarFotoPerfilUsuarios(FotoPerfil) {
 function ActualizarFotoPerfil(FotoPerfil) {
   const QuitarImagen = document.getElementById("fPeril");
   const Foto = FotoPerfil;
-  fetch(`http://localhost:4000/ActualizaFotoPerfil/${id}`, {
+  fetch(`http://${ip}:4000/ActualizaFotoPerfil/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

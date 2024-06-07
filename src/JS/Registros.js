@@ -38,7 +38,7 @@ const Contrasena2=ConfirmarContrasenaInput.value;
 
            // Si las contraseñas coinciden, continuar con el registro 
            //metodo validar que no exista el correo   
-           fetch("http://localhost:4000/Correo")
+           fetch(`http://${ip}:4000/Correo`)
            .then(res=>res.json())
            .then((Correos)=>{
        
@@ -82,7 +82,7 @@ const Contrasena2=ConfirmarContrasenaInput.value;
 
 function RegistroCuenta(Nombre, Apellido, Correo, Contrasena){
     let Foto="../img/Foto1.jpg"
-    fetch('http://localhost:4000/NuevoUsuario', {
+    fetch(`http://${ip}:4000/NuevoUsuario`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

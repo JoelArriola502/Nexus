@@ -6,7 +6,7 @@ function despliegeMensaje(){
     const mensajes = document.getElementById('ContenidoPrincipal');
     html = `
         <div class="contenido-Mensajes">
-        <div class="nav-mensajes">
+        <div class="nav-mensajes" id="navP">
             <div class="encabezado">
                 <h2>Mensajes</h2>
                 <div class="con-bucar" style="display: none;">
@@ -23,6 +23,7 @@ function despliegeMensaje(){
         <div class="container-chat" id="Contenedor-chat">
        
     </div>
+    </div>
     `;
     mensajes.innerHTML = html;
     MensajesUsuarios();
@@ -31,7 +32,7 @@ function despliegeMensaje(){
 
 function MensajesUsuarios(){
     const CargarChat=document.getElementById('ChatUsuarios');
-    fetch(`http://localhost:4000/UsuariosMensajes/${id}`)
+    fetch(`http://${ip}:4000/UsuariosMensajes/${id}`)
     .then(res=>res.json())
     .then(respuesta=>{
         let html="";
@@ -41,9 +42,9 @@ function MensajesUsuarios(){
             const Foto=respuesta[i].Foto;
             const idUsuario=respuesta[i].idUsuarios;
 
-            localStorage.setItem('ChatUsuarios',idUsuario)
+           
             html=html+`
-            <div class="personas" onclick="ChatUsuarios(${idUsuario})">
+            <div class="personas" onclick="ChatUsuarios(${idUsuario}), desplegarChatUser()">
                     <div class="foto-perfil">
                         <img src="${Foto}" >
                     </div>
@@ -69,7 +70,7 @@ function MensajesUsuarios(){
 
 function UltimoMensajeEnviado(idUsuario){
     const CargarUltimoMensaje=document.getElementById(`UltimoMensaje-${idUsuario}`);
-    fetch(`http://localhost:4000/UltimoMensaje/${id}/${idUsuario}`)
+    fetch(`http://${ip}:4000/UltimoMensaje/${id}/${idUsuario}`)
     .then(res=>res.json())
     .then((respuesta)=>{
         for(let i=0;i<respuesta.length;i++){
@@ -81,7 +82,7 @@ function UltimoMensajeEnviado(idUsuario){
 
 function UltimoMensajeEnviadoHora(idUsuario) {
     const CargarUltimoMensajeHora = document.getElementById(`HoraMensaje-${idUsuario}`);
-    fetch(`http://localhost:4000/UltimoMensaje/${id}/${idUsuario}`)
+    fetch(`http://${ip}:4000/UltimoMensaje/${id}/${idUsuario}`)
     .then(res => res.json())
     .then((respuesta) => {
         if (respuesta.length > 0) {
@@ -118,7 +119,7 @@ function ChatUsuarios(idUsuario){
     <div class="el-perfil" id="Perfil-Chat">
     
 </div>
-<div class="txt-chat">
+<div class="txt-chat" id="sr">
     <div class="container-texto" id="Mensajes-Usuarios">
        
     </div>
@@ -140,7 +141,7 @@ function ChatUsuarios(idUsuario){
 
 function UsuarioPerfilchat(idUsuario){
     const CargarPerilChat=document.getElementById('Perfil-Chat')
-    fetch(`http://localhost:4000/DatosPerfil/${idUsuario}`)
+    fetch(`http://${ip}:4000/DatosPerfil/${idUsuario}`)
     .then(res=>res.json())
     .then((respuesta)=>{
         let html="";
@@ -151,6 +152,8 @@ function UsuarioPerfilchat(idUsuario){
         html=html+`
         <img src="${Foto}" alt="Foto">
     <h4 class="nombre-perfil">${Nombre} ${Apellido}</h4>
+    <i onclick="ocultarUserM()" class="fa-solid fa-arrow-left"></i>
+    
         `
        
      CargarPerilChat.innerHTML=html;
@@ -159,12 +162,30 @@ function UsuarioPerfilchat(idUsuario){
     })
 }
 
+function ocultarUserM(){
+    if (window.innerWidth <= 992) {
+        const navPe = document.getElementById('navP');
+        const charU = document.getElementById('Contenedor-chat');
+        navPe.style.display = "block";
+        charU.style.display = "none";
+    }
+
+}
+
+function desplegarChatUser(){
+    if (window.innerWidth <=992){
+        const navPe = document.getElementById('navP');
+        const charU = document.getElementById('Contenedor-chat');
+        navPe.style.display="none";
+        charU.style.display="flex";
+    }
+}
 
 function MensajesUsuariosNexus(idUsuario){
     const MensajesUsuarios=document.getElementById('Mensajes-Usuarios');
     const idUsuarios=id; // Esto parece ser un error, ¿debería ser "idUsuario"?
     const idUsuarioDestino=idUsuario;
-    fetch(`http://localhost:4000/Mensajeschat/${idUsuarios}/${idUsuarioDestino}`)
+    fetch(`http://${ip}:4000/Mensajeschat/${idUsuarios}/${idUsuarioDestino}`)
     .then(res => res.json())
     .then((respuesta) => {
         let html = "";
@@ -182,6 +203,7 @@ function MensajesUsuariosNexus(idUsuario){
         }
         
         MensajesUsuarios.innerHTML = html;
+        scrollDownChat();
     });
     
 }
@@ -190,7 +212,6 @@ function MensajesUsuariosNexus(idUsuario){
 socket.on('mensajes', (data) => {
     const mensaje = data.Mensaje;
     const html = `<p class="mensaje-tercero">${mensaje}</p>`;
-    console.log("Mensaje recibido:", mensaje);
 
     // Verificar que el elemento 'Mensajes-Usuarios' exista
     const MensajesUsuarios = document.getElementById('Mensajes-Usuarios');
@@ -201,6 +222,13 @@ socket.on('mensajes', (data) => {
     }
   });
 
+function scrollDownChat() {
+    const containerChat = document.getElementById('sr');
+    setTimeout(function() {
+        containerChat.scrollTop = containerChat.scrollHeight;
+    }, 100);
+}
+
 
 function EnviarMensajeUsuario(idUsuario){
     const MensajeInput=document.getElementById('txtMensaje');
@@ -208,7 +236,7 @@ function EnviarMensajeUsuario(idUsuario){
     const idUsuarioOrigen=id;
     const idUsuarioDestino=idUsuario;
 
-fetch('http://localhost:4000/InsertarMensaje',{
+fetch(`http://${ip}:4000/InsertarMensaje`,{
     method:"POST",
     headers:{
         "Content-Type":"application/json",
@@ -229,6 +257,7 @@ fetch('http://localhost:4000/InsertarMensaje',{
     UltimoMensajeEnviado(idUsuario);
     UltimoMensajeEnviadoHora(idUsuario);
     
+    scrollDownChat();  
   
 })
 

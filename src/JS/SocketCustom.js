@@ -1,7 +1,7 @@
 var socket=io();
 socket.on('connect', function(){
-    console.log('Conectado al servidor',idUsuarios);
-    socket.emit('RegistrarId',idUsuarios);
+    console.log('Conectado al servidor',id);
+    socket.emit('RegistrarId',id);
 })
 
 socket.on('disconnect', function(){
