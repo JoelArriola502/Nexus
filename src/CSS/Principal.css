@@ -182,7 +182,7 @@ img{
     display: flex;
     flex-direction: column;
     /* border: solid 3px greenyellow; */
-    height: 93%;
+    height: 100%;
     width: auto;
 }
 

@@ -9,7 +9,7 @@ function despliegeMensaje(){
         <div class="nav-mensajes">
             <div class="encabezado">
                 <h2>Mensajes</h2>
-                <div class="con-bucar">
+                <div class="con-bucar" style="display: none;">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
                     <input class="input" type="search" placeholder="Buscar" />
                 </div>

@@ -322,7 +322,7 @@ function CargarUsuariosAmigos(){
     let html="";
     html=html+`
     <div class="Tituilo-Users">
-        <h2>Seguidores </h2>
+        <h2>Amigos </h2>
      </div>
     <div class="Usuarios-Principal" id="ContenidoUsuarios">
     </div>
