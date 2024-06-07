@@ -96,7 +96,7 @@ function CargarPublicacionCrear(){
     <div class="botonesPubli">
     <progress id="img-Progeros-Carga" value="0" max="100" style="width: 100%; display: none;"></progress>
     <input type="file" class="multimedia" id="FilePublicacion">
-    <label for="FilePublicacion" class="SubirImagenPublicacion"><i class="fa-solid fa-photo-film"></i> Foto/Video</label>
+    <label for="FilePublicacion" class="SubirImagenPublicacion"><i class="fa-solid fa-photo-film"></i> Foto</label>
         <button class="Etiquetar" onclick="CargarDatosEtiquetados()"><i class="fa-solid fa-tag"></i>Etiquetar</button>
         <button class="btnPublicar" id="PublicarPublicacion">Publicar</button>
         <div id="modalContainer"></div>

@@ -315,7 +315,7 @@ function CargarUsuariosAmigos(){
     let html="";
     html=html+`
     <div class="Tituilo-Users">
-        <h2>Seguidores </h2>
+        <h2>Amigos </h2>
      </div>
     <div class="Usuarios-Principal" id="ContenidoUsuarios">
     </div>
@@ -429,6 +429,13 @@ function PerfilMenajeFlotante(idUsuarios){
 
 }
 
+function scrolM() {
+    const containerChat = document.getElementById('chat-msj');
+    setTimeout(function() {
+        containerChat.scrollTop = containerChat.scrollHeight;
+    }, 100);
+}
+
 function MensajesUsuariosNexusFlotante(idUsu){
     const MensajesUsuariosFlotante=document.getElementById('chat-msj');
     const idUsuarios=id; // Esto parece ser un error, ¿debería ser "idUsuario"?
@@ -451,6 +458,7 @@ function MensajesUsuariosNexusFlotante(idUsu){
         }
         
         MensajesUsuariosFlotante.innerHTML = html;
+        scrolM();
     });
     
 }
@@ -479,7 +487,7 @@ fetch(`http://${ip}:4000/InsertarMensaje`,{
     MensajeInput.value="";
     
     MensajesUsuariosNexusFlotante(idUsuario);
-    
+    scrolM();
   
 })
 
