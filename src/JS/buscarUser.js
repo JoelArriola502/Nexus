@@ -10,9 +10,9 @@ function buscarUserN() {
 
                 <div class="user-list">
                     <div class="user">
-                        <img src="user1.jpg" alt="User 1" class="user-photo">
+                        <img src="https://www.bing.com/images/blob?bcid=slQWEZxIjBwHg.R0P9ifPxwY8k3K.....50" alt="User 1" class="user-photo">
                         <div class="user-info">
-                            <h2>John Doe</h2>
+                            <h2>Joel Arriola</h2>
                         </div>
                     </div>
                     

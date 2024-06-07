@@ -73,6 +73,9 @@
     color: #fff;
     padding: 6px;
     border-radius: 50%;
+}
+
+.fas:hover{
     cursor: pointer;
 }
 
@@ -250,7 +253,7 @@
 
 .header-perfil-foto i{
     font-size: 35px;
-    margin-left: 360px;
+    margin-left: 330px;
 }
 
 .header-perfil-foto i:hover{

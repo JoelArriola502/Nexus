@@ -107,6 +107,59 @@
             justify-content: space-between;
         }
 
+
+         /*Mensajes*/
+    
+        .nav-mensajes {
+            width: 100%;
+            height: 100%;
+            border-right: none;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        .container-chat {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+    
+        .txt-chat {
+            max-width: 500px;
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-texto{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-botones{
+            display: flex;
+        }
+
+        .btn-enviar {
+            margin-bottom: 10px;
+        }
+    
+        .escribir {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .mensaje-tercero, .tu-mensaje {
+            max-width: 90%;
+        }
+
+        .el-perfil i{
+            margin-left: 70px;
+        }
+
     }
 
     @media screen and (max-width: 600px) {
@@ -240,20 +293,18 @@
         }
 
         /*Mensajes*/
-        .contenido-Mensajes {
-            display: grid;
-        }
-    
+        
         .nav-mensajes {
             width: 100%;
-            max-height: 250px;
+            height: 100%;
             border-right: none;
             border-bottom: 1px solid #ddd;
         }
     
         .container-chat {
+            display: none;
             width: 100%;
-            height: 380px;
+            height: 100%;
         }
     
         .txt-chat {
@@ -275,19 +326,22 @@
             display: flex;
         }
 
-        .btn-icono-foto, .btn-enviar {
-            width: 100%;
+        .btn-enviar {
             margin-bottom: 10px;
         }
     
         .escribir {
-            width: 100px;
+            max-width: 100%;
             margin: 0;
             padding: 0;
         }
     
         .mensaje-tercero, .tu-mensaje {
             max-width: 90%;
+        }
+
+        .el-perfil i{
+            margin-left: 70px;
         }
 
         /*Amigos, usuarios, segidos y seguidores*/
