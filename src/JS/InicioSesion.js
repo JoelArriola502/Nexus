@@ -1,6 +1,6 @@
 const PasswordInput = document.getElementById("password");
 const EmailInput = document.getElementById("email");
-
+const ip="161.35.141.68";
 function IniciarSesion() {
     const Password = PasswordInput.value;
     const Email = EmailInput.value;
@@ -14,7 +14,7 @@ function IniciarSesion() {
         return;
     }
 
-    fetch(`http://localhost:4000/IniciarSesion`, {
+    fetch(`http://${ip}:4000/IniciarSesion`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

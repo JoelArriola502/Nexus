@@ -21,7 +21,7 @@ function MostrarlosUsuarioscontenedor(){
 
 function MostrarUsuarios(){
     const CargarDatosUsuarios=document.getElementById("ContenidoUsuarios");
-    fetch(`http://localhost:4000/Usuarios/${id}`)
+    fetch(`http://${ip}:4000/Usuarios/${id}`)
     .then(res=>res.json())
     .then((Usuarios)=>{
         let html=` `;
@@ -81,7 +81,7 @@ function seleccionarBoton(valor) {
 function SeguirUsuarios(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
-    fetch(`http://localhost:4000/Seguidores/${idUsuariosOrigen}/${idUsuariosDestino}`)
+    fetch(`http://${ip}:4000/Seguidores/${idUsuariosOrigen}/${idUsuariosDestino}`)
     .then(res=>res.json())
     .then(Respuesta=>{
       if(Respuesta.length===0){
@@ -100,7 +100,7 @@ function ActualizarSeguidorEstado(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="Siguiendo"
-    fetch(`http://localhost:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
+    fetch(`http://${ip}:4000/EstadoSeguidor/${idUsuariosOrigen}/${idUsuariosDestino}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -109,7 +109,7 @@ function ActualizarSeguidorEstado(idUsuarios){
     })
     .then(res=>res.json())
     .then((respuesta)=>{
-        fetch(`http://localhost:4000/Usuarios/${id}`)
+        fetch(`http://${ip}:4000/Usuarios/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){
@@ -128,7 +128,7 @@ function InsertarSeguidor(idUsuarios){
     const idUsuariosOrigen=id;
     const idUsuariosDestino=idUsuarios;
     let Estado="Siguiendo";
-    fetch(`http://localhost:4000/NuevoSeguidor`,{
+    fetch(`http://${ip}:4000/NuevoSeguidor`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json",
@@ -137,7 +137,7 @@ function InsertarSeguidor(idUsuarios){
     })
     .then(res=>res.json())
     .then(insert=>{
-        fetch(`http://localhost:4000/Usuarios/${id}`)
+        fetch(`http://${ip}:4000/Usuarios/${id}`)
         .then(res=>res.json())
         .then(respuesta=>{
             if(respuesta.length===0){
