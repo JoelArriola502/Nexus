@@ -36,11 +36,11 @@ body{
     padding: 20px;
     border-bottom-left-radius: 30px;
     border-top-left-radius: 30px;
-    background-color: rgba(255, 255, 255, 0.568)
+    background-color: rgb(2, 2, 2, 0.568)
   }
   
   .container-logo h1{
-    color: #2f00ff;
+    color: #ffffff;
     font-size: 80px;
     font-family: 'Segoe UI historic';
     margin: 0;
