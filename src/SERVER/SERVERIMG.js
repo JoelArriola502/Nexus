@@ -90,7 +90,7 @@ function insertarPublicacionSinImagen() {
   const Descripcion = DescripcionInput.value;
   const idUsuarios = id;
 
-  return fetch(`http://${ip}:4000/NuevaPublicacion`, {
+  return fetch("http://localhost:4000/NuevaPublicacion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -112,7 +112,7 @@ function insertarPublicacionSinImagenEtiquetado() {
   const Descripcion = DescripcionInput.value;
   const idUsuarios = id;
 
-  return fetch(`http://${ip}:4000/NuevaPublicacion`, {
+  return fetch("http://localhost:4000/NuevaPublicacion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -129,7 +129,7 @@ function insertarPublicacionSinImagenEtiquetado() {
 }
 
 function InsertarPublicacionEtiquetada() {
-  fetch(`http://${ip}:4000/Maxid`)
+  fetch("http://localhost:4000/Maxid")
     .then((res) => res.json())
     .then((respuesta) => {
       const idPublicacionesMax = respuesta
@@ -142,7 +142,7 @@ function InsertarPublicacionEtiquetada() {
       datosArray.forEach(function (dato) {
         const idPublicaciones = idPubli;
         EtiquetarPublicacion(dato.idUsuario, idPublicaciones);
-       
+        console.log("Exitosa Etiquetado", idPublicaciones);
       });
     });
 }
@@ -154,7 +154,7 @@ function insertarPublicacionConImagen(URL_imagen) {
   const musica = "";
   const Descripcion = DescripcionInput.value;
   const idUsuarios = id;
-  fetch(`http://${ip}:4000/NuevaPublicacion`, {
+  fetch("http://localhost:4000/NuevaPublicacion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -173,13 +173,14 @@ function insertarPublicacionConImagen(URL_imagen) {
 }
 
 function insertarPublicacionConImagenEtiquetado(URL_imagen) {
+  console.log("funcion ver cuantas veces se ejecuta ");
   const DescripcionInput = document.getElementById("Descripcion");
   const imagen = URL_imagen;
   const video = "";
   const musica = "";
   const Descripcion = DescripcionInput.value;
   const idUsuarios = id;
-  fetch(`http://${ip}:4000/NuevaPublicacion`, {
+  fetch("http://localhost:4000/NuevaPublicacion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
